@@ -168,6 +168,7 @@ span.choose {
     padding: 10px;
     display: flex;
     justify-content: space-around;
+    align-items: center;
 }
 .dropdown2 .select > i {
     font-size: 13px;
@@ -221,6 +222,19 @@ span.choose {
 .dropdown2 .dropdown2-menu li:active {
     background-color: #e2e2e2
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

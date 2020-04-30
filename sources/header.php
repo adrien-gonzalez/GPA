@@ -6,7 +6,7 @@ $url = $_SERVER['PHP_SELF'];
 $reg = '#^(.+[\\\/])*([^\\\/]+)$#';
 define('ma_courante', preg_replace($reg, '$2', $url)); ?>
  
-
+<header>
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div class="container">
     	<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -113,5 +113,6 @@ define('ma_courante', preg_replace($reg, '$2', $url)); ?>
 	    </div>
     </div>
 </nav>
+</header>
 
 

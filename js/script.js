@@ -1,27 +1,5 @@
-// function myFunction() {
-//   document.getElementById("myDropdown").classList.toggle("show");
-// }
-
-// // Close the dropdown if the user clicks outside of it
-// window.onclick = function(event) {
-//   if (!event.target.matches('.dropbtn')) {
-//     var dropdowns = document.getElementsByClassName("dropdown-content");
-//     var i;
-//     for (i = 0; i < dropdowns.length; i++) {
-//       var openDropdown = dropdowns[i];
-//       if (openDropdown.classList.contains('show')) {
-//         openDropdown.classList.remove('show');
-//       }
-//     }
-//   }
-// }
-
-
-
-
-// A $( document ).ready() block.
 $( document ).ready(function() {
-/*Dropdown Menu*/
+// MENU DEROULANT ACCUEIL
 $('.dropdown2').click(function () {
   console.log("ok")
         $(this).attr('tabindex', 1).focus();
