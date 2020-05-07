@@ -57,7 +57,7 @@
   border-color: transparent !important;
 }
 
-.limiter input::-webkit-input-placeholder { color: #999999;}
+/*.limiter input::-webkit-input-placeholder { color: #999999;}
 .limiter input:-moz-placeholder { color: #999999;}
 .limiter input::-moz-placeholder { color: #999999;}
 .limiter input:-ms-input-placeholder { color: #999999;}
@@ -65,7 +65,7 @@
 .limiter textarea::-webkit-input-placeholder { color: #999999;}
 .limiter textarea:-moz-placeholder { color: #999999;}
 .limiter textarea::-moz-placeholder { color: #999999;}
-.limiter textarea:-ms-input-placeholder { color: #999999;}
+.limiter textarea:-ms-input-placeholder { color: #999999;}*/
 
 /*---------------------------------------------*/
 .limiter button {
@@ -152,6 +152,7 @@
   align-items: stretch;
   flex-direction: row-reverse;
 
+
 }
 
 /*==================================================================
@@ -192,7 +193,7 @@
   flex-direction: column;
   align-items: center;
   flex-wrap: wrap;
-  padding: 40px 60px 45px 50px;
+  padding: 60px 64px 15px 60px
   
 }
 
@@ -218,7 +219,6 @@
   position: relative;
   border: 1px solid #e6e6e6;
   height: 38px;
-
 }
 
 .rs1-wrap-input100{
@@ -233,7 +233,7 @@
 }
 
 
-.input100 {
+.input100, .input100-2 {
   display: block;
   width: 100%;
   background: transparent;
@@ -244,7 +244,7 @@
 }
 
 input.input100 {
-  height: 25px;
+  height: 100%;
 }
 
 /*---------------------------------------------*/
@@ -307,7 +307,7 @@ input.input100 {
   align-items: center;
   padding: 0 20px;
   width: 100%;
-  height: 50px;
+  height: 40px;
   border-radius: 3px;
   background: #17A681;;
   font-size: 12px;
@@ -324,6 +324,7 @@ input.input100 {
 
 .login100-form-btn:hover {
   background: #0D836E;
+  cursor: pointer;
 }
 
 
@@ -441,6 +442,7 @@ input.input100 {
 .m-b-20 {margin-bottom: 20px;}
 .m-b-40 {margin-bottom: 40px;}
 .m-t-100 {margin-top: 100px;}
+.m-t-40 {margin-top: 40px;}
 .p-b-34 {padding-bottom: 34px;}
 .p-b-100 {padding-bottom: 100px;}
 .p-t-27 {padding-top: 27px;}
@@ -462,7 +464,6 @@ input.input100 {
   flex-direction: row;
 }
 
-
 .taille1{
 
   width: 471px;
@@ -470,5 +471,17 @@ input.input100 {
 
 .taille2{
 
-  width: 210px;
+  width: 215px;
 }
+
+path{
+
+  color : #C0392B;
+  cursor: pointer;
+}
+
+svg{
+  margin-left: -15%;
+  cursor: pointer
+}
+
