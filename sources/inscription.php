@@ -30,13 +30,14 @@ $annee = $now->format('Y') - 18;
 $date=$now->format('m-d'); 
 $date_max = $annee."-".$date;
 
+
 ?>
 
 
 <div class="limiter m-t-100">
 	<div class="container-login100">
 		<div class="wrap-login100 shadow">
-			<form class="login100-form validate-form">
+			<form class="login100-form validate-form" enctype="multipart/form-data">
 				<span class="login100-form-title p-b-34">
 					Inscription
 				</span>
@@ -73,13 +74,16 @@ $date_max = $annee."-".$date;
 				</div>
 				<div class="flex-row">
 					<div>
-						<label>Photo de profil (optionnel) :</label>
-						<div class="file wrap-input100 rs1-wrap-input100 validate-input m-b-20 taille2">
-							<input class="input100-2" type="file" name="fileToUpload" id="fileToUpload">	
-							<span class="focus-input100"></span>
+					<div class="d-flex flex-column container2 ">
+						<label id="label_image" class="label" for="input">Sélectionnez une image</label>
+
+						<div class="input">
+							<input name="input" id="fileToUpload" accept="image/*" type="file">
 						</div>
 					</div>
-					<div>	
+
+					</div>
+					<div class="naissance_input">	
 						<label>Date de naissance :</label>
 						<div class="naissance wrap-input100 rs1-wrap-input100 validate-input m-b-20 taille2">
 								<input id="naissance" class="input100-2" type="date" name="date" placeholder="Date de naissance"

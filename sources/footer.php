@@ -9,7 +9,7 @@
         <h5 class="mb-1">Register for free</h5>
       </li>
       <li class="list-inline-item">
-        <a href="" class="btn btn-outline-white btn-rounded">Sign up!</a>
+        <a href="">Sign up!</a>
       </li>
     </ul>
     <!-- Call to action -->
@@ -18,8 +18,8 @@
   <!-- Footer Elements -->
 
   <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© 2020 Copyright :
-    <a href="http://global-pa.fr/" class="btn btn-outline-white btn-rounded">Global Prestations Annexes</a>
+  <div class="footer-copyright text-center py-3">© 2020 Copyright -
+    <a href="http://global-pa.fr/">Global Prestations Annexes</a>
   </div>
   <!-- Copyright -->
 

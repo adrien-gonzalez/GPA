@@ -31,7 +31,7 @@ define('ma_courante', preg_replace($reg, '$2', $url)); ?>
  			{
  			?>
 	         	<li class="nav-item text-uppercase">
-	            	<a class="nav-link js-scroll-trigger"  href="index.php">Accueil</a>
+	            	<a class="nav-link js-scroll-trigger"  href="">Accueil</a>
 	          	</li>
 			  	<li class="nav-item text-uppercase">
 	            	<a class="nav-link js-scroll-trigger" href="sources/contact.php">Contact</a>
@@ -45,7 +45,7 @@ define('ma_courante', preg_replace($reg, '$2', $url)); ?>
 	    	{
 	    	?>
 	    		<li class="nav-item text-uppercase">
-	            	<a class="nav-link js-scroll-trigger"  href="../index.php">Accueil</a>
+	            	<a class="nav-link js-scroll-trigger"  href="../">Accueil</a>
 	          	</li>
 			  	<li class="nav-item text-uppercase">
 	            	<a class="nav-link js-scroll-trigger" href="contact.php">Contact</a>

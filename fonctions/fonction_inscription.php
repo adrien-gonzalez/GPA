@@ -15,7 +15,7 @@ $password1  = $_POST['password1'];
 $password2  = $_POST['password2'];
 
 // CARACTERES NON ACCEPTES
-$subject = [$login, $password1];
+$subject = [$login];
 $pattern = '/^[ÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ]*$/i';
 $erreurs = false;
 
@@ -79,17 +79,17 @@ if($password1 != $password2)
 }
 
 
-
-if(sizeof($tab_erreur) == 0)
-{	
+if(isset($tab_erreur))
+{
+	echo json_encode($tab_erreur);
+}
+else
+{
 	$password_hash=password_hash($password1, PASSWORD_BCRYPT, ["cost" => 12]);
 	$insert="INSERT INTO utilisateurs VALUES (NULL, '$genre', '$nom', '$prenom', '$adresse', '$email', '$naissance', '$login', '$password_hash')";
 	mysqli_query($base, $insert);
 	echo "ok";
 }
 
-
-
-echo json_encode($tab_erreur);
 
 ?>
