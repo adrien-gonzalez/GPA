@@ -40,6 +40,7 @@ body{
 
 }
 
+
 .header_accueil{
 
 	display: flex;
@@ -223,7 +224,24 @@ span.choose {
     background-color: #e2e2e2
 }
 
+.ie-stickyFooter { /* 1 */
+  display:-ms-flexbox;
+  -ms-flex-direction:column;
+}
 
+#page {
+  width:100%; /* 2 */
+  min-height:100vh;
+  display:-webkit-flex; /* 3 */
+  display:flex;
+  -webkit-flex-direction:column; /* 3 */
+  flex-direction:column;
+}
+
+#content {
+  -webkit-flex-grow:1; /* 3 */
+  flex-grow:1;
+}
 footer{
 
   background-color: #21202E;

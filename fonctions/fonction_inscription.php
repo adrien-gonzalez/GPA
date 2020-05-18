@@ -86,7 +86,7 @@ if(isset($tab_erreur))
 else
 {
 	$password_hash=password_hash($password1, PASSWORD_BCRYPT, ["cost" => 12]);
-	$insert="INSERT INTO utilisateurs VALUES (NULL, '$genre', '$nom', '$prenom', '$adresse', '$email', '$naissance', '$login', '$password_hash')";
+	$insert="INSERT INTO utilisateurs VALUES (NULL, '$genre', '$nom', '$prenom', '$adresse', '$email', '$naissance', '$login', '$password_hash', '../img/profil/profil_defaut.jpg')";
 	mysqli_query($base, $insert);
 	echo "ok";
 }

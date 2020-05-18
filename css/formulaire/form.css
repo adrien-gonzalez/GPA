@@ -7,7 +7,7 @@
 .limiter a {
 	font-size: 14px;
 	line-height: 1.7;
-	color: #666666;
+  color: #999999;
 	margin: 0px;
 	transition: all 0.4s;
 	-webkit-transition: all 0.4s;
@@ -183,7 +183,7 @@
   flex-direction: column;
   align-items: center;
   flex-wrap: wrap;
-  padding: 60px 64px 15px 60px
+  padding: 40px 64px 15px 60px
   
 }
 
@@ -208,7 +208,7 @@
   width: 100%;
   position: relative;
   border: 1px solid #e6e6e6;
-  height: 38px;
+  height: 35px;
 }
 
 .rs1-wrap-input100{
@@ -553,4 +553,9 @@ label{
 img{
   display: block;
   margin: 0 auto 15px;
+}
+
+.connexion #content .limiter{
+
+  margin-top: 10%;
 }

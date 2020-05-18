@@ -39,7 +39,7 @@ $(document).ready(function (){
 					        data: fd,
 					        contentType: false,
 					        processData: false,
-					        success: function(response){
+					        success: function(response){				        	
 					        }
 						});
 					}
@@ -153,7 +153,7 @@ $(document).ready(function (){
 });
 
 
-// AFFICHAGE IMAGE SUR LA PAGE
+// AFFICHAGE IMAGE 
 $(function(){
 		
 		var valid_extensions = [".jpg",".jpeg",".png"]
