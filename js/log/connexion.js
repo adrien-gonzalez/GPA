@@ -1,31 +1,38 @@
 $(document).ready(function (){
     $("body").on("click", "#validate_connect", function () { 
 
+        if ($("#login").val() != "" && $("#password").val() != "")
+        {
+            login = $("#login").val()  
+            password = $("#password").val()  
+            
+            $.ajax({
+                    url: '../fonctions/fonction_connexion.php',
+                    type: 'POST',
+                    data: {login: login, password: password},        
+                   
+                    success: function(data){ 
 
-      if ($("#login").val() != "" && $("#password").val() != "")
-      
-
-{
-    login = $("#login").val()  
-    password = $("#password").val()  
-
-    
-    $.ajax({
-            url: 'fonction_connexion.php',
-            type: 'post',
-            data: {login: login, password: password} ,
-
-           
-            success: function(response){ console.log(response)   
-            }
-        });
-    }
-    else{$('#login').css({"border":"1px solid #C0392B"})
-   {$('#password').css({"border":"1px solid #C0392B"})
-}
-}
+                        data=data.trim()
+                        if(data == "erreur")
+                        {                      
+                            $(".champ_vide").remove()
+                            $(".login100-form-title").after('<div class="champ_vide">*Login ou mot de passe inccorrect</div>')
+                        }
+                        else
+                        {
+                            document.location.href="../"; 
+                        }
+                    }
+                });
+        }
+        else
+        {
+            $('#login').css({"border":"1px solid #C0392B"})
+            $('#password').css({"border":"1px solid #C0392B"})
+            $(".champ_vide").remove()
+            $(".login100-form-title").after('<div class="champ_vide">*Des champs sont vides</div>')
+        }
     }); 
-
-
 });
 

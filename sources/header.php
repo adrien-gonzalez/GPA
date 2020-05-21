@@ -16,13 +16,13 @@ define('ma_courante', preg_replace($reg, '$2', $url)); ?>
 	    	<?php if(ma_courante == "index.php")
  			{
  			?>
-				<button class="button_design"><a style="color:white; text-decoration: none;" href="sources/ajout_annonce.php">Déposer une annonce</a></button>
+				<button class="button_design"><a style="color:white; text-decoration: none;" href="sources/depot_annonce.php">Déposer une annonce</a></button>
 			<?php
 			}
 			else
 			{
 			?>
-				<button class="button_design"><a style="color:white; text-decoration: none;" href="ajout_annonce.php">Déposer une annonce</a></button>
+				<button class="button_design"><a style="color:white; text-decoration: none;" href="depot_annonce.php">Déposer une annonce</a></button>
 			<?php	
 			}
 			?>	
@@ -70,6 +70,8 @@ define('ma_courante', preg_replace($reg, '$2', $url)); ?>
 				   	<a class="dropdown-item" href="sources/messagerie.php">Messagerie</a>
 				    <a class="dropdown-item" href="sources/annonce.php">Annonce</a>
 				    <a class="dropdown-item" href="sources/parametre.php">Paramètre</a>
+				    <a class="dropdown-item" href="sources/deconnexion.php">Se déconnecter</a>
+
 				<?php
 				}
 				else
@@ -78,6 +80,7 @@ define('ma_courante', preg_replace($reg, '$2', $url)); ?>
 					<a class="dropdown-item" href="messagerie.php">Messagerie</a>
 				    <a class="dropdown-item" href="annonce.php">Annonce</a>
 				    <a class="dropdown-item" href="parametre.php">Paramètre</a>
+				    <a class="dropdown-item" href="deconnexion.php">Se déconnecter</a>
 				<?php	
 				}
 				?>

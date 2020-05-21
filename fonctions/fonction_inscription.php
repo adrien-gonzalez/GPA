@@ -50,32 +50,26 @@ for($i=0; $i < sizeof($subject); $i++)
 if($erreurs == true)
 {	
 	$tab_erreur["Character"]="character_not_accepted";
-	// echo "character_not_accepted";
 }
 if (mysqli_num_rows($req_login) > 0)
 {	
 	$tab_erreur["Login_exist"]="user_already_exist";
-	// echo "user_already_exist";
 }
 if(strlen($login) < 5)
 {	
 	$tab_erreur["Login_short"]= "user_to_short";
-	// echo "user_to_short";
 }
 if (mysqli_num_rows($req_email) > 0)
 {	
 	$tab_erreur["Email"]= "email_already_exist";
-	// echo "email_already_exist";
 }
 if(strlen($password1) < 8)
 {
 	$tab_erreur["Password1"]= "password_to_short";
-	// echo "password_to_short";
 }
 if($password1 != $password2)
 {	
 	$tab_erreur["Password2"]= "different_password";
-	// echo "different_password";
 }
 
 

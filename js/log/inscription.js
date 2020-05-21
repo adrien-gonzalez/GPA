@@ -33,15 +33,19 @@ $(document).ready(function (){
 					    var files = $('#fileToUpload')[0].files[0];
 					    fd.append('file',files);
 
-						$.ajax({
-						    url: '../fonctions/upload.php',
-					        type: 'post',
-					        data: fd,
-					        contentType: false,
-					        processData: false,
-					        success: function(response){				        	
-					        }
-						});
+					    if(files != undefined)
+					    {
+					    	$.ajax({
+							    url: '../fonctions/upload.php',
+						        type: 'post',
+						        data: fd,
+						        contentType: false,
+						        processData: false,
+						        success: function(response){				        	
+						        }
+							});
+					    }
+                        document.location.href="connexion.php"; 
 					}
 					else
 					{
