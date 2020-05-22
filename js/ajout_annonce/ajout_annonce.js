@@ -24,14 +24,18 @@ $( document ).ready(function() {
 		$("#label_image").css({"display" : "inherit"})
 		$("#label_image").text("Mon attestation :")
 		$("#upload").attr("value", "Télécharger mon attestation")
+		$('#fileToUpload').val("")
 		
 	});
 
 	$("body").on("click", "#validate_annonce", function () {
-
-		if($("#attestation").val() != "0" && $("#region").val() != "0" && $("#descriptif").val().length >= 100)
+		
+		if($("#attestation").val() != "0" && $("#region").val() != "0" && $("#descriptif").val().length >= 100 &&
+		   $("#name_fichier").text() != "" && $("#tel").val() != "" && $("#prix").val() != "")
 		{
-			console.log($("#attestation").val())
+			console.log($('#fileToUpload').val().length)
+			validatePhone($("#tel").val())
+
 		}
 	});
 });
@@ -50,13 +54,20 @@ $(function(){
 		}			
 		btn.on('click', function(){
 			inputFile.click();
+
 		});
 		inputFile.on('change', function(e){
 
 			var upload = 0
 			taille = $('#fileToUpload').val().length
-			name = document.getElementById('fileToUpload').files[0].name
-			type = document.getElementById('fileToUpload').files[0].type
+			
+			if(taille > 0)
+			{
+				name = document.getElementById('fileToUpload').files[0].name
+				type = document.getElementById('fileToUpload').files[0].type
+
+			}
+
 			valid_extensions = $('#fileToUpload').attr("accept");
 
 			if(type == valid_extensions)
@@ -81,17 +92,17 @@ $(function(){
 				container.find('label').html( inputFile.val() );
 				var i = 0;
 				for(i; i < e.originalEvent.srcElement.files.length; i++) {
+					
 					var file = e.originalEvent.srcElement.files[i], 
-						reader = new FileReader();
-
+					reader = new FileReader();
 					reader.onloadend = function(){
 						img.attr('src', "../img/attestations/logo_pdf.png").animate({opacity: 1}, 700);
 					}
 					reader.readAsDataURL(file);
 					img.removeClass('hidden');
 				}		
-				btn.val( txtAfter );
-			}
+					btn.val( txtAfter );
+				}
 			else
 			{
 				$("#name_fichier").remove()
@@ -102,3 +113,9 @@ $(function(){
 		});
 });
 
+function validatePhone(num){
+				
+	if(num.indexOf('+33')!=-1) num = num.replace('+33', '0');
+		var re = /^0[1-7]\d{8}$/;
+		console.log(re.test(num))
+}

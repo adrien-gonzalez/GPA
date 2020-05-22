@@ -90,7 +90,7 @@
                                 </div>
                                 <div class="flex-row m-b-40">
                                     <div class="nom wrap-input100 rs1-wrap-input100 validate-input taille2">
-                                        <input id="tel" class="input100" type="tel" name="tel" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" placeholder="Téléphone">
+                                        <input id="tel" class="input100" type="tel" name="tel" placeholder="Téléphone">
                                         <span class="focus-input100"></span>
                                     </div>
                                     <div class="nom wrap-input100 rs1-wrap-input100 validate-input taille2">
