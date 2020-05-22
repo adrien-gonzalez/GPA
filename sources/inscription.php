@@ -78,7 +78,7 @@
 							<div class="flex-row">
 								<div>
 								<div class="d-flex flex-column container2 ">
-									<label id="label_image" class="label" for="input">Sélectionnez une image</label>
+									<label id="label_image" class="label" for="input">Sélectionner une image</label>
 
 									<div class="input">
 										<input name="input" id="fileToUpload" accept="image/*" type="file">
@@ -108,7 +108,7 @@
 									<span class="focus-input100"></span>
 							</div>	
 							<div class="container-login100-form-btn">
-								<input type="button" id="validate_register" class="login100-form-btn" value="Valider">	
+								<input type="button" id="validate_register" class="responsive_button login100-form-btn" value="Valider">	
 							</div>
 							<div class="text-center m-t-40">
 								Vous avez un compte ?

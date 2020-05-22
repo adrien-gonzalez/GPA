@@ -45,7 +45,7 @@
                                         <span class="focus-input100"></span>
                                     </div>	
                                     <div class="container-login100-form-btn">
-                                        <input type="button" id="validate_connect" class="login100-form-btn" value="valider">	
+                                        <input type="button" id="validate_connect" class="responsive_button login100-form-btn" value="valider">	
                                     </div>
                                     <div class="text-center m-t-40 ">
                                         <p>Besoin d'un compte ? <a class="txt3" href="inscription.php">Inscrivez-vous</a></p>

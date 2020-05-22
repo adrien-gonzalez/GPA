@@ -160,7 +160,7 @@ $(document).ready(function (){
 // AFFICHAGE IMAGE 
 $(function(){
 		
-		var valid_extensions = [".jpg",".jpeg",".png"]
+		// var valid_extensions = [".jpg",".jpeg",".png"]
 		var container = $('.container2'), inputFile = $('#fileToUpload'), img, btn, txt = 'Rechercher', txtAfter = "Changer d'image";
 				
 		if(!container.find('#upload').length){
@@ -177,14 +177,12 @@ $(function(){
 
 			var upload = 0
 			taille = $('#fileToUpload').val().length
-			type   = $('#fileToUpload').val().substr(taille - 4, 4)
+			type = document.getElementById('fileToUpload').files[0].type
+			valid_extensions = $('#fileToUpload').attr("accept");
 
-			for(i=0; i < valid_extensions.length; i++)
-			{	
-				if(valid_extensions[i] == type)
-				{
-					upload = 1
-				}
+			if(type.substr(0, 5) == valid_extensions.substr(0, 5))
+			{
+				upload = 1
 			}
 			if(upload  == 1)
 			{			

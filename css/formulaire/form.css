@@ -1,6 +1,6 @@
 /*---------------------------------------------*/
 
-.inscription{
+body{
 
     background: #f2f2f2;
 }
@@ -50,7 +50,9 @@
 
 .limiter textarea {
   outline: none;
-  border: none;
+  resize : none;
+  height: 350px;
+  padding: 10px;
 }
 
 .limiter textarea:focus, input:focus {
@@ -339,7 +341,7 @@ input.input100 {
     width: 100%;
 
   }
-  #validate_connect, #validate_register{
+  .responsive_button{
 
     width: 50%;
   }
@@ -581,10 +583,36 @@ label{
 
 img{
   display: block;
-  margin: 0 auto 15px;
+  /*margin: 0 auto 15px;*/
 }
 
 .connexion #content .limiter{
 
   margin-top: 10%;
+}
+
+.nombre_caractere, .caractères_minimum{
+
+  color: #999999;
+  font-size: 15px;
+}
+.limiter .type_fichier{
+
+  font-style: italic;
+  font-size: 12px;
+  text-align: center;
+}
+
+.limiter .affichage_image{
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#delete_fichier{
+
+  width: 65px;
+  height: 20px;
+  font-size: 10px;
 }
