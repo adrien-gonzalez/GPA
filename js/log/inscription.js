@@ -24,7 +24,7 @@ $(document).ready(function (){
 		       	type: 'POST',
 		       	data: {genre: genre, nom: nom, prenom: prenom, adresse: adresse, email: email, naissance: naissance,
 		       			login: login, password1: password1, password2: password2},
-		     
+		     	
 			    success:function(data)
 				{
 					if(data == "ok")
@@ -154,19 +154,31 @@ $(document).ready(function (){
 			}
 		}
 	});
+	
+	$("body").on("click", "#delete_fichier", function () {
+
+		$('#name_fichier').remove()
+		$('#delete_fichier').remove()
+		$('#uploadImg').attr('src', "")
+		$('#uploadImg').addClass("hidden")
+		$("#label_image").css({"display" : "inherit"})
+		$("#label_image").text("Sélectionner une image")
+		$("#upload").attr("value", "Rechercher")
+		$('#fileToUpload').val("")
+		
+	});
 });
 
 
 // AFFICHAGE IMAGE 
 $(function(){
 		
-		// var valid_extensions = [".jpg",".jpeg",".png"]
 		var container = $('.container2'), inputFile = $('#fileToUpload'), img, btn, txt = 'Rechercher', txtAfter = "Changer d'image";
 				
 		if(!container.find('#upload').length){
 			container.find('.input').append('<input type="button" value="'+txt+'" id="upload">');
 			btn = $('#upload');
-			container.prepend('<img src="" class="hidden" alt="Uploaded file" id="uploadImg" width="100">');
+			container.prepend('<img src="" class="hidden m-b-20" alt="Uploaded file" id="uploadImg" width="100">');
 			img = $('#uploadImg');
 		}			
 		btn.on('click', function(){
@@ -177,17 +189,26 @@ $(function(){
 
 			var upload = 0
 			taille = $('#fileToUpload').val().length
-			type = document.getElementById('fileToUpload').files[0].type
-			valid_extensions = $('#fileToUpload').attr("accept");
 
+			if(taille > 0)
+			{
+				type = document.getElementById('fileToUpload').files[0].type
+			}
+			else
+			{
+				container.prepend("<div id='image_none'>Aucne image</div>")
+			}
+
+			valid_extensions = $('#fileToUpload').attr("accept");
 			if(type.substr(0, 5) == valid_extensions.substr(0, 5))
 			{
 				upload = 1
 			}
 			if(upload  == 1)
-			{			
+			{		
 				$("#label_image").css({"display" : "none"})	
 				$("#erreur_format").remove()
+
 				container.find('label').html( inputFile.val() );
 				var i = 0;
 				for(i; i < e.originalEvent.srcElement.files.length; i++) {
@@ -207,7 +228,6 @@ $(function(){
 				$("#label_image").text("Mauvais format")
 				$("#label_image").css({"display" : "inherit"})
 				img.addClass('hidden');
-
 			}
 		});
 });

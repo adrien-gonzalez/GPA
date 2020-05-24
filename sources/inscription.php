@@ -77,8 +77,8 @@
 							</div>
 							<div class="flex-row">
 								<div>
-								<div class="d-flex flex-column container2 ">
-									<label id="label_image" class="label" for="input">Sélectionner une image</label>
+								<div class="d-flex flex-column container2 align-items-center">
+									<label id="label_image" class="label" for="input">Photo de profil (optionnel)</label>
 
 									<div class="input">
 										<input name="input" id="fileToUpload" accept="image/*" type="file">
