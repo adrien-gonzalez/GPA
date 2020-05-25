@@ -36,12 +36,12 @@ $(document).ready(function (){
 					    if(files != undefined)
 					    {
 					    	$.ajax({
-							    url: '../fonctions/upload.php',
+							    url: '../fonctions/upload_inscription.php',
 						        type: 'post',
 						        data: fd,
 						        contentType: false,
 						        processData: false,
-						        success: function(response){				        	
+						        success: function(response){			        	
 						        }
 							});
 					    }
@@ -178,7 +178,7 @@ $(function(){
 		if(!container.find('#upload').length){
 			container.find('.input').append('<input type="button" value="'+txt+'" id="upload">');
 			btn = $('#upload');
-			container.prepend('<img src="" class="hidden m-b-20" alt="Uploaded file" id="uploadImg" width="100">');
+			container.prepend('<img src="" class="hidden m-b-20" alt="Uploaded file" id="uploadImg" width="100" height="100">');
 			img = $('#uploadImg');
 		}			
 		btn.on('click', function(){
@@ -187,6 +187,7 @@ $(function(){
 		});
 		inputFile.on('change', function(e){
 
+			$("#image_none").remove()
 			var upload = 0
 			taille = $('#fileToUpload').val().length
 
@@ -196,6 +197,7 @@ $(function(){
 			}
 			else
 			{
+
 				container.prepend("<div id='image_none'>Aucne image</div>")
 			}
 

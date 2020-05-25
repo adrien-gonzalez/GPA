@@ -33,9 +33,43 @@ $( document ).ready(function() {
 		if($("#attestation").val() != "0" && $("#region").val() != "0" && $("#descriptif").val().length >= 100 &&
 		   $("#name_fichier").text() != "" && $("#tel").val() != "" && $("#prix").val() != "")
 		{
-			console.log($('#fileToUpload').val().length)
-			validatePhone($("#tel").val())
+			if(validatePhone($("#tel").val()) == true)
+			{
 
+				type 		= $("#attestation").val()
+				region 		= $("#region").val()
+				descriptif 	= $("#descriptif").val()
+				tel 		= $("#tel").val()
+				prix 		= $("#prix").val()
+
+				$.ajax({
+                    url: '../fonctions/fonction_ajout_annonce.php',
+                    type: 'POST',
+                    data: {type: type, region: region, descriptif: descriptif, tel: tel, prix: prix},        
+                   
+                    success: function(data){                	
+                    	if(data == "ok")
+						{
+							var fd = new FormData();
+						    var files = file_info;
+						    fd.append('file',files);
+
+						    if(files != undefined)
+						    {
+						    	$.ajax({
+								    url: '../fonctions/upload_documentpdf.php',
+							        type: 'post',
+							        data: fd,
+							        contentType: false,
+							        processData: false,
+							        success: function(response){			        	
+							        }
+								});
+						    }
+						}  
+                    }
+                });
+			}
 		}
 	});
 });
@@ -58,23 +92,19 @@ $(function(){
 		});
 		inputFile.on('change', function(e){
 
-			var upload = 0
 			taille = $('#fileToUpload').val().length
 			
 			if(taille > 0)
 			{
 				name = document.getElementById('fileToUpload').files[0].name
 				type = document.getElementById('fileToUpload').files[0].type
-
+				file_info = $('#fileToUpload')[0].files[0];
 			}
 
 			valid_extensions = $('#fileToUpload').attr("accept");
 
+
 			if(type == valid_extensions)
-			{
-				upload = 1
-			}
-			if(upload  == 1)
 			{		
 				$("#label_image").css({"display" : "none"})	
 				$("#erreur_format").remove()
@@ -117,5 +147,5 @@ function validatePhone(num){
 				
 	if(num.indexOf('+33')!=-1) num = num.replace('+33', '0');
 		var re = /^0[1-7]\d{8}$/;
-		console.log(re.test(num))
+		return re.test(num)
 }

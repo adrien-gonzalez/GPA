@@ -37,7 +37,7 @@
                 <div class="limiter m-t-100">
                     <div class="container-login100">
                         <div class="wrap-login100 shadow">
-                            <form class="login100-form validate-form" enctype="multipart/form-data">
+                            <form class="login100-form validate-form" enctype="multipart/form-data" method="post">
                                 <span class="login100-form-title p-b-34">
                                     Déposer une annonce
                                 </span>
@@ -84,7 +84,7 @@
                                     <div class="affichage_image"></div>
                                     <label id="label_image" class="label" for="input" >Mon attestation :</label>
                                     <div class="input">
-                                        <input name="input" id="fileToUpload" type="file" accept="application/pdf">     
+                                        <input name="file" id="fileToUpload" type="file" accept="application/pdf">     
                                     </div>
                                         <p class="type_fichier">Types de fichiers acceptés: pdf</p>
                                 </div>
