@@ -19,7 +19,7 @@ $result_req_id=mysqli_fetch_array($execute_req_id);
 $id = $result_req_id['id'];
 
 // INSERT PHOTO DE PROFIL
-$insert_document = "UPDATE annonce SET document = '$location' WHERE id = '$id'";
+$insert_document = "UPDATE annonce SET document = '$filename' WHERE id = '$id'";
 mysqli_query($base, $insert_document);
 
 ?>

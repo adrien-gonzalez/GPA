@@ -11,7 +11,7 @@
 		<!-- JQUERY -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 		<!-- MON SCRIPT -->
-		<script type="text/javascript" src="../js/ajout_annonce/ajout_annonce.js"></script>
+		<script type="text/javascript" src="../js/annonce/ajout_annonce.js"></script>
         <script type="text/javascript" src="../js/script.js"></script>
 		<!-- BOOTSTRAP -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -38,7 +38,7 @@
                     <div class="container-login100">
                         <div class="wrap-login100 shadow">
                             <form class="login100-form validate-form" enctype="multipart/form-data" method="post">
-                                <span class="login100-form-title p-b-34">
+                                <span class="login100-form-title p-b-70">
                                     Déposer une annonce
                                 </span>
                                 <div class="flex-row">
@@ -74,7 +74,7 @@
                                 </div>
                                 <div class="d-flex flex-column rs1-wrap-input100 validate-input taille1">
                                     <textarea id="descriptif" class="input100 wrap-input100" placeholder="Descriptif de parcours / expériences / objectifs"></textarea>
-                                    <span class="focus-input100"></span>
+                                    <span id="span_descriptif" class="focus-input100"></span>
                                 </div>
                                     <div class="d-flex justify-content-between taille1">
                                         <div class="caractères_minimum">100 caractères minimum</div>
@@ -82,7 +82,7 @@
                                     </div>
                                 <div id="container2" class="d-flex flex-column taille1 m-b-40">
                                     <div class="affichage_image"></div>
-                                    <label id="label_image" class="label" for="input" >Mon attestation :</label>
+                                    <label id="label_image" class="label" for="input" >Mon attestation (obligatoire) :</label>
                                     <div class="input">
                                         <input name="file" id="fileToUpload" type="file" accept="application/pdf">     
                                     </div>
@@ -90,7 +90,7 @@
                                 </div>
                                 <div class="flex-row m-b-40">
                                     <div class="nom wrap-input100 rs1-wrap-input100 validate-input taille2">
-                                        <input id="tel" class="input100" type="tel" name="tel" placeholder="Téléphone">
+                                        <input id="tel" class="input100" type="tel" name="tel" placeholder="Téléphone (ex : 06 98 ...)">
                                         <span class="focus-input100"></span>
                                     </div>
                                     <div class="nom wrap-input100 rs1-wrap-input100 validate-input taille2">

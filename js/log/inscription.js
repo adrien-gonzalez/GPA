@@ -178,7 +178,7 @@ $(function(){
 		if(!container.find('#upload').length){
 			container.find('.input').append('<input type="button" value="'+txt+'" id="upload">');
 			btn = $('#upload');
-			container.prepend('<img src="" class="hidden m-b-20" alt="Uploaded file" id="uploadImg" width="100" height="100">');
+			container.prepend('<img src="" class="hidden m-b-20" alt="Uploaded file" id="uploadImg" width="80" height="80">');
 			img = $('#uploadImg');
 		}			
 		btn.on('click', function(){
@@ -228,6 +228,7 @@ $(function(){
 			else
 			{
 				$("#label_image").text("Mauvais format")
+				$("#image_none").remove()
 				$("#label_image").css({"display" : "inherit"})
 				img.addClass('hidden');
 			}

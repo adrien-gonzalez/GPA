@@ -132,7 +132,7 @@ body{
 }
 
 .wrap-login100 {
-  width: 1170px;
+  width: 1050px;
   background: #fff;
   overflow: hidden;
   display: -webkit-box;
@@ -185,7 +185,8 @@ body{
   flex-direction: column;
   align-items: center;
   flex-wrap: wrap;
-  padding: 40px 64px 15px 60px
+  /*padding: 40px 64px 15px 60px*/
+  padding: 20px
   
 }
 
@@ -210,7 +211,7 @@ body{
   width: 100%;
   position: relative;
   border: 1px solid #e6e6e6;
-  height: 35px;
+  height: 30px;
 }
 
 .rs1-wrap-input100{
@@ -229,7 +230,7 @@ body{
   display: block;
   width: 100%;
   background: transparent;
-  font-size: 15px;
+  font-size: 13px;
   color: #666666;
   line-height: 1.2;
   padding: 0 25px;
@@ -237,7 +238,7 @@ body{
 
 input.input100 {
   height: 99%;
-  width: 99.9%;
+  width: 100%;
 }
 
 /*---------------------------------------------*/
@@ -300,10 +301,10 @@ input.input100 {
   align-items: center;
   padding: 0 20px;
   width: 100%;
-  height: 40px;
+  height: 30px;
   border-radius: 3px;
   background: #17A681;;
-  font-size: 12px;
+  font-size: 11px;
   color: #fff;
   line-height: 1.2;
   text-transform: uppercase;
@@ -448,6 +449,7 @@ input.input100 {
 .m-t-40 {margin-top: 40px;}
 .p-b-34 {padding-bottom: 34px;}
 .p-b-100 {padding-bottom: 100px;}
+.p-b-70 {padding-bottom: 70px;}
 .p-t-27 {padding-top: 27px;}
 
 
@@ -457,7 +459,7 @@ input.input100 {
   display: -webkit-flex;
   display: -moz-box;
   display: -ms-flexbox;
-  width: 471px;
+  width: 450px;
   justify-content: space-between;
   display: flex;
   -webkit-flex-direction: row;
@@ -469,7 +471,7 @@ input.input100 {
 
 .taille1{
 
-  width: 471px;
+  width: 450px;
 }
 
 .taille2{
@@ -483,18 +485,26 @@ path{
   cursor: pointer;
 }
 
-svg{
+.inscription svg{
 
   right: 5px;
   position: absolute;
   cursor: pointer
 }
 
+.ajout_annonce svg{
 
-.inscription .champ_vide{
+  right: 5px;
+  position: absolute;
+  cursor: pointer;
+  top: 5px;
+}
+
+
+.inscription .champ_vide, .ajout_annonce .champ_vide{
 
   position: absolute;
-  top: 110px;
+  top: 165px;
   color: #C0392B;
   font-size: 18px;
 
@@ -503,7 +513,7 @@ svg{
 .connexion .champ_vide{
 
   position: absolute;
-  margin-top: -40px;
+  margin-top: 40px;
   color: #C0392B;
   font-size: 18px;
 
@@ -551,6 +561,7 @@ label{
   text-align: center;
   word-wrap: break-word;
   color: #1a4756;
+  font-size: 15px;
 }
 
 .hidden, #uploadImg:not(.hidden) + label{
@@ -567,7 +578,7 @@ label{
   padding: 6px 8px;
   border: 0;
   margin: 0 auto;
-  font-size: 15px;
+  font-size: 11px;
   letter-spacing: 0.05em;
   cursor: pointer;
   background: #17A681;
@@ -594,7 +605,7 @@ img{
 .nombre_caractere, .caractères_minimum{
 
   color: #999999;
-  font-size: 15px;
+  font-size: 13px;
 }
 .limiter .type_fichier{
 

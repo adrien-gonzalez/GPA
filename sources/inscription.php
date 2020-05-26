@@ -41,7 +41,7 @@
 				<div class="container-login100">
 					<div class="wrap-login100 shadow">
 						<form class="login100-form validate-form" enctype="multipart/form-data">
-							<span class="login100-form-title p-b-34">
+							<span class="login100-form-title p-b-70">
 								Inscription
 							</span>
 							<div class="genre rs1-wrap-input100 validate-input m-b-20">

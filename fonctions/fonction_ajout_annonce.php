@@ -5,7 +5,7 @@ require "config.php";
 
 $type 		= $_POST['type'];
 $region 	= str_replace("'", "''", $_POST['region']);
-$descriptif = $_POST['descriptif'];
+$descriptif = str_replace("'", "''",$_POST['descriptif']);
 $tel 		= $_POST['tel'];
 $prix		= $_POST['prix'];
 $login = $_SESSION['login'];
