@@ -2,10 +2,18 @@ body{
 
 	padding: 0;
 	margin: 0;
+  background-color: #EBEDEF;
+
 }
 
 *{
 	outline: none;
+}
+
+button:focus{
+
+  border: none;
+  outline: 0;
 }
 
 .navbar{
@@ -30,7 +38,7 @@ body{
 	color: white;
 	border-radius: .25rem;
 	transition: 0.2s;
-  padding: 3px;
+  padding: 3px 6px;
 }
 
 
@@ -311,7 +319,145 @@ footer a:hover{
   cursor: pointer;
 }
 
+.contenu_annonce{
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 100px;
+  /*background-color: grey;*/
+}
+
+.affichage_information{
+
+  display: flex;
+  justify-content: space-evenly;
+  width: 80%;
+}
+
+.profil_user{
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: 0.2s;
+  padding: 10px;
+  background-color: #f2f2f2;
+  border: 1px solid #e6e6e6;
+}
+.profil_user img:hover{
+
+  cursor: pointer;
+}
+.button_gpa{
+
+  background-color: #17A681;
+  border: none;
+  color: white;
+  border-radius: .25rem;
+  padding: 6px 10px;
+  transition: 0.2s;
+}
+
+.button_gpa:hover{
+
+  cursor: pointer;
+  background-color: #0D836E;
+}
+
+.nom_prenom{
+
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-bottom: 20px;
+  transition: 0.2s;
+  font-size: 18px;
+}
+
+.nom_prenom div:hover{
+
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.lieu{
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  width: 400px;
+}
 
 
+@media (max-width: 900px) {
+  .affichage_information {
+    display: flex;
+    flex-direction: column;
+  }
+  .lieu{
 
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.description{
+
+  margin-top: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+#num_tel{
+
+  margin-top: 10px;
+  width: 100%;
+}
+
+#envoyer_message{
+
+  width: 100%;
+}
+
+.prix{
+
+  font-size: 20px;
+}
+
+.map-container-google-1 iframe{
+
+  height: 100%;
+}
+
+iframe{
+
+  height: 100%;
+  width: 100%;
+
+}
+
+.attestation_prix{
+
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 80px;
+  width: 100%;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.detail{
+
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
 

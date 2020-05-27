@@ -77,7 +77,7 @@
                                     <span id="span_descriptif" class="focus-input100"></span>
                                 </div>
                                     <div class="d-flex justify-content-between taille1">
-                                        <div class="caractères_minimum">100 caractères minimum</div>
+                                        <div class="caractères_minimum">150 caractères minimum</div>
                                         <div class="nombre_caractere m-b-20"></div>
                                     </div>
                                 <div id="container2" class="d-flex flex-column taille1 m-b-40">

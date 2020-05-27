@@ -2,7 +2,14 @@
 
 body{
 
-    background: #f2f2f2;
+    /*background: #f2f2f2;*/
+    background-image: url(../../img/fond.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
 }
 .limiter a {
 	font-size: 14px;
@@ -95,7 +102,7 @@ body{
 .txt3 {
   font-size: 15px;
   line-height: 1.4;
-  color: #00ad5f;
+  color: #999999;
   text-transform: uppercase;
 }
 
@@ -340,11 +347,17 @@ input.input100 {
     display: flex;
     justify-content: center;
     width: 100%;
+    margin-top: 50px;
 
   }
   .responsive_button{
 
     width: 50%;
+  }
+  .login100-form {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 150px;
   }
 }
 
@@ -507,7 +520,6 @@ path{
   top: 165px;
   color: #C0392B;
   font-size: 18px;
-
 }
 
 .connexion .champ_vide{
@@ -535,9 +547,7 @@ path{
   margin-top: -80px;
   color: #C0392B;
   font-size: 18px;
-
-}
-
+  }
 }
 
 .naissance_input{

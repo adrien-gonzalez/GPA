@@ -30,92 +30,16 @@ $( document ).ready(function() {
 
 	$("body").on("click", "#validate_annonce", function () {
 		
-		$("svg").remove()
-		$("#attestation").css({"border":"1px solid #e6e6e6"})
-		$("#region").css({"border":"1px solid #e6e6e6"})
-		$("#tel").css({"border":"none"})
-		$("#prix").css({"border":"none"})
-		$("#label").css({"color":"#1a4756"})
-
-		if($("#attestation").val() != "0" && $("#region").val() != "0" && $("#descriptif").val().length >= 100 &&
-		   $("#name_fichier").text() != "" && $("#tel").val() != "" && $("#prix").val() != "")
-		{
-			if(validatePhone($("#tel").val()) == true)
-			{
-
-				type 		= $("#attestation").val()
-				region 		= $("#region").val()
-				descriptif 	= $("#descriptif").val()
-				tel 		= $("#tel").val()
-				prix 		= $("#prix").val()
-
-				$.ajax({
-                    url: '../fonctions/fonction_ajout_annonce.php',
-                    type: 'POST',
-                    data: {type: type, region: region, descriptif: descriptif, tel: tel, prix: prix},        
-                   
-                    success: function(data){                	
-                    	if(data == "ok")
-						{
-							var fd = new FormData();
-						    var files = file_info;
-						    fd.append('file',files);
-
-						    if(files != undefined)
-						    {
-						    	$.ajax({
-								    url: '../fonctions/upload_documentpdf.php',
-							        type: 'post',
-							        data: fd,
-							        contentType: false,
-							        processData: false,
-							        success: function(response){			        	
-							        }
-								});
-						    }
-						}  
-                    }
-                });
-			}
-			else
-			{
-				$('#tel').css({"border":"1px solid #C0392B"})
-				$("#tel").after('<svg  type="button"  data-trigger="hover" data-container="body" data-toggle="popover" data-placement="right" data-content="Veuillez entrer un bon format" class="bi bi-info-circle-fill" width="1.2em" height="1.2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 16A8 8 0 108 0a8 8 0 000 16zm.93-9.412l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM8 5.5a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg>')
-				$('[data-toggle="popover"]').popover()
-			}
-		}
-		else
-		{
-			$("svg").remove()
-			$(".login100-form-title").after('<div class="champ_vide">*Veuillez compléter les champs</div>')
-			if($("#attestation").val() === "0")
-			{
-				$("#attestation").css({"border":"1px solid #C0392B"})
-			}
-			if($("#region").val() === "0")
-			{
-				$("#region").css({"border":"1px solid #C0392B"})
-			}
-			if($("#descriptif").val().length < "100")
-			{
-				$('#descriptif').css({"border":"1px solid #C0392B"})
-				$("#span_descriptif").after('<svg  type="button"  data-trigger="hover" data-container="body" data-toggle="popover" data-placement="right" data-content="100 caractères minimum" class="bi bi-info-circle-fill" width="1.2em" height="1.2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 16A8 8 0 108 0a8 8 0 000 16zm.93-9.412l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM8 5.5a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg>')
-				$('[data-toggle="popover"]').popover()
-			}
-			if($("#name_fichier").text() === "")
-			{
-				$('label').css({"color" : "#C0392B"})
-			}
-			if($("#tel").val() === "")
-			{
-				$('#tel').css({"border":"1px solid #C0392B"})
-			}
-			if($("#prix").val() === "")
-			{
-				$('#prix').css({"border":"1px solid #C0392B"})
-			}
-		}
+		ajout_annonce()
 	});
+	$("body").on("focus", "input", function () { 
+
+        $(window).on('keydown', function(e) {
+          if (e.which == 13) {
+            ajout_annonce()
+          }
+        });
+    }); 
 });
 
 
@@ -192,4 +116,94 @@ function validatePhone(num){
 	if(num.indexOf('+33')!=-1) num = num.replace('+33', '0');
 		var re = /^0[1-7]\d{8}$/;
 		return re.test(num)
+}
+
+
+function ajout_annonce(){
+
+	$("svg").remove()
+		$("#attestation").css({"border":"1px solid #e6e6e6"})
+		$("#region").css({"border":"1px solid #e6e6e6"})
+		$("#tel").css({"border":"none"})
+		$("#prix").css({"border":"none"})
+		$("#label").css({"color":"#1a4756"})
+
+		if($("#attestation").val() != "0" && $("#region").val() != "0" && $("#descriptif").val().length >= 150 &&
+		   $("#name_fichier").text() != "" && $("#tel").val() != "" && $("#prix").val() != "")
+		{
+			if(validatePhone($("#tel").val()) == true)
+			{
+
+				type 		= $("#attestation").val()
+				region 		= $("#region").val()
+				descriptif 	= $("#descriptif").val()
+				tel 		= $("#tel").val()
+				prix 		= $("#prix").val()
+
+				$.ajax({
+                    url: '../fonctions/fonction_ajout_annonce.php',
+                    type: 'POST',
+                    data: {type: type, region: region, descriptif: descriptif, tel: tel, prix: prix},        
+                   
+                    success: function(data){                	
+                    	if(data == "ok")
+						{
+							var fd = new FormData();
+						    var files = file_info;
+						    fd.append('file',files);
+
+						    if(files != undefined)
+						    {
+						    	$.ajax({
+								    url: '../fonctions/upload_documentpdf.php',
+							        type: 'post',
+							        data: fd,
+							        contentType: false,
+							        processData: false,
+							        success: function(response){			        	
+							        }
+								});
+						    }
+						}  
+                    }
+                });
+			}
+			else
+			{
+				$('#tel').css({"border":"1px solid #C0392B"})
+				$("#tel").after('<svg  type="button"  data-trigger="hover" data-container="body" data-toggle="popover" data-placement="right" data-content="Veuillez entrer un bon format" class="bi bi-info-circle-fill" width="1.2em" height="1.2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 16A8 8 0 108 0a8 8 0 000 16zm.93-9.412l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM8 5.5a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg>')
+				$('[data-toggle="popover"]').popover()
+			}
+		}
+		else
+		{
+			$("svg").remove()
+			$(".login100-form-title").after('<div class="champ_vide">*Veuillez compléter les champs</div>')
+			if($("#attestation").val() === "0")
+			{
+				$("#attestation").css({"border":"1px solid #C0392B"})
+			}
+			if($("#region").val() === "0")
+			{
+				$("#region").css({"border":"1px solid #C0392B"})
+			}
+			if($("#descriptif").val().length < "150")
+			{
+				$('#descriptif').css({"border":"1px solid #C0392B"})
+				$("#span_descriptif").after('<svg  type="button"  data-trigger="hover" data-container="body" data-toggle="popover" data-placement="right" data-content="150 caractères minimum" class="bi bi-info-circle-fill" width="1.2em" height="1.2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 16A8 8 0 108 0a8 8 0 000 16zm.93-9.412l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM8 5.5a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg>')
+				$('[data-toggle="popover"]').popover()
+			}
+			if($("#name_fichier").text() === "")
+			{
+				$('label').css({"color" : "#C0392B"})
+			}
+			if($("#tel").val() === "")
+			{
+				$('#tel').css({"border":"1px solid #C0392B"})
+			}
+			if($("#prix").val() === "")
+			{
+				$('#prix').css({"border":"1px solid #C0392B"})
+			}
+		}
 }

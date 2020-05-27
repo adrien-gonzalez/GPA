@@ -1,7 +1,99 @@
 $(document).ready(function (){
 	$("body").on("click", "#validate_register", function () {
 
-		$(".wrap-input100").css({"border": "solid 1px #E6E6E6"})
+		inscription()
+	});
+	$("body").on("focus", "input", function () { 
+
+        $(window).on('keydown', function(e) {
+          if (e.which == 13) {
+            inscription()
+          }
+        });
+    }); 
+	$("body").on("click", "#delete_fichier", function () {
+
+		$('#name_fichier').remove()
+		$('#delete_fichier').remove()
+		$('#uploadImg').attr('src', "")
+		$('#uploadImg').addClass("hidden")
+		$("#label_image").css({"display" : "inherit"})
+		$("#label_image").text("Sélectionner une image")
+		$("#upload").attr("value", "Rechercher")
+		$('#fileToUpload').val("")
+		
+	});
+});
+
+
+// AFFICHAGE IMAGE 
+$(function(){
+		
+		var container = $('.container2'), inputFile = $('#fileToUpload'), img, btn, txt = 'Rechercher', txtAfter = "Changer d'image";
+				
+		if(!container.find('#upload').length){
+			container.find('.input').append('<input type="button" value="'+txt+'" id="upload">');
+			btn = $('#upload');
+			container.prepend('<img src="" class="hidden m-b-20" alt="Uploaded file" id="uploadImg" width="80" height="80">');
+			img = $('#uploadImg');
+		}			
+		btn.on('click', function(){
+			img.animate({opacity: 0}, 300);
+			inputFile.click();
+		});
+		inputFile.on('change', function(e){
+
+			$("#image_none").remove()
+			var upload = 0
+			taille = $('#fileToUpload').val().length
+
+			if(taille > 0)
+			{
+				type = document.getElementById('fileToUpload').files[0].type
+			}
+			else
+			{
+
+				container.prepend("<div id='image_none'>Aucne image</div>")
+			}
+
+			valid_extensions = $('#fileToUpload').attr("accept");
+			if(type.substr(0, 5) == valid_extensions.substr(0, 5))
+			{
+				upload = 1
+			}
+			if(upload  == 1)
+			{		
+				$("#label_image").css({"display" : "none"})	
+				$("#erreur_format").remove()
+
+				container.find('label').html( inputFile.val() );
+				var i = 0;
+				for(i; i < e.originalEvent.srcElement.files.length; i++) {
+					var file = e.originalEvent.srcElement.files[i], 
+						reader = new FileReader();
+
+					reader.onloadend = function(){
+						img.attr('src', reader.result).animate({opacity: 1}, 700);
+					}
+					reader.readAsDataURL(file);
+					img.removeClass('hidden');
+				}		
+				btn.val( txtAfter );
+			}
+			else
+			{
+				$("#label_image").text("Mauvais format")
+				$("#image_none").remove()
+				$("#label_image").css({"display" : "inherit"})
+				img.addClass('hidden');
+			}
+		});
+});
+
+function inscription(){
+
+$(".wrap-input100").css({"border": "solid 1px #E6E6E6"})
 		$(".genre").css({"color" : "black"})
 		if($("#nom").val() != "" && $("#prenom").val() != "" && $("#adresse").val() != "" && 
 		   $("#email").val() != "" && $("#naissance").val() != "" && $("#login").val() != "" && 
@@ -153,84 +245,4 @@ $(document).ready(function (){
 				$('.password2').css({"border":"1px solid #C0392B"})
 			}
 		}
-	});
-	
-	$("body").on("click", "#delete_fichier", function () {
-
-		$('#name_fichier').remove()
-		$('#delete_fichier').remove()
-		$('#uploadImg').attr('src', "")
-		$('#uploadImg').addClass("hidden")
-		$("#label_image").css({"display" : "inherit"})
-		$("#label_image").text("Sélectionner une image")
-		$("#upload").attr("value", "Rechercher")
-		$('#fileToUpload').val("")
-		
-	});
-});
-
-
-// AFFICHAGE IMAGE 
-$(function(){
-		
-		var container = $('.container2'), inputFile = $('#fileToUpload'), img, btn, txt = 'Rechercher', txtAfter = "Changer d'image";
-				
-		if(!container.find('#upload').length){
-			container.find('.input').append('<input type="button" value="'+txt+'" id="upload">');
-			btn = $('#upload');
-			container.prepend('<img src="" class="hidden m-b-20" alt="Uploaded file" id="uploadImg" width="80" height="80">');
-			img = $('#uploadImg');
-		}			
-		btn.on('click', function(){
-			img.animate({opacity: 0}, 300);
-			inputFile.click();
-		});
-		inputFile.on('change', function(e){
-
-			$("#image_none").remove()
-			var upload = 0
-			taille = $('#fileToUpload').val().length
-
-			if(taille > 0)
-			{
-				type = document.getElementById('fileToUpload').files[0].type
-			}
-			else
-			{
-
-				container.prepend("<div id='image_none'>Aucne image</div>")
-			}
-
-			valid_extensions = $('#fileToUpload').attr("accept");
-			if(type.substr(0, 5) == valid_extensions.substr(0, 5))
-			{
-				upload = 1
-			}
-			if(upload  == 1)
-			{		
-				$("#label_image").css({"display" : "none"})	
-				$("#erreur_format").remove()
-
-				container.find('label').html( inputFile.val() );
-				var i = 0;
-				for(i; i < e.originalEvent.srcElement.files.length; i++) {
-					var file = e.originalEvent.srcElement.files[i], 
-						reader = new FileReader();
-
-					reader.onloadend = function(){
-						img.attr('src', reader.result).animate({opacity: 1}, 700);
-					}
-					reader.readAsDataURL(file);
-					img.removeClass('hidden');
-				}		
-				btn.val( txtAfter );
-			}
-			else
-			{
-				$("#label_image").text("Mauvais format")
-				$("#image_none").remove()
-				$("#label_image").css({"display" : "inherit"})
-				img.addClass('hidden');
-			}
-		});
-});
+}

@@ -1,3 +1,4 @@
+<?php require "../fonctions/config.php"; ?>
 <html>
 	<head>
 		<title>Annonce</title>
@@ -5,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=0.7">
 		<!-- CSS -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-		<link rel="stylesheet" type="text/css" href="../css/formulaire/form.css">
+		<!-- <link rel="stylesheet" type="text/css" href="../css/formulaire/form.css"> -->
         <link href="../css/style.css" rel="stylesheet">
 		<!--===============================================================================================-->
 		<!-- JQUERY -->
@@ -21,13 +22,62 @@
     </head>
     
 
-<body class="ajout_annonce">
+<body class="annonce">
     <main class="ie-stickyFooter">
         <div id="page">
             <div id="header_content">    
                 <?php include('header.php');?>
             </div>
             <div id="content">
+            	<div class="contenu_annonce">
+            		<div class="affichage_information">
+	            		<!-- AFFICHAGE DES INFORMATIONS DE L'ANNONCE -->
+	            		<?php 
+	            			$id = $_GET['id'];
+	            			$req_annonce = "SELECT *FROM annonce WHERE id='$id'";
+	            			$execute_req_annonce = mysqli_query($base, $req_annonce);
+	            			$resultat_req_annonce = mysqli_fetch_array($execute_req_annonce);
+
+	            			$id_user = $resultat_req_annonce['id_utilisateur'];
+	            			$req_user = "SELECT *FROM utilisateurs WHERE id = '$id_user'";
+	            			$execute_req_user = mysqli_query($base, $req_user);
+	            			$resultat_req_user = mysqli_fetch_array($execute_req_user);
+	            		?>
+	            		<div class="profil_user shadow">
+	            			<img src="../img/profil/<?php echo $resultat_req_user['profil'];?>" width="125">
+	            			<div class="nom_prenom">
+	            				<div><?php echo $resultat_req_user['nom'];?>  <?php echo $resultat_req_user['prenom'] ?></div>
+	            			</div>
+	            			<button id="envoyer_message" class="button_gpa">
+	            				<svg class="bi bi-chat-square-dots" width="1.2em" height="1.2em" viewBox="0 0 16 16" fill="white" xmlns="http://www.w3.org/2000/svg">
+								<path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h2.5a2 2 0 0 1 1.6.8L8 14.333 9.9 11.8a2 2 0 0 1 1.6-.8H14a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+								<path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+								</svg>
+								Envoyer un message
+							</button>
+							<button id="num_tel" class="button_gpa">
+								<?php echo $resultat_req_annonce['tel']; ?>
+							</button>
+	            		</div>
+	            		<div class="lieu">
+	            			<iframe src="https://maps.google.com/maps?q=<?php echo $resultat_req_annonce['region'];?>&t=&z=6&ie=UTF8&iwloc=&output=embed" frameborder="0"
+								style="border:0" allowfullscreen>
+							</iframe>
+	            			
+	            		</div>
+            		</div>
+            		<div class="detail">
+	            		<div class="attestation_prix">
+	            			<div><?php echo $resultat_req_annonce['type_attestation'];?></div>
+	            			<div><?php echo $resultat_req_annonce['prix'];?> €</div>
+
+	            		</div>
+	            		<div class="description">
+	            				<div><?php echo $resultat_req_annonce['descriptif'];?></div>
+	            		</div>
+	            	</div>
+
+            	</div>
             </div>
             <div id="footer">
                 <?php include('footer.php');?>
