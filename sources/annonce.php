@@ -1,7 +1,7 @@
 <?php require "../fonctions/config.php"; ?>
 <html>
 	<head>
-		<title>Annonce</title>
+		<title>Annonce <?php echo $_GET['type'];?></title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=0.7">
 		<!-- CSS -->
@@ -30,19 +30,28 @@
             </div>
             <div id="content">
             	<div class="contenu_annonce">
+            		<!-- AFFICHAGE DES INFORMATIONS DE L'ANNONCE -->
+	            	<?php 
+	            		$id = $_GET['id'];
+	            		$req_annonce = "SELECT *FROM annonce WHERE id='$id'";
+	            		$execute_req_annonce = mysqli_query($base, $req_annonce);
+	            		$resultat_req_annonce = mysqli_fetch_array($execute_req_annonce);     
+	            		$ifnotnull = mysqli_num_rows($execute_req_annonce);
+	            			
+	            			if($ifnotnull == 0)
+	            				header('Location: ../');
+	            			
+	            		$id_user = $resultat_req_annonce['id_utilisateur'];
+	            		$req_user = "SELECT *FROM utilisateurs WHERE id = '$id_user'";
+	            		$execute_req_user = mysqli_query($base, $req_user);
+	            		$resultat_req_user = mysqli_fetch_array($execute_req_user);
+	            	?>
+	            	<div class="attestation_prix">
+	            		<h4><?php echo $resultat_req_annonce['type_attestation'];?></h4>
+	            		<h4><?php echo $resultat_req_annonce['prix'];?> €</h4>
+	            	</div>
             		<div class="affichage_information">
-	            		<!-- AFFICHAGE DES INFORMATIONS DE L'ANNONCE -->
-	            		<?php 
-	            			$id = $_GET['id'];
-	            			$req_annonce = "SELECT *FROM annonce WHERE id='$id'";
-	            			$execute_req_annonce = mysqli_query($base, $req_annonce);
-	            			$resultat_req_annonce = mysqli_fetch_array($execute_req_annonce);
 
-	            			$id_user = $resultat_req_annonce['id_utilisateur'];
-	            			$req_user = "SELECT *FROM utilisateurs WHERE id = '$id_user'";
-	            			$execute_req_user = mysqli_query($base, $req_user);
-	            			$resultat_req_user = mysqli_fetch_array($execute_req_user);
-	            		?>
 	            		<div class="profil_user shadow">
 	            			<img src="../img/profil/<?php echo $resultat_req_user['profil'];?>" width="125">
 	            			<div class="nom_prenom">
@@ -67,13 +76,11 @@
 	            		</div>
             		</div>
             		<div class="detail">
-	            		<div class="attestation_prix">
-	            			<div><?php echo $resultat_req_annonce['type_attestation'];?></div>
-	            			<div><?php echo $resultat_req_annonce['prix'];?> €</div>
-
-	            		</div>
+            			<hr>
+            			<div class="titre_description">Description</div>
+	            		
 	            		<div class="description">
-	            				<div><?php echo $resultat_req_annonce['descriptif'];?></div>
+	            			<div><?php echo $resultat_req_annonce['descriptif'];?></div>
 	            		</div>
 	            	</div>
 
