@@ -2,12 +2,7 @@
 
 body{
 
-    /*background: #f2f2f2;*/
-    background-image: url(../../img/fond.jpg);
-    background-size: cover;
-    background-attachment: fixed;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background: #f2f2f2;
 }
 
 }
@@ -386,6 +381,7 @@ input.input100 {
   .rs2-wrap-input100 {
     border-left: 1px solid #e6e6e6;
   }
+
 }
 
 

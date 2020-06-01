@@ -24,6 +24,11 @@ $( document ).ready(function() {
         }
         $("#background_log").css({"background-image" : "url(../img/formulaire/bg-"+image+".jpg)"})
 
+
+    $("body").on("click", "#envoyer_message", function () {
+
+        window.location.href = "messages.php";
+    });
 });
 
 

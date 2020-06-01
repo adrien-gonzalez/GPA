@@ -36,7 +36,7 @@ function affichage_annonce(){
 
 				}
 					
-					$("#affichage_profil_"+i).append('<img class="image_profil" id="profil_'+result[id]+'" src="img/profil/'+result[profil]+'" width="125">')
+					$("#affichage_profil_"+i).append('<img class="image_profil rounded-circle" id="profil_'+result[id]+'" src="img/profil/'+result[profil]+'" width="125">')
 					$("#profil_"+result[id]).after('<div id="name_'+result[id]+'">'+result[nom]+' '+result[prenom]+'</div>')
 					$("#name_"+result[id]).after('<div id="region_'+result[id]+'">'+result[region]+'</div>')
 					$("#region_"+result[id]).after('<div class="attestation" id="attestation_'+result[id]+'">'+result[type_attestation]+'</div>')

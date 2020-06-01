@@ -36,74 +36,76 @@
             <div id="content">
                 <div class="limiter m-t-100">
                     <div class="container-login100">
-                        <div class="wrap-login100 shadow">
-                            <form class="login100-form validate-form" enctype="multipart/form-data" method="post">
-                                <span class="login100-form-title p-b-70">
-                                    Déposer une annonce
-                                </span>
-                                <div class="flex-row">
-                                    <div class="rs1-wrap-input100 validate-input m-b-20 taille2">      
-                                        <select id='attestation' class="input100 wrap-input100">
-                                            <option value="0">Type d'attestation</option>                                         
-                                            <option>Commissionnaire    </option>
-                                            <option>Marchandises - 3.5T</option>
-                                            <option>Marchandises + 3.5T</option>                                          
-                                            <option>Voyageurs          </option>
-                                        </select>
-                                        <span class="focus-input100"></span>
-                                    </div>	
-                                    <div class="rs1-wrap-input100 validate-input m-b-20 taille2">
-                                        <select id="region" class="input100 wrap-input100">
-                                            <option value="0">Région</option>
-                                            <option>Auvergne-Rhône-Alpes</option>
-                                            <option>Bourgogne-Franche-Comté</option>
-                                            <option>Bretagne</option>
-                                            <option>Centre-Val de Loire</option>
-                                            <option>Corse</option>
-                                            <option>Grand Est</option>
-                                            <option>Hauts-de-France</option>
-                                            <option>Île-de-France</option>
-                                            <option>Normandie</option>
-                                            <option>Nouvelle-Aquitaine</option>
-                                            <option>Occitanie</option>
-                                            <option>Pays de la Loire</option>
-                                            <option>Provence-Alpes-Côte d'Azur</option>
-                                        </select>
-                                        <span class="focus-input100"></span>
+                        <section>
+                            <div class="wrap-login100 shadow">
+                                <form class="login100-form validate-form" enctype="multipart/form-data" method="post">
+                                    <span class="login100-form-title p-b-70">
+                                        Déposer une annonce
+                                    </span>
+                                    <div class="flex-row">
+                                        <div class="rs1-wrap-input100 validate-input m-b-20 taille2">      
+                                            <select id='attestation' class="input100 wrap-input100">
+                                                <option value="0">Type d'attestation</option>                                         
+                                                <option>Commissionnaire    </option>
+                                                <option>Marchandises - 3.5T</option>
+                                                <option>Marchandises + 3.5T</option>                                          
+                                                <option>Voyageurs          </option>
+                                            </select>
+                                            <span class="focus-input100"></span>
+                                        </div>	
+                                        <div class="rs1-wrap-input100 validate-input m-b-20 taille2">
+                                            <select id="region" class="input100 wrap-input100">
+                                                <option value="0">Région</option>
+                                                <option>Auvergne-Rhône-Alpes</option>
+                                                <option>Bourgogne-Franche-Comté</option>
+                                                <option>Bretagne</option>
+                                                <option>Centre-Val de Loire</option>
+                                                <option>Corse</option>
+                                                <option>Grand Est</option>
+                                                <option>Hauts-de-France</option>
+                                                <option>Île-de-France</option>
+                                                <option>Normandie</option>
+                                                <option>Nouvelle-Aquitaine</option>
+                                                <option>Occitanie</option>
+                                                <option>Pays de la Loire</option>
+                                                <option>Provence-Alpes-Côte d'Azur</option>
+                                            </select>
+                                            <span class="focus-input100"></span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="d-flex flex-column rs1-wrap-input100 validate-input taille1">
-                                    <textarea id="descriptif" class="input100 wrap-input100" placeholder="Descriptif de parcours / expériences / objectifs"></textarea>
-                                    <span id="span_descriptif" class="focus-input100"></span>
-                                </div>
-                                    <div class="d-flex justify-content-between taille1">
-                                        <div class="caractères_minimum">150 caractères minimum</div>
-                                        <div class="nombre_caractere m-b-20"></div>
+                                    <div class="d-flex flex-column rs1-wrap-input100 validate-input taille1">
+                                        <textarea id="descriptif" class="input100 wrap-input100" placeholder="Descriptif de parcours / expériences / objectifs"></textarea>
+                                        <span id="span_descriptif" class="focus-input100"></span>
                                     </div>
-                                <div id="container2" class="d-flex flex-column taille1 m-b-40">
-                                    <div class="affichage_image"></div>
-                                    <label id="label_image" class="label" for="input" >Mon attestation (obligatoire) :</label>
-                                    <div class="input">
-                                        <input name="file" id="fileToUpload" type="file" accept="application/pdf">     
+                                        <div class="d-flex justify-content-between taille1">
+                                            <div class="caractères_minimum">150 caractères minimum</div>
+                                            <div class="nombre_caractere m-b-20"></div>
+                                        </div>
+                                    <div id="container2" class="d-flex flex-column taille1 m-b-40">
+                                        <div class="affichage_image"></div>
+                                        <label id="label_image" class="label" for="input" >Mon attestation (obligatoire) :</label>
+                                        <div class="input">
+                                            <input name="file" id="fileToUpload" type="file" accept="application/pdf">     
+                                        </div>
+                                            <p class="type_fichier">Types de fichiers acceptés: pdf</p>
                                     </div>
-                                        <p class="type_fichier">Types de fichiers acceptés: pdf</p>
-                                </div>
-                                <div class="flex-row m-b-40">
-                                    <div class="nom wrap-input100 rs1-wrap-input100 validate-input taille2">
-                                        <input id="tel" class="input100" type="tel" name="tel" placeholder="Téléphone (ex : 06 98 ...)">
-                                        <span class="focus-input100"></span>
+                                    <div class="flex-row m-b-40">
+                                        <div class="nom wrap-input100 rs1-wrap-input100 validate-input taille2">
+                                            <input id="tel" class="input100" type="tel" name="tel" placeholder="Téléphone (ex : 06 98 ...)">
+                                            <span class="focus-input100"></span>
+                                        </div>
+                                        <div class="nom wrap-input100 rs1-wrap-input100 validate-input taille2">
+                                            <input id="prix" class="input100" type="number" name="prix" placeholder="Prix">
+                                            <span class="focus-input100"></span>
+                                        </div>
                                     </div>
-                                    <div class="nom wrap-input100 rs1-wrap-input100 validate-input taille2">
-                                        <input id="prix" class="input100" type="number" name="prix" placeholder="Prix">
-                                        <span class="focus-input100"></span>
+                                    <div class="container-login100-form-btn">
+                                        <input type="button" id="validate_annonce" class="responsive_button login100-form-btn" value="valider">	
                                     </div>
-                                </div>
-                                <div class="container-login100-form-btn">
-                                    <input type="button" id="validate_annonce" class="responsive_button login100-form-btn" value="valider">	
-                                </div>
-                            </form>
-                                <div id="background_log" class="login100-more"></div>
-                        </div>
+                                </form>
+                                    <div id="background_log" class="login100-more"></div>
+                            </div>
+                        </section>
                     </div>
                 </div>
             </div>
