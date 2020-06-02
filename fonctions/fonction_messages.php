@@ -17,7 +17,7 @@ if(isset($_POST['conv_user']))
 	$resultat_req_login_user = mysqli_fetch_array($execute_req_login_user);
 	$id_user_distant = $resultat_req_login_user['id'];
 
-	$req_messages = "SELECT login, profil, message, date_message FROM utilisateurs, message WHERE id_utilisateur = '$id_user_distant' and id_utilisateur_prive='$id' and utilisateurs.id = id_utilisateur or id_utilisateur_prive='$id_user_distant' and id_utilisateur='$id' and utilisateurs.id = id_utilisateur";
+	$req_messages = "SELECT message.id, login, profil, message, date_message FROM utilisateurs, message WHERE id_utilisateur = '$id_user_distant' and id_utilisateur_prive='$id' and utilisateurs.id = id_utilisateur or id_utilisateur_prive='$id_user_distant' and id_utilisateur='$id' and utilisateurs.id = id_utilisateur ORDER BY message.id ASC";
 	$execute_req_messages = mysqli_query($base, $req_messages);
 	$element=mysqli_num_rows($execute_req_messages);
 
@@ -26,15 +26,32 @@ if(isset($_POST['conv_user']))
 		$i= 0;
 		while($data = mysqli_fetch_assoc($execute_req_messages)) {	
 		    $json[] = $data;
-			$json[$i]["id_user_on"] = $id;
+			$json[$i]["user_on"] = $login;
 		    $i ++;
 		}
 		echo json_encode($json);
 	}
 }
+else if(isset($_POST['message']))
+{
+	date_default_timezone_set('Europe/Paris');
+	$now = new DateTime();
+	$date=$now->format('Y-m-d H:i:s');
+	$message = $_POST['message'];
+
+	$login_utilisateur_prive = $_POST['id_utilisateur_prive'];
+	$req_login_user = "SELECT id FROM utilisateurs WHERE login='$login_utilisateur_prive'";
+	$execute_req_login_user = mysqli_query($base, $req_login_user);
+	$resultat_req_login_user = mysqli_fetch_array($execute_req_login_user);
+	$id_user_distant = $resultat_req_login_user['id'];
+
+
+	$req_insert_message = "INSERT INTO message VALUES (NULL, '$id', '$id_user_distant', '$message', '$date')";
+	mysqli_query($base, $req_insert_message);
+}
 else
 {
-	// $req_messages="SELECT  id, id_utilisateur_prive, message, date_message FROM message WHERE id_utilisateur='$id'";
+
 	$req_conv="SELECT message.id, id_utilisateur, id_utilisateur_prive, profil FROM message, utilisateurs WHERE id_utilisateur = '$id' and utilisateurs.id = id_utilisateur_prive or id_utilisateur_prive = '$id' and utilisateurs.id = id_utilisateur GROUP BY id_utilisateur_prive";
 	$execute_req_conv=mysqli_query($base, $req_conv);
 	$element=mysqli_num_rows($execute_req_conv);

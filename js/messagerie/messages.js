@@ -1,18 +1,26 @@
 $( document ).ready(function() {
 	
 	affichages_conversation()
+	setTimeout(affichages_messages, 100);
+
 
 	$("body").on("click", ".msg_send_btn", function () {
 
-		console.log("ok")
+		if($(".write_msg").val() != "")
+  		{
+			insert_message()
+			setTimeout(affichages_messages, 100);
+			$(".write_msg").val("")
+		}
 	});
 	$("body").on("click", ".chat_list", function () {
 
-		$(".chat_list").removeClass("active_chat")
 		id_conv = $(this).attr("id")
+		$(".chat_list").removeClass("active_chat")
 		$("#"+id_conv).addClass("active_chat")
-		conv_user = id_conv.substr(10) 
-		affichages_messages()
+		$(".outgoing_msg").remove()
+       	$(".incoming_msg").remove()
+       	affichages_messages()
 	});
 });
 
@@ -29,7 +37,6 @@ function affichages_conversation(){
   			if(data === "0")
   			{
   				$(".aucun_message").removeClass("d-none")
-
   			}
   			else
   			{
@@ -88,8 +95,11 @@ function affichages_conversation(){
 }
 
 
+var timeout = 1000;
 function affichages_messages(){
 
+       	var conv_user = $('.active_chat').attr('id').substr(10) 
+		
 		$.ajax({
         url: '../fonctions/fonction_messages.php',
         type: 'POST', 
@@ -97,16 +107,71 @@ function affichages_messages(){
                    
         success: function(data){                	
 
-        	console.log(data)
-  			var nbr_messages=0;
-			for(i=0; i<Object.keys(data).length;i++)
-			{
-				if(data[i] =="{")
+			for(i=0; i < JSON.parse(data).length; i++)
+			{	
+				var result = JSON.parse(data)[i];   	
+				for(j=0; j < Object.keys(result).length; j++ )
 				{
-					nbr_messages++;
+					var id 		= Object.keys(result)[0]
+					var login 	= Object.keys(result)[1]
+					var profil 	= Object.keys(result)[2]
+					var message = Object.keys(result)[3]
+					var date 	= Object.keys(result)[4]
+					var user_on = Object.keys(result)[5]
 				}
-			}
-			console.log(nbr_messages)	
+				if(result[login] === result[user_on] && $('#outgoing_msg_'+result[id]).length == 0)
+				{
+					$(".msg_history").append('<div id="outgoing_msg_'+result[id]+'" class="outgoing_msg"></div>')
+					$("#outgoing_msg_"+result[id]).append('<div id="sent_msg_'+result[id]+'" class="sent_msg"></div>')
+					$("#sent_msg_"+result[id]).append('<p id="message_'+result[id]+'">'+result[message]+'</p>')
+					$("#message_"+result[id]).after('<span id="time_date_'+result[id]+'" class="time_date">'+result[date]+'</span> ')
+					var div = $('.msg_history');
+					var height = div[0].scrollHeight;
+					div.scrollTop(height);
+				}
+				else if(result[login] != result[user_on] && $('#incoming_msg_'+result[id]).length == 0)
+				{
+					$(".msg_history").append('<div id="incoming_msg_'+result[id]+'" class="incoming_msg"></div>')
+					$("#incoming_msg_"+result[id]).append('<div id="incoming_msg_img_'+result[id]+'" class="incoming_msg_img"></div>')
+					$("#incoming_msg_img_"+result[id]).append('<img src="../img/profil/'+result[profil]+'" alt="sunil">')
+					$("#message_"+result[id]).after('<span id="time_date_'+result[id]+'" class="time_date">'+result[date]+'</span>')
+					$("#incoming_msg_img_"+result[id]).after('<div id="received_msg_'+result[id]+'" class="received_msg"></div>')
+					$("#received_msg_"+result[id]).append('<div id="received_withd_msg_'+result[id]+'" class="received_withd_msg"></div>')
+					$("#received_withd_msg_"+result[id]).append('<p id="message_'+result[id]+'">'+result[message]+'</p>')
+					$("#message_"+result[id]).after('<span class="time_date">'+result[date]+'</span>')
+					var div = $('.msg_history');
+					var height = div[0].scrollHeight;
+					div.scrollTop(height);
+				}
+			}	
         }
     });
+		setTimeout(affichages_messages, timeout);
+};
+
+function insert_message(){
+
+	var id_utilisateur_prive = $(".active_chat").attr('id')
+	id_utilisateur_prive = id_utilisateur_prive.substr(10)
+	message = $(".write_msg").val()
+	$.ajax({
+	        url: '../fonctions/fonction_messages.php',
+	        type: 'POST', 
+	        data: {message: message, id_utilisateur_prive: id_utilisateur_prive},   
+	                   
+	        success: function(data){             	
+	        }
+	    });
 }
+
+$(window).on('keydown', function(e) {
+	if (e.which == 13) {
+
+  		if($(".write_msg").val() != "")
+  		{
+  			insert_message()
+			setTimeout(affichages_messages, 100);
+			$(".write_msg").val("")
+		}
+	}
+});

@@ -557,7 +557,7 @@ footer a:hover{
 .headind_srch{ padding:10px 29px 10px 20px; overflow:hidden; border-bottom:1px solid #c4c4c4;}
 
 .recent_heading h4 {
-  color: #05728f;
+  color: #504d70;
   font-size: 21px;
   margin: auto;
 }
@@ -634,7 +634,7 @@ footer a:hover{
 }
 
  .sent_msg p {
-  background: #05728f none repeat scroll 0 0;
+  background: #039F77 none repeat scroll 0 0;
   border-radius: 3px;
   font-size: 14px;
   margin: 0; color:#fff;
@@ -657,7 +657,7 @@ footer a:hover{
 
 .type_msg {border-top: 1px solid #c4c4c4;position: relative;}
 .msg_send_btn {
-  background: #05728f none repeat scroll 0 0;
+  background: #504d70  none repeat scroll 0 0;
   border: medium none;
   border-radius: 50%;
   color: #fff;
@@ -668,6 +668,12 @@ footer a:hover{
   right: 0;
   top: 11px;
   width: 33px;
+  transition: 0.2s;
+}
+
+.msg_send_btn:hover{
+
+  background: #21202E;
 }
 .messaging { padding: 0 0 50px 0;}
 .msg_history {
