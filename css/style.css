@@ -603,13 +603,18 @@ footer a:hover{
 .incoming_msg_img {
   display: inline-block;
   width: 6%;
+  overflow: hidden;
+}
+.incoming_msg{
+
+  margin: 26px 0 26px;
 }
 .received_msg {
   display: inline-block;
   padding: 0 0 0 10px;
   vertical-align: top;
   width: 92%;
- }
+}
  .received_withd_msg p {
   background: #ebebeb none repeat scroll 0 0;
   border-radius: 3px;
@@ -623,7 +628,9 @@ footer a:hover{
   color: #747474;
   display: block;
   font-size: 12px;
-  margin: 8px 0 0;
+  margin: 8px 5px 0;
+  display: flex;
+  justify-content: space-between;
 }
 .received_withd_msg { width: 57%;}
 .mesgs {
@@ -640,8 +647,14 @@ footer a:hover{
   margin: 0; color:#fff;
   padding: 5px 10px 5px 12px;
   width:100%;
+  word-break: break-all;
 }
 .outgoing_msg{ overflow:hidden; margin:26px 0 26px;}
+.outgoing_msg svg{
+
+  /*position: absolute;*/
+  /*margin-left: 0;*/
+}
 .sent_msg {
   float: right;
   width: 46%;
@@ -659,7 +672,7 @@ footer a:hover{
 .msg_send_btn {
   background: #504d70  none repeat scroll 0 0;
   border: medium none;
-  border-radius: 50%;
+  border-radius: 10%;
   color: #fff;
   cursor: pointer;
   font-size: 17px;
@@ -667,7 +680,6 @@ footer a:hover{
   position: absolute;
   right: 0;
   top: 11px;
-  width: 33px;
   transition: 0.2s;
 }
 
@@ -701,4 +713,9 @@ footer a:hover{
   padding: 30px;
   background-color: #f2f2f2;
   min-width: 450px;
+}
+
+svg{
+
+  cursor: pointer;
 }

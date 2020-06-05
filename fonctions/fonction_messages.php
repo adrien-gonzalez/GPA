@@ -49,10 +49,16 @@ else if(isset($_POST['message']))
 	$req_insert_message = "INSERT INTO message VALUES (NULL, '$id', '$id_user_distant', '$message', '$date')";
 	mysqli_query($base, $req_insert_message);
 }
+else if(isset($_POST['id_message']))
+{
+	$id_message = $_POST['id_message'];
+	$req_delete_message = "DELETE FROM message WHERE id='$id_message'";
+	mysqli_query($base, $req_delete_message);
+}
 else
 {
 
-	$req_conv="SELECT message.id, id_utilisateur, id_utilisateur_prive, profil FROM message, utilisateurs WHERE id_utilisateur = '$id' and utilisateurs.id = id_utilisateur_prive or id_utilisateur_prive = '$id' and utilisateurs.id = id_utilisateur GROUP BY id_utilisateur_prive";
+	$req_conv="SELECT message.id, id_utilisateur, id_utilisateur_prive, profil FROM message, utilisateurs WHERE id_utilisateur = '$id' and utilisateurs.id = id_utilisateur_prive or id_utilisateur_prive = '$id' and utilisateurs.id = id_utilisateur GROUP BY id_utilisateur_prive, id_utilisateur";
 	$execute_req_conv=mysqli_query($base, $req_conv);
 	$element=mysqli_num_rows($execute_req_conv);
 

@@ -100,7 +100,7 @@
 						              	</div>
 						            </div> -->
 						            
-						            <!-- <div class="outgoing_msg">
+						           <!--  <div class="outgoing_msg">
 						            	<div class="sent_msg">
 						                	<p>Test which is a new approach to have all
 						                  		solutions
@@ -113,9 +113,7 @@
 					            <div class="input_msg_write">
 					             	<input type="text" class="write_msg" placeholder="Type a message" />
 					              	<button class="msg_send_btn" type="button">
-					              		<svg class="bi bi-cursor-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-									 	<path fill-rule="evenodd" d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z"/>
-										</svg>
+					              		Envoyer
 					              	</button>
 					            </div>
 					        </div>
