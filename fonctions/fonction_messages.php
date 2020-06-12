@@ -45,7 +45,6 @@ else if(isset($_POST['message']))
 	$resultat_req_login_user = mysqli_fetch_array($execute_req_login_user);
 	$id_user_distant = $resultat_req_login_user['id'];
 
-
 	$req_insert_message = "INSERT INTO message VALUES (NULL, '$id', '$id_user_distant', '$message', '$date')";
 	mysqli_query($base, $req_insert_message);
 }

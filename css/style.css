@@ -376,6 +376,7 @@ footer a:hover{
   padding-bottom: 20px;
   transition: 0.2s;
   font-size: 18px;
+  text-align: center;
 }
 
 .nom_prenom div:hover{
@@ -650,11 +651,6 @@ footer a:hover{
   word-break: break-all;
 }
 .outgoing_msg{ overflow:hidden; margin:26px 0 26px;}
-.outgoing_msg svg{
-
-  /*position: absolute;*/
-  /*margin-left: 0;*/
-}
 .sent_msg {
   float: right;
   width: 46%;
@@ -672,7 +668,7 @@ footer a:hover{
 .msg_send_btn {
   background: #504d70  none repeat scroll 0 0;
   border: medium none;
-  border-radius: 10%;
+  border-radius: 0.25rem;
   color: #fff;
   cursor: pointer;
   font-size: 17px;
@@ -718,4 +714,85 @@ footer a:hover{
 svg{
 
   cursor: pointer;
+}
+
+.container-fluid{
+
+  margin-top: 100px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 900px;
+}
+.envoie_message textarea{
+
+  resize: none;
+  height: 200px;
+  border-radius : 4px;
+  padding: 1rem;
+  border: 1px solid #cad1d9;
+}
+
+
+.envoie_message .message_user, .resume_annonce{
+
+  background-color: white;
+  padding: 10px;
+  min-width: 350px;
+  max-width: 400px;
+}
+.envoie_message .message{
+
+  margin-top: 30px;
+}
+
+.envoie_message .message button{
+  
+  margin-top: 10px;
+  background-color: #17A681;
+  border: none;
+  color: white;
+  border-radius: .25rem;
+  transition: 0.2s;
+  padding: 3px 6px;
+  transition: 0.2s;
+}
+.envoie_message .message button:hover{
+  
+  cursor: pointer;
+  background-color: #0D836E;
+}
+
+.envoie_message .resume_annonce hr{
+
+  width: 100%;
+  color: black;
+  height: 2px;
+
+}
+
+.envoie_message .descriptif, .envoie_message .titre{
+
+  word-break: break-all;
+  padding: 10px;
+}
+
+.envoie_message .container-fluid article{
+
+  height: 560px;
+  background-color: white;
+  min-width: 350px;
+}
+
+.envoie_message .prix_annonce{
+
+  margin-bottom: 20px;
+}
+
+@media (max-width: 900px) {
+  .container-fluid{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+  }
 }

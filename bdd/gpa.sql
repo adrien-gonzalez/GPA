@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 01 juin 2020 à 11:35
--- Version du serveur :  10.4.10-MariaDB
--- Version de PHP :  7.3.12
+-- Généré le :  ven. 12 juin 2020 à 13:55
+-- Version du serveur :  5.7.26
+-- Version de PHP :  7.2.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -66,16 +66,18 @@ CREATE TABLE IF NOT EXISTS `message` (
   `message` varchar(255) NOT NULL,
   `date_message` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=72 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `message`
 --
 
 INSERT DELAYED INTO `message` (`id`, `id_utilisateur`, `id_utilisateur_prive`, `message`, `date_message`) VALUES
-(3, 1, 21, 'Test2', '2020-05-31 13:00:00'),
-(6, 1, 20, 'ssssss', '2020-05-31 12:00:00'),
-(5, 20, 1, 'Salut', '2020-05-14 10:00:00');
+(63, 21, 1, 'Salut', '2020-06-04 16:00:00'),
+(62, 1, 20, 'Salut oui', '2020-06-04 18:00:00'),
+(54, 20, 1, 'ça va ?', '2020-06-04 16:00:00'),
+(67, 1, 20, 'ok', '2020-06-12 15:45:41'),
+(48, 20, 1, 'Salut', '2020-06-04 15:00:00');
 
 -- --------------------------------------------------------
 
