@@ -311,7 +311,7 @@ footer a:hover{
   flex-direction: column;
   align-items: center;
   width: 350px;
-  word-break: break-all;
+  word-break: break-word;
 }
 
 .image_profil:hover{
@@ -459,7 +459,7 @@ footer a:hover{
 
 .description div{
 
-  word-break: break-all;
+  word-break: break-word;
 }
 
 #num_tel{
@@ -648,7 +648,7 @@ footer a:hover{
   margin: 0; color:#fff;
   padding: 5px 10px 5px 12px;
   width:100%;
-  word-break: break-all;
+  word-break: break-word;
 }
 .outgoing_msg{ overflow:hidden; margin:26px 0 26px;}
 .sent_msg {
@@ -773,13 +773,13 @@ svg{
 
 .envoie_message .descriptif, .envoie_message .titre{
 
-  word-break: break-all;
+  word-break: break-word;
   padding: 10px;
 }
 
 .envoie_message .container-fluid article{
 
-  height: 560px;
+  height: 580px;
   background-color: white;
   min-width: 350px;
 }

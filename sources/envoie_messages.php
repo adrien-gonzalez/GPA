@@ -65,7 +65,7 @@
 			        	</button>
 			        </div>
 		   		</article>
-		   		<article class="w-50 shadow">
+		   		<article class="w-50 shadow info">
 		   			<div class="resume_annonce d-flex flex-column w-100">
 			            <div class="titre">
 			            	<h4>Type d'attestation</h4>
@@ -75,7 +75,19 @@
 			            <div class="descriptif">
 			            	<h4>Description</h4>
 			            	<div class="prix_annonce"><?php echo $resultat_req_annonce['prix']?> €</div>
-			            	<div><?php echo $resultat_req_annonce['descriptif']?></div>
+			            	<div>
+			            		<?php
+			            		if(strlen($resultat_req_annonce['descriptif']) > 550)
+			            		{
+			            			echo substr($resultat_req_annonce['descriptif'],0,500)."..." ;
+			            		}
+			            		else
+			            		{
+			            			echo $resultat_req_annonce['descriptif'];
+
+			            		}
+			            		?>
+			            	</div>
 			            </div>
 			        </div>
 		   		</article>
