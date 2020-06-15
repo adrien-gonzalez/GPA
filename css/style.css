@@ -322,14 +322,36 @@ footer a:hover{
 .contenu_annonce{
 
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: space-around;
   width: 70%;
-  margin-top: 50px;
-  background-color: #f2f2f2;
   padding: 35px 0px 30px;
-  border-radius: 5px;
 }
+
+.lieu_titre, .profil_message{
+
+  background-color: white;
+  border: 1px solid #ccc;
+}
+.lieu_titre{
+
+  width: 50%;
+}
+.profil_message{
+
+  min-width: 250px;
+  width: 25%;
+}
+
+.annonce .container-fluid{
+
+  display: flex;
+  align-items: flex-start;
+  min-width: 800px;
+
+}
+
+
 
 .affichage_information{
 
@@ -392,7 +414,7 @@ footer a:hover{
   align-items: center;
   justify-content: center;
   font-size: 18px;
-  width: 400px;
+  width: 100%;
 }
 
 
@@ -465,12 +487,12 @@ footer a:hover{
 #num_tel{
 
   margin-top: 10px;
-  width: 100%;
+  width: 188px;
 }
 
 #envoyer_message{
 
-  width: 100%;
+  width: 188px;
 }
 
 .prix{
@@ -488,9 +510,12 @@ footer a:hover{
 .attestation_prix{
 
   display: flex;
+  flex-direction: column;
   justify-content: space-evenly;
   margin-bottom: 50px;
   width: 100%;
+  padding: 10px;
+  word-break: break-word;
 }
 
 .detail{
@@ -510,6 +535,13 @@ footer a:hover{
   margin-top: 80px;
 }
 
+.attestation_prix hr{
+
+  width: 80%;
+  height: 2px;
+  margin-top: 40px;
+}
+
 .annonce section{
 
   display: flex;
@@ -525,13 +557,8 @@ footer a:hover{
   color: white;
 }
 
-.lien_tel{
-
-  width: 100%;
-}
 
 /*MESSAGERIE*/
-
 
 .bloc_message{max-width:1170px; margin:auto; margin-top: 100px;}
 .bloc_message img{ max-width:100%; border-radius: 50%;}
@@ -716,7 +743,7 @@ svg{
   cursor: pointer;
 }
 
-.container-fluid{
+.envoie_message .container-fluid{
 
   margin-top: 100px;
   display: flex;
@@ -781,7 +808,7 @@ svg{
 
   height: 580px;
   background-color: white;
-  min-width: 350px;
+  min-width: 400px;
 }
 
 .envoie_message .prix_annonce{
@@ -790,9 +817,20 @@ svg{
 }
 
 @media (max-width: 900px) {
-  .container-fluid{
+  .envoie_message .container-fluid{
     display: flex;
     flex-direction: column;
     width: 80%;
+  }
+  .annonce .container-fluid{
+
+  display: flex;
+  align-items: flex-start;
+  min-width: 100%;
+  align-items: center;
+  }
+  .profil_message, .lieu_titre{
+
+    width: 400px;
   }
 }

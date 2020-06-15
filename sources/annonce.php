@@ -30,7 +30,7 @@
             </div>
             <div id="content">
             	<section>
-	            	<div class="contenu_annonce shadow">
+	            	<div class="container-fluid contenu_annonce ">
 	            		<!-- AFFICHAGE DES INFORMATIONS DE L'ANNONCE -->
 		            	<?php 
 		            		$id = $_GET['id'];
@@ -47,12 +47,26 @@
 		            		$execute_req_user = mysqli_query($base, $req_user);
 		            		$resultat_req_user = mysqli_fetch_array($execute_req_user);
 		            	?>
-		            	<div class="attestation_prix">
-		            		<h4><?php echo $resultat_req_annonce['type_attestation'];?></h4>
-		            		<h4><?php echo $resultat_req_annonce['prix'];?> €</h4>
-		            	</div>
-	            		<div class="affichage_information">
-
+		            	<article class="lieu_titre">
+			            	<div class="attestation_prix">
+			            		<div class="d-flex justify-content-between">
+				            		<h4><?php echo $resultat_req_annonce['type_attestation'];?></h4>
+				            		<h4><?php echo $resultat_req_annonce['prix'];?> €</h4>
+			            		</div>
+			            		<p>Publiée par <?php echo $resultat_req_user['login']; ?></p>
+			            		<div class="lieu">
+			            			<iframe src="https://maps.google.com/maps?q=<?php echo $resultat_req_annonce['region'];?>&t=&z=6&ie=UTF8&iwloc=&output=embed" frameborder="0"
+										style="border:0 width:100%; height: 300px;" allowfullscreen>
+									</iframe>		            			
+		            			</div>
+		            			<hr>
+		            			<div>
+		            				<h5>Description</h5><br>
+		            				<p><?php echo $resultat_req_annonce['descriptif']; ?></p>
+		            			</div>
+			            	</div>
+		            	</article>
+		            	<article class="profil_message">
 		            		<div class="profil_user shadow">
 		            			<img class="rounded-circle" src="../img/profil/<?php echo $resultat_req_user['profil'];?>" width="125">
 		            			<div class="nom_prenom">
@@ -67,28 +81,13 @@
 										Envoyer un message
 									</button>
 								</a>
-								<a class="lien_tel" href="tel:<?php echo $resultat_req_annonce['tel'];?>">
+								<a href="tel:<?php echo $resultat_req_annonce['tel'];?>">
 									<button id="num_tel" class="button_gpa">
 										<?php echo $resultat_req_annonce['tel']; ?>
 									</button>
 								</a>
 		            		</div>
-		            		<div class="lieu">
-		            			<iframe src="https://maps.google.com/maps?q=<?php echo $resultat_req_annonce['region'];?>&t=&z=6&ie=UTF8&iwloc=&output=embed" frameborder="0"
-									style="border:0" allowfullscreen>
-								</iframe>
-		            			
-		            		</div>
-	            		</div>
-	            		<div class="detail">
-	            			<hr>
-	            			<div class="titre_description">Description</div>
-		            		
-		            		<div class="description">
-		            			<div><?php echo $resultat_req_annonce['descriptif'];?></div>
-		            		</div>
-		            	</div>
-
+		            	</article>
 	            	</div>
 	            </div>
         	</section>
