@@ -68,7 +68,7 @@ define('ma_courante', preg_replace($reg, '$2', $url)); ?>
 				{
 				?>
 				   	<a class="dropdown-item" href="sources/messages.php">Messagerie</a>
-				    <a class="dropdown-item" href="sources/mes_annonce.php">Annonce</a>
+				    <a class="dropdown-item" href="sources/mes_annonces.php">Annonce</a>
 				    <a class="dropdown-item" href="sources/parametre.php">Paramètre</a>
 				    <a class="dropdown-item" href="sources/deconnexion.php">Se déconnecter</a>
 
@@ -78,7 +78,7 @@ define('ma_courante', preg_replace($reg, '$2', $url)); ?>
 				{
 				?>
 					<a class="dropdown-item" href="messages.php">Messagerie</a>
-				    <a class="dropdown-item" href="mes_annonce.php">Annonce</a>
+				    <a class="dropdown-item" href="mes_annonces.php">Annonce</a>
 				    <a class="dropdown-item" href="parametre.php">Paramètre</a>
 				    <a class="dropdown-item" href="deconnexion.php">Se déconnecter</a>
 				<?php	

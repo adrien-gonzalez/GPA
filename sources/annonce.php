@@ -1,7 +1,7 @@
 <?php require "../fonctions/config.php"; ?>
 <html>
 	<head>
-		<title>Annonce <?php echo $_GET['type'];?></title>
+		<title>Annonce</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=0.7">
 		<!-- CSS -->
@@ -47,7 +47,7 @@
 		            		$execute_req_user = mysqli_query($base, $req_user);
 		            		$resultat_req_user = mysqli_fetch_array($execute_req_user);
 		            	?>
-		            	<article class="lieu_titre">
+		            	<article class="lieu_titre shadow">
 			            	<div class="attestation_prix">
 			            		<div class="d-flex justify-content-between">
 				            		<h4><?php echo $resultat_req_annonce['type_attestation'];?></h4>
@@ -66,7 +66,7 @@
 		            			</div>
 			            	</div>
 		            	</article>
-		            	<article class="profil_message">
+		            	<article class="profil_message shadow">
 		            		<div class="profil_user shadow">
 		            			<img class="rounded-circle" src="../img/profil/<?php echo $resultat_req_user['profil'];?>" width="125">
 		            			<div class="nom_prenom">

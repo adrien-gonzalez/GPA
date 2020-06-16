@@ -13,7 +13,7 @@ if(password_verify($password, $resultat['password']))
 {
     $_SESSION['login']=$login;
     $_SESSION['password']=$_POST['password'];
-    echo "ok";
+    // header("Location: " . $_SERVER["HTTP_REFERER"]);
 } 
 else
 { 

@@ -834,3 +834,55 @@ svg{
     width: 400px;
   }
 }
+
+.nombre{
+
+  display: flex;
+}
+.nombre_annonce{
+
+  margin-top: 150px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#nombre_annonce{
+
+  border: 1px solid #109C71;
+  padding: 10px;
+  width: auto;
+  max-width: 200px;
+
+}
+
+.liste_annonces{
+
+  margin-top: 50px;
+  border: 1px solid #109C71;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 450px;
+}
+
+.liste_annonces_poste{
+
+  margin-top: 50px;
+  border: 1px solid #109C71;
+  height: auto;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  min-width: 450px;
+  transition: 0.2s;
+}
+
+.liste_annonces_poste:hover{
+
+  cursor: pointer;
+   background-color: rgb(16, 156, 113, 0.5);
+}

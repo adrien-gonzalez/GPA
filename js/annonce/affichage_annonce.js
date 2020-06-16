@@ -55,7 +55,7 @@ $( document ).ready(function() {
 		// id annonce et type d'attestation
 		id = id_annonce.substr(7)
 		type_attestation = $("#attestation_"+id).text().replace(/ /g, '')
-		window.location.href = "sources/annonce.php?type="+type_attestation+"&id="+id+"";
+		window.location.href = "sources/annonce.php?id="+id+"";
 	});
 	$("body").on("click", "#recherche_accueil", function () {
 		

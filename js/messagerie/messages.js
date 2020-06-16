@@ -54,7 +54,8 @@ function affichages_conversation(){
         url: '../fonctions/fonction_messages.php',
         type: 'POST',    
                    
-        success: function(data){  
+        success: function(data){ 
+        console.log(data) 
   			if(data === "0")
   			{
   				$(".aucun_message").removeClass("d-none")
@@ -75,6 +76,7 @@ function affichages_conversation(){
 					}
 					if($('#chat_list_'+result[nom]).length === 0)
 					{
+
 						if($(".active_chat").text().trim() == "")
 						{
 							$(".inbox_chat").append('<div id="chat_list_'+result[nom]+'" class="chat_list active_chat"></div>')
@@ -108,7 +110,6 @@ function affichages_messages(){
         data: {conv_user: conv_user},   
                    
         success: function(data){  
-
         	if(document.getElementsByClassName('outgoing_msg').length + document.getElementsByClassName('incoming_msg').length >  JSON.parse(data).length)
         	{
         		$(".outgoing_msg").remove()

@@ -3,6 +3,8 @@
 session_start();
 session_destroy();
 
-header('location: ../');
-
 ?>
+
+<script>
+    window.history.go(-1);
+</script>
