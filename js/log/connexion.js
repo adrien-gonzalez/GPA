@@ -35,7 +35,7 @@ function connexion(){
                     }
                     else
                     {
-                        window.history.go(-1);
+                       document.location.href='../index.php'
                     }
                 }
         });

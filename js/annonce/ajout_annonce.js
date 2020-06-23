@@ -122,14 +122,20 @@ function validatePhone(num){
 function ajout_annonce(){
 
 	$("svg").remove()
-		$("#attestation").css({"border":"1px solid #e6e6e6"})
-		$("#region").css({"border":"1px solid #e6e6e6"})
-		$("#tel").css({"border":"none"})
-		$("#prix").css({"border":"none"})
-		$("#label").css({"color":"#1a4756"})
+	$("#attestation").css({"border":"1px solid #e6e6e6"})
+	$("#region").css({"border":"1px solid #e6e6e6"})
+	$("#tel").css({"border":"none"})
+	$("#prix").css({"border":"none"})
+	$("#label").css({"color":"#1a4756"})
+	$('.dispo').css({"color":"#1a4756"})
+	$("#dispo_annonce").css({"color":"#1a4756"})
+	$('.statut').css({"color":"#1a4756"})
+	$("#statut_annonce").css({"color":"#1a4756"})
+
 
 		if($("#attestation").val() != "0" && $("#region").val() != "0" && $("#descriptif").val().length >= 150 &&
-		   $("#name_fichier").text() != "" && $("#tel").val() != "" && $("#prix").val() != "")
+		   $("#name_fichier").text() != "" && $("#tel").val() != "" && $("#prix").val() != "" && ($('#immediate').is(':checked') || $('#3mois').is(':checked'))
+		    && ($('#associe').is(':checked') || $('#salarie').is(':checked') || $('#externe').is(':checked')))
 		{
 			if(validatePhone($("#tel").val()) == true)
 			{
@@ -139,11 +145,13 @@ function ajout_annonce(){
 				descriptif 	= $("#descriptif").val()
 				tel 		= $("#tel").val()
 				prix 		= $("#prix").val()
+				disponibilite = document.querySelector('input[name="dispo"]:checked').value;
+				statut = document.querySelector('input[name="statut"]:checked').value;
 
 				$.ajax({
                     url: '../fonctions/fonction_ajout_annonce.php',
                     type: 'POST',
-                    data: {type: type, region: region, descriptif: descriptif, tel: tel, prix: prix},        
+                    data: {type: type, region: region, descriptif: descriptif, tel: tel, prix: prix, disponibilite: disponibilite, statut: statut},        
                    
                     success: function(data){                	
                     	if(data == "ok")
@@ -160,7 +168,8 @@ function ajout_annonce(){
 							        data: fd,
 							        contentType: false,
 							        processData: false,
-							        success: function(response){			        	
+							        success: function(response){
+							        console.log(response)			        	
 							        }
 								});
 						    }
@@ -179,6 +188,20 @@ function ajout_annonce(){
 		{
 			$("svg").remove()
 			$(".login100-form-title").after('<div class="champ_vide">*Veuillez compléter les champs</div>')
+			if($('#associe').is(':checked') || $('#salarie').is(':checked') || $('#externe').is(':checked')){
+			}
+			else
+			{
+				$('.statut').css({"color":"#C0392B"})
+				$("#statut_annonce").css({"color":"#C0392B"})
+			}
+			if($('#3mois').is(':checked') || $('#immediate').is(':checked')){
+			}
+			else
+			{
+				$('.dispo').css({"color":"#C0392B"})
+				$("#dispo_annonce").css({"color":"#C0392B"})
+			}
 			if($("#attestation").val() === "0")
 			{
 				$("#attestation").css({"border":"1px solid #C0392B"})
@@ -195,7 +218,7 @@ function ajout_annonce(){
 			}
 			if($("#name_fichier").text() === "")
 			{
-				$('label').css({"color" : "#C0392B"})
+				$('#label_image').css({"color" : "#C0392B"})
 			}
 			if($("#tel").val() === "")
 			{

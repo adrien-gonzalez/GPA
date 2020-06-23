@@ -79,8 +79,12 @@ if(isset($tab_erreur))
 }
 else
 {
+	date_default_timezone_set('Europe/Paris');
+	$now = new DateTime();
+	$date=$now->format('Y-m-d'); 
+	
 	$password_hash=password_hash($password1, PASSWORD_BCRYPT, ["cost" => 12]);
-	$insert="INSERT INTO utilisateurs VALUES (NULL, '$genre', '$nom', '$prenom', '$adresse', '$email', '$naissance', '$login', '$password_hash', '../img/profil/profil_defaut.png')";
+	$insert="INSERT INTO utilisateurs VALUES (NULL, '$genre', '$nom', '$prenom', '$adresse', '$email', '$naissance', '$login', '$password_hash', '../img/profil/profil_defaut.png','$date')";
 	mysqli_query($base, $insert);
 	echo "ok";
 }

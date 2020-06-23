@@ -89,6 +89,37 @@
                                         </div>
                                             <p class="type_fichier">Types de fichiers acceptés: pdf</p>
                                     </div>
+                                    <label id="dispo_annonce">Disponibilité :</label>
+                                    <div class="d-flex flex-row rs1-wrap-input100 validate-input taille2 m-b-40 dispo">
+                                        <div>
+                                            <input id="immediate"  value="Disponible" type="radio" name="dispo">
+                                             Immédiate
+                                            <span class="focus-input100"></span>
+                                        </div>
+                                        <div>
+                                            <input id="3mois"  value="Sous 3 mois" type="radio" name="dispo">
+                                            Sous 3 mois
+                                            <span class="focus-input100"></span>
+                                        </div>
+                                    </div>
+                                    <label id="statut_annonce">Votre statut :</label>
+                                    <div class="d-flex flex-row rs1-wrap-input100 validate-input taille1 m-b-40 statut">
+                                        <div>
+                                            <input id="associe"  value="Associé" type="radio" name="statut">
+                                            Associé
+                                            <span class="focus-input100"></span>
+                                        </div>
+                                        <div>
+                                            <input id="salarie"  value="Salarié" type="radio" name="statut">
+                                            Salarié
+                                            <span class="focus-input100"></span>
+                                        </div>
+                                        <div>
+                                            <input id="externe"  value="Externe" type="radio" name="statut">
+                                            Externe
+                                            <span class="focus-input100"></span>
+                                        </div>
+                                    </div>
                                     <div class="flex-row m-b-40">
                                         <div class="nom wrap-input100 rs1-wrap-input100 validate-input taille2">
                                             <input id="tel" class="input100" type="tel" name="tel" placeholder="Téléphone (ex : 06 98 ...)">

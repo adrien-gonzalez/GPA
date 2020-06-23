@@ -3,7 +3,14 @@
 session_start();
 require "config.php";
 
-$login = $_SESSION['login'];
+if(isset($_SESSION['login']))
+{
+	$login = $_SESSION['login'];
+}
+else
+{
+	$login = $_POST['login'];
+}
 $req_id_user = "SELECT id FROM utilisateurs WHERE login='$login'";
 $execute_req_id_user = mysqli_query($base, $req_id_user);
 $resultat_req_id_user = mysqli_fetch_array($execute_req_id_user);

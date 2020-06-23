@@ -35,7 +35,7 @@
         <div id="content">	
         	<div class="nombre_annonce w-100">
         		<div class="nombre w-75">
-	        		<div id="nombre_annonce">
+	        		<div id="nombre_annonce" class="shadow">
 	        			Annonces en ligne ()
 	        		</div>
         		</div>

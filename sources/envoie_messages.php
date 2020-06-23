@@ -34,23 +34,24 @@
 			<div class="container-fluid">
 				<!-- AFFICHAGE DES INFORMATIONS DE L'ANNONCE -->
 		        <?php 
-		           	$id_user = $_GET['id'];
-	           		$req_user = "SELECT *FROM utilisateurs WHERE id = '$id_user'";
+		           	$id_annonce = $_GET['annonce'];
+		           	$req_annonce = "SELECT *FROM annonce WHERE id='$id_annonce'";
+		           	$execute_req_annonce = mysqli_query($base, $req_annonce);
+		           	$resultat_req_annonce = mysqli_fetch_array($execute_req_annonce);  
+
+		           	$id_user = $resultat_req_annonce['id_utilisateur'];
+		           	$req_user = "SELECT *FROM utilisateurs WHERE id = '$id_user'";
 	          		$execute_req_user = mysqli_query($base, $req_user);
 	           		$resultat_req_user = mysqli_fetch_array($execute_req_user);
-	           		$ifnotnull = mysqli_num_rows($execute_req_user);
+	           		$ifnotnull = mysqli_num_rows($execute_req_user);  
 
 	           		if($ifnotnull == 0)
-		           			header('Location: ../');
-
-		           	$req_annonce = "SELECT *FROM annonce WHERE id_utilisateur='$id_user'";
-		           	$execute_req_annonce = mysqli_query($base, $req_annonce);
-		           	$resultat_req_annonce = mysqli_fetch_array($execute_req_annonce);      		
+		           			header('Location: ../');  		
 	         	?>
 	         	<article class="w-50 message_user shadow">
 		         	<div class="profil_user d-flex flex-column w-100" id="<?php echo $resultat_req_user['login']?>">
 			            <img class="rounded-circle" src="../img/profil/<?php echo $resultat_req_user['profil'];?>" width="125">
-			            <div class="nom_prenom">
+			            <div class="nom_prenom" id="<?php echo $resultat_req_user['id'];?>">
 			            	<div><?php echo $resultat_req_user['nom'] ?>  <?php echo $resultat_req_user['prenom'] ?><br><?php echo $resultat_req_user['login']?></div>
 			            </div>
 			        </div>
@@ -69,7 +70,12 @@
 		   			<div class="resume_annonce d-flex flex-column w-100">
 			            <div class="titre">
 			            	<h4>Type d'attestation</h4>
-			            	<div><?php echo $resultat_req_annonce['type_attestation']?></div>
+			            	<div>
+			            		<div class="d-flex justify-content-between">
+			            			<?php echo $resultat_req_annonce['type_attestation'];?>
+			            			<h6 class="<?php echo str_replace(' ','',$resultat_req_annonce['disponibilite']);?>"><?php echo $resultat_req_annonce['disponibilite'];?></h6>
+			            		</div>
+			            	</div>
 			            </div>
 			            <hr>
 			            <div class="descriptif">

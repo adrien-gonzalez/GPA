@@ -39,6 +39,12 @@ button:focus{
 	border-radius: .25rem;
 	transition: 0.2s;
   padding: 3px 6px;
+  height: 30px;
+}
+
+#recherche_accueil{
+
+  height: 35px;
 }
 
 
@@ -73,8 +79,8 @@ button:focus{
 .option_recherche{
 
   margin-top: 300px;
-	min-width:850px;
-	height: 120px;
+	min-width:900px;
+	height: 100px;
 	padding: 10px;
 	background-color: rgba(33, 32, 46, 0.9)
 
@@ -138,9 +144,6 @@ button:focus{
 	}
 }
 
-
-/*MENU DEROULANT SELECT*/
-
 span.msg,
 span.choose {
   color: #555;
@@ -165,85 +168,35 @@ a{
 
   background-color: #C7C7CB;
 }
-/*Styling Selectbox*/
-.dropdown2 {
-  width: 220px;
-  display: inline-block;
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 0 2px rgb(204, 204, 204);
-  transition: all .5s ease;
-  position: relative;
-  font-size: 14px;
-  color: #474747;
-  text-align: left;
-}
-.dropdown2 .select {
-    cursor: pointer;
-    display: block;
-    padding: 8px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-.dropdown2 .select > i {
-    font-size: 13px;
-    color: #888;
-    cursor: pointer;
-    transition: all .3s ease-in-out;
-    float: right;
-    line-height: 20px
-}
-.dropdown2:hover {
-    box-shadow: 0 0 4px rgb(204, 204, 204)
-}
-.dropdown2:active {
-    background-color: #f8f8f8
-}
-.dropdown2.active:hover,
-.dropdown2.active {
-    box-shadow: 0 0 4px rgb(204, 204, 204);
-    border-radius: 5px 5px 0 0;
-    background-color: #f8f8f8
-}
-.dropdown2.active .select > i {
-    transform: rotate(-90deg)
-}
-.dropdown2 .dropdown2-menu {
-    position: absolute;
-    background-color: #fff;
-    width: 100%;
-    left: 0;
-    margin-top: 1px;
-    box-shadow: 0 1px 2px rgb(204, 204, 204);
-    border-radius: 0 1px 5px 5px;
-    overflow: hidden;
-    display: none;
-    max-height: 144px;
-    overflow-y: auto;
-    z-index: 9
-}
-.dropdown2 .dropdown2-menu li {
-    padding: 10px;
-    transition: all .2s ease-in-out;
-    cursor: pointer;
-} 
-.dropdown2 .dropdown2-menu {
-    padding: 0;
-    list-style: none
-}
-.dropdown2 .dropdown2-menu li:hover {
-    background-color: #D5D8DC
-}
-.dropdown2 .dropdown2-menu li:active {
-    background-color: #e2e2e2
+
+.accueil .btn{
+
+  height: 35px;
+  padding: 3px;
+  outline: none;
 }
 
-.ie-stickyFooter { /* 1 */
-  display:-ms-flexbox;
-  -ms-flex-direction:column;
+.bootstrap-select>.dropdown-toggle.bs-placeholder, 
+.bootstrap-select>.dropdown-toggle.bs-placeholder:active, 
+.bootstrap-select>.dropdown-toggle.bs-placeholder:focus, 
+.bootstrap-select>.dropdown-toggle.bs-placeholder:hover {
+    color: grey;
 }
 
+
+.bootstrap-select .dropdown-menu.inner {
+
+  max-height: 200px;
+}
+.bootstrap-select .btn:focus{outline:blue!important;}
+
+.bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+    width: 180px;
+}
+
+*{
+  border: none;
+}
 #page {
   width:100%; /* 2 */
   min-height:100vh;
@@ -838,8 +791,9 @@ svg{
 .nombre{
 
   display: flex;
+  min-width:450px;
 }
-.nombre_annonce{
+.mes_annonces .nombre_annonce{
 
   margin-top: 150px;
   padding: 30px;
@@ -848,13 +802,22 @@ svg{
   align-items: center;
 }
 
+.profil .nombre_annonce{
+ 
+  margin-top: 0px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 #nombre_annonce{
 
   border: 1px solid #109C71;
   padding: 10px;
   width: auto;
   max-width: 200px;
-
+  background-color: white;
+  border-radius: 0.25rem;
 }
 
 .liste_annonces{
@@ -872,6 +835,7 @@ svg{
 
   margin-top: 50px;
   border: 1px solid #109C71;
+  border-radius: 0.25rem;
   height: auto;
   min-height: 100px;
   display: flex;
@@ -879,10 +843,122 @@ svg{
   padding: 10px;
   min-width: 450px;
   transition: 0.2s;
+  background-color: white;
 }
 
 .liste_annonces_poste:hover{
 
   cursor: pointer;
-   background-color: rgb(16, 156, 113, 0.5);
+  background-color: rgb(16, 156, 113, 0.5);
+}
+
+.Disponible{
+
+  display: flex;
+  align-items: center;
+  color: green;
+}
+
+.Sous3mois{
+
+  display: flex;
+  align-items: center;
+  color: orange;
+}
+
+.header_profil{
+
+  width: 100%;
+  height: 300px;
+  background-image:url("../img/images_site/header_profil.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: bottom ;
+  margin-top: 50px;
+}
+
+.id_profil{
+
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: auto;
+  margin-top: -75px;
+}
+
+.detail_profil{
+
+  width: 50%;
+  height: 100%;
+  border-radius: 0.25rem; 
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+.info_general_user{
+
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+@media (max-width: 650px) {
+  .detail_profil{
+    width: 100%;
+  }
+}
+
+@media (min-width: 650px) {
+  .detail_profil{
+     min-width: 650px;
+  }
+}
+
+.detail_profil img{
+
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+}
+.detail_profil p{
+
+  font-size: 18px;
+  margin-top: 16px;
+  text-align: center;
+}
+
+
+.detail_profil div{
+
+  display: flex;
+  align-items: center;
+  padding: 7px;
+  width: 100%;
+  justify-content: space-evenly; 
+}
+
+.detail_profil hr{
+
+  width: 100%;
+  height: 2px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.date_nbr_annonce{
+
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+}
+.date_nbr_annonce div{
+
+  padding: 0;
+}
+
+.liste{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

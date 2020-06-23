@@ -10,9 +10,11 @@ $( document ).ready(function() {
 
 function mes_annonces(){
 
+	login = $(".id_profil").attr("id")
 	 $.ajax({
         url: '../fonctions/fonction_mes_annonces.php',
         type: 'POST',
+        data: {login: login},
         
             success: function(data){ 
             	if(data != "0")
@@ -36,7 +38,7 @@ function mes_annonces(){
 							}
 							var prix = Object.keys(result)[6]
 						}
-						$(".nombre").after('<div id="'+result[id]+'" class="w-75 liste_annonces_poste"></div>')
+						$(".nombre").after('<div id="'+result[id]+'" class="w-75 liste_annonces_poste shadow"></div>')
 						$("#"+result[id]).append('<h6 id="type_'+result[id]+'"">'+result[type]+' ('+result[region]+') '+result[prix]+' €</h6>')
 						$("#type_"+result[id]).after('<p id="descriptif_'+result[id]+'">'+result[descriptif]+'</p>')		
 					}

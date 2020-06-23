@@ -639,3 +639,7 @@ img{
   position: absolute;
   margin-top: 50px;
 }
+
+#dispo_annonce, #statut_annonce{
+  font-weight: bold;
+}
