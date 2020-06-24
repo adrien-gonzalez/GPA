@@ -13,7 +13,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 		<!-- MON SCRIPT -->
 		<script type="text/javascript" src="js/script.js"></script>
-		<script type="text/javascript" src="js/annonce/affichage_annonce.js"></script>
+		<script type="text/javascript" src="js/favoris/favoris.js"></script>
 		<script type="text/javascript" src="js/selectpicker.js"></script>
 		<!-- BOOTSTRAP -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -119,7 +119,7 @@
 				  	$condition = [];
 					if(sizeof($_GET) == "0")
 					{	
-						$condition[] = "id_utilisateur=utilisateurs.id";
+						$condition[] = "annonce.id_utilisateur=utilisateurs.id";
 					}
 					else
 					{
@@ -187,25 +187,77 @@
 					}
 					if(sizeof($condition) == 0)
 					{
-						$condition[] = "id_utilisateur=utilisateurs.id";
+						$condition[] = "annonce.id_utilisateur=utilisateurs.id";
 					}
+					// ANNONCES
 					$condition = implode(" and ", $condition);
-					$req_annonces="SELECT annonce.id, profil, nom, prenom, region, type_attestation, tel, email, prix, disponibilite FROM utilisateurs INNER JOIN annonce on $condition WHERE id_utilisateur=utilisateurs.id";
+					$req_annonces="SELECT annonce.id, profil, nom, prenom, region, type_attestation, tel, email, prix, disponibilite FROM utilisateurs INNER JOIN annonce on $condition WHERE annonce.id_utilisateur=utilisateurs.id";
 					$execute_req_annonces=mysqli_query($base, $req_annonces);
 					$element=mysqli_num_rows($execute_req_annonces);
 
+					// ANNONCES EN FAVORIS
+					$req_favoris = "SELECT *FROM favoris";
+					$execute_req_favoris = mysqli_query($base, $req_favoris);
+					$element_favoris=mysqli_num_rows($execute_req_favoris);
+					
+					// REQUETE ID UTILISATEUR
+					if(isset($_SESSION['login']))
+					{	
+						$login = $_SESSION['login'];
+						$req_user = "SELECT id FROM utilisateurs WHERE login = '$login'";
+			            $execute_req_user = mysqli_query($base, $req_user);
+			            $resultat_req_user = mysqli_fetch_array($execute_req_user);
+					}
 					if($element != 0)
 					{
 						while($data = mysqli_fetch_array($execute_req_annonces))
 						{
 						?>
+
 							<div class="liste_profil Marchandises - 3.5T" id="<?php echo $data['id'];?>">
 								<img class="image_profil rounded-circle" id="<?php echo $data['id'];?>" src="<?php echo "img/profil/".$data['profil'];?>" width="125">
-								<div id="name_24"><?php echo $data['nom'].''.$data['prenom'];?></div>
+								<div id="name_24"><?php echo $data['nom'].' '.$data['prenom'];?></div>
 								<div id="region_24"><?php echo $data['region']; ?></div>
 								<div class="attestation" id="attestation_24"><?php echo $data['type_attestation'];?></div>
 								<div id="tarif_24"><?php echo $data['prix'].' €';?></div>
 								<div class="<?php echo str_replace(' ','',$data['disponibilite']);?>" id="dispo_24"><?php echo $data['disponibilite'];?></div>
+								<?php if(isset($_SESSION['login'])){?>
+									<svg <?php 
+										if($element_favoris != 0)
+										{
+											$execute_req_favoris = mysqli_query($base, $req_favoris);
+											$fav = false;
+											while($resultat_req_favoris = mysqli_fetch_array($execute_req_favoris))
+											{
+												if($resultat_req_favoris['id_annonce'] == $data['id'] && $resultat_req_favoris['id_utilisateur'] == 
+													$resultat_req_user['id'])
+												{	
+													$fav = true;
+												}
+											}
+											if($fav == true)
+											{
+												?> class="bi bi-star-fill add_favoris"<?php
+											}
+											else
+											{
+												?> class="bi bi-star-fill none_favoris"<?php
+											}
+										}
+										else
+										{
+										?>
+											class="bi bi-star-fill none_favoris"
+										<?php	
+										}
+										?>
+										id="<?php echo "star_".$data['id'];?>" 
+										
+
+									 width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+</svg>
+								<?php } ?>
 							</div>
 						<?php
 						}

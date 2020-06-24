@@ -31,12 +31,59 @@ $( document ).ready(function() {
         id_user = $(this).attr('id')
         window.location.href = "profil.php?id="+id_user+"";
     });
+    $("body").on("click", ".bi-star-fill", function () {
+
+      id_star = $(this).attr('id')
+
+      if($("#"+id_star).hasClass("add_favoris") === false)
+      {
+        $("#"+id_star).removeClass("none_favoris")
+        $("#"+id_star).addClass("add_favoris")
+        id_annonce = id_star.substr(5)
+        data = {id_annonce: id_annonce}
+        console.log("favori")
+        add_favoris()
+      }
+      else
+      {
+        $("#"+id_star).removeClass("add_favoris")
+        $("#"+id_star).addClass("none_favoris")
+        id_annonce = id_star.substr(5)
+        var del = true
+        data = {id_annonce: id_annonce, del: del}
+        console.log("non favori") 
+        add_favoris()
+      }
+    });
+
+    $("body").on("click", ".image_profil", function () {
+
+    // element
+    var id_annonce = $(this).attr('id');
+    console.log(id_annonce)
+    window.location.href = "sources/annonce.php?id="+id_annonce+"";
+
+
+
+
+   
+  });
 });
-
-
 
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
 
+
+function add_favoris(){
+
+   $.ajax({
+        url: 'fonctions/fonction_favoris.php',
+        type: 'POST',  
+        data: data,  
+                   
+        success: function(data){ 
+        }
+    });
+}

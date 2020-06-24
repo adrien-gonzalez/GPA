@@ -10,7 +10,7 @@ $( document ).ready(function() {
 
 function mes_annonces(){
 
-	login = $(".id_profil").attr("id")
+	login = $(".nom_user").attr("id")
 	 $.ajax({
         url: '../fonctions/fonction_mes_annonces.php',
         type: 'POST',

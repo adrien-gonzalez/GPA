@@ -962,3 +962,16 @@ svg{
   flex-direction: column;
   align-items: center;
 }
+
+.add_favoris{
+
+  color: #F1C40F
+
+}
+
+
+.none_favoris{
+  
+  stroke: #212529;
+  color: white;
+}

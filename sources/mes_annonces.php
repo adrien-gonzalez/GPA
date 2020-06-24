@@ -32,6 +32,7 @@
 				}
 			?>
 		</div>
+		<input type="hidden" class="nom_user" id="<?php echo $_SESSION['login'];?>">
         <div id="content">	
         	<div class="nombre_annonce w-100">
         		<div class="nombre w-75">

@@ -46,8 +46,9 @@
 		           	$resultat_req_annonce = mysqli_fetch_array($execute_req_annonce); 
 		           	$nombre_annonce = mysqli_num_rows($execute_req_annonce);     
             	?>
+		        <input type="hidden" class="nom_user" id="<?php echo $resultat_req_user['login'];?>">
             	<div class="header_profil"></div>
-            	<div class="id_profil" id="<?php echo $resultat_req_user['login'];?>">
+            	<div class="id_profil">
             		<div class="detail_profil shadow">
             			<div class="info_general_user">
 	            			<div>
