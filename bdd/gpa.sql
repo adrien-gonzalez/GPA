@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  ven. 12 juin 2020 à 13:55
+-- Généré le :  mer. 24 juin 2020 à 12:49
 -- Version du serveur :  5.7.26
 -- Version de PHP :  7.2.18
 
@@ -40,17 +40,41 @@ CREATE TABLE IF NOT EXISTS `annonce` (
   `tel` varchar(10) NOT NULL,
   `prix` int(11) NOT NULL,
   `document` varchar(255) DEFAULT NULL,
+  `disponibilite` varchar(30) NOT NULL,
+  `statut` varchar(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `annonce`
 --
 
-INSERT DELAYED INTO `annonce` (`id`, `id_utilisateur`, `type_attestation`, `region`, `descriptif`, `tel`, `prix`, `document`) VALUES
-(24, 20, 'Marchandises - 3.5T', 'Auvergne-Rhône-Alpes', 'TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest', '0678956365', 100, '63732073b7bfbb86d924c5bdeff37ef9cb54d9c3.pdf'),
-(23, 1, 'Commissionnaire', 'Provence-Alpes-Côte d\'Azur', 'Bonjour, je suis Adrien, j\'ai 20 ans et je propose mes services en tant que commissionnaire, pour plus d\'informations, contactez-moi.\n', '0678343361', 50, '8f8dd749f51e721c376bbeee7376947b5fa4963f.pdf'),
-(25, 1, 'Voyageurs', 'Bretagne', 'Je propose mes services de transports de voyageurs, veuillez me contacter pour plus de détail, merci.', '0678956536', 50, '0e090bd242d1f56de0ce3f3c429e408de46b3f7c.pdf');
+INSERT DELAYED INTO `annonce` (`id`, `id_utilisateur`, `type_attestation`, `region`, `descriptif`, `tel`, `prix`, `document`, `disponibilite`, `statut`) VALUES
+(24, 20, 'Marchandises - 3.5T', 'Auvergne-Rhône-Alpes', 'TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest', '0678956365', 100, '63732073b7bfbb86d924c5bdeff37ef9cb54d9c3.pdf', 'Disponible', 'Salarié'),
+(23, 1, 'Commissionnaire', 'Provence-Alpes-Côte d\'Azur', 'Bonjour, je suis Adrien, j\'ai 20 ans et je propose mes services en tant que commissionnaire, pour plus d\'informations, contactez-moi.\n', '0678343361', 50, '8f8dd749f51e721c376bbeee7376947b5fa4963f.pdf', 'Sous 3 mois', 'Associé'),
+(25, 1, 'Voyageurs', 'Bretagne', 'Je propose mes services de transports de voyageurs, veuillez me contacter pour plus de détail, merci.', '0678956536', 50, 'c4a9318049c7c1cabd53e718d506423ae7d93bb3.pdf', 'Sous 3 mois', 'Externe');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `favoris`
+--
+
+DROP TABLE IF EXISTS `favoris`;
+CREATE TABLE IF NOT EXISTS `favoris` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_annonce` int(11) NOT NULL,
+  `id_utilisateur` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=71 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `favoris`
+--
+
+INSERT DELAYED INTO `favoris` (`id`, `id_annonce`, `id_utilisateur`) VALUES
+(59, 25, 20),
+(68, 24, 1);
 
 -- --------------------------------------------------------
 
@@ -66,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `message` (
   `message` varchar(255) NOT NULL,
   `date_message` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=72 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=86 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `message`
@@ -74,9 +98,9 @@ CREATE TABLE IF NOT EXISTS `message` (
 
 INSERT DELAYED INTO `message` (`id`, `id_utilisateur`, `id_utilisateur_prive`, `message`, `date_message`) VALUES
 (63, 21, 1, 'Salut', '2020-06-04 16:00:00'),
-(62, 1, 20, 'Salut oui', '2020-06-04 18:00:00'),
+(75, 1, 21, 'ok', '2020-06-15 13:19:12'),
 (54, 20, 1, 'ça va ?', '2020-06-04 16:00:00'),
-(67, 1, 20, 'ok', '2020-06-12 15:45:41'),
+(80, 1, 20, 'cc', '2020-06-15 16:07:23'),
 (48, 20, 1, 'Salut', '2020-06-04 15:00:00');
 
 -- --------------------------------------------------------
@@ -97,17 +121,18 @@ CREATE TABLE IF NOT EXISTS `utilisateurs` (
   `login` varchar(15) NOT NULL,
   `password` varchar(255) NOT NULL,
   `profil` varchar(255) NOT NULL,
+  `date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `utilisateurs`
 --
 
-INSERT DELAYED INTO `utilisateurs` (`id`, `genre`, `nom`, `prenom`, `adresse`, `email`, `naissance`, `login`, `password`, `profil`) VALUES
-(1, 'Homme', 'Gonzalez', 'Adrien', '430 Avenue de Lattre de Tassigny', 'adrien.gonzalez@laplateforme.io', '1999-06-02', 'Firefou', '$2y$12$NwQdt4coiy2LwTyb1ygUj.IYA/BfxVmqpDbk9Sboz7qxzJ3zBb.f6', 'profil_defaut.png'),
-(21, 'Homme', 'Dupont', 'Monsieur', '430 Avenue de Lattre de Tassigny', 'adrien1362@live.fr', '2002-05-02', 'Dupont', '$2y$12$h16.bpWoWCkkgn1UU.Sd4eAO9xNN5so2ihRDyYYp7ZG8slJwtKIMK', 'profil_defaut.png'),
-(20, 'Homme', 'Gonzalez', 'Alexandre', '430 Avenue de Lattre de Tassigny', 'adrien1361@gmail.com', '2002-05-02', 'Walken99', '$2y$12$41am7/4vx6vyO9eikvYuce.04K4AReQRShmNrwrIuNcjJiFvYHh7e', 'f9625301b5151cef4bc5c259cb19565243f9644a.jpg');
+INSERT DELAYED INTO `utilisateurs` (`id`, `genre`, `nom`, `prenom`, `adresse`, `email`, `naissance`, `login`, `password`, `profil`, `date`) VALUES
+(1, 'Homme', 'Gonzalez', 'Adrien', '430 Avenue de Lattre de Tassigny', 'adrien.gonzalez@laplateforme.io', '1999-06-02', 'Firefou', '$2y$12$NwQdt4coiy2LwTyb1ygUj.IYA/BfxVmqpDbk9Sboz7qxzJ3zBb.f6', 'profil_defaut.png', '2020-06-02'),
+(21, 'Homme', 'Dupont', 'Monsieur', '430 Avenue de Lattre de Tassigny', 'adrien1362@live.fr', '2002-05-02', 'Dupont', '$2y$12$h16.bpWoWCkkgn1UU.Sd4eAO9xNN5so2ihRDyYYp7ZG8slJwtKIMK', 'profil_defaut.png', '2020-06-14'),
+(20, 'Homme', 'Gonzalez', 'Alexandre', '430 Avenue de Lattre de Tassigny', 'adrien1361@gmail.com', '2002-05-02', 'Walken99', '$2y$12$41am7/4vx6vyO9eikvYuce.04K4AReQRShmNrwrIuNcjJiFvYHh7e', 'f9625301b5151cef4bc5c259cb19565243f9644a.jpg', '2020-06-05');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
