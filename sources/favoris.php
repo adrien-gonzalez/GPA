@@ -6,6 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=0.7">
 		<!-- CSS -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="../css/formulaire/form.css">
 		<link href="../css/style.css" rel="stylesheet">
 		<!--===============================================================================================-->
 		<!-- JQUERY -->
@@ -26,6 +27,8 @@
 		</div>
         <div id="content">
 			<?php 
+				if(isset($_SESSION['login']))
+				{
 				if(isset($_POST['delete']))
 				{
 					$id_annonce = $_POST['id_annonce'];
@@ -77,6 +80,16 @@
 				}
 			?>
 			</div>
+			<?php
+			}
+			else
+			{
+				require "../fonctions/form_connexion.php";
+				?>
+				<script type="text/javascript" src="../js/log/connexion.js"></script>
+				<?php
+			}
+			?>
 		</div>
 		<div id="footer">
             <?php include('footer.php');?>

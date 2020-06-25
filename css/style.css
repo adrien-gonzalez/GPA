@@ -1010,3 +1010,8 @@ svg{
   display: flex;
   justify-content: space-between;
 }
+
+.envoie_message path{
+
+  color: white;
+}

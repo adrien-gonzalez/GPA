@@ -56,15 +56,12 @@
 		            			<p><?php echo $resultat_req_user['nom']." ".$resultat_req_user['prenom'];?></p>
 	            			</div>
 	            			<div>
-	            				<a href="envoie_messages.php?annonce=<?php echo $resultat_req_annonce['id'];?>">
-				            		<button id="envoyer_message" class="button_gpa">
-				            			<svg class="bi bi-chat-square-dots" width="1.2em" height="1.2em" viewBox="0 0 16 16" fill="white" xmlns="http://www.w3.org/2000/svg">
-										<path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h2.5a2 2 0 0 1 1.6.8L8 14.333 9.9 11.8a2 2 0 0 1 1.6-.8H14a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-										<path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-										</svg>
-										Envoyer un message
-									</button>
-								</a>
+				            	<button id="envoyer_message" class="button_gpa">
+				            		<svg class="bi bi-reply-fill" width="1.2em" height="1.2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+									<path d="M9.079 11.9l4.568-3.281a.719.719 0 0 0 0-1.238L9.079 4.1A.716.716 0 0 0 8 4.719V6c-1.5 0-6 0-7 8 2.5-4.5 7-4 7-4v1.281c0 .56.606.898 1.079.62z"/>
+									</svg>
+									Partager
+								</button>
 	            			</div>
             			</div>
             			<hr>
