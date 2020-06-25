@@ -46,6 +46,23 @@
 		            		$req_user = "SELECT *FROM utilisateurs WHERE id = '$id_user'";
 		            		$execute_req_user = mysqli_query($base, $req_user);
 		            		$resultat_req_user = mysqli_fetch_array($execute_req_user);
+
+
+		            		// ANNONCES EN FAVORIS
+							$req_favoris = "SELECT *FROM favoris";
+							$execute_req_favoris = mysqli_query($base, $req_favoris);
+							$element_favoris=mysqli_num_rows($execute_req_favoris);	
+							$resultat_req_favoris = mysqli_fetch_all($execute_req_favoris);
+							
+							// ID USER EN LIGNE
+							if(isset($_SESSION['login']))
+							{
+								$login = $_SESSION['login'];
+								$req_id_user_on = "SELECT id FROM utilisateurs WHERE login = '$login'";
+								$execute_req_id_user_on = mysqli_query($base, $req_id_user_on);
+								$resultat_req_id_userf_on= mysqli_fetch_array($execute_req_id_user_on);
+								$id_user_on = $resultat_req_id_userf_on['id'];
+							}							
 		            	?>
 		            	<article class="lieu_titre shadow">
 			            	<div class="attestation_prix">
@@ -54,7 +71,48 @@
 				            		<h6 class="<?php echo str_replace(' ','',$resultat_req_annonce['disponibilite']);?>"><?php echo $resultat_req_annonce['disponibilite'];?></h6>	
 				            		<h4><?php echo $resultat_req_annonce['prix'];?> €</h4>
 			            		</div>
-			            		<p>Publiée par <?php echo $resultat_req_user['login']; ?></p>
+			            		<div class="favoris_publication">
+				            		<p>Publiée par <?php echo $resultat_req_user['login']; ?></p>
+				            		<?php
+				            		if(isset($_SESSION['login']))
+				            		{
+				            		?>
+				            		<input id="lien_fonction" type="hidden" value="../fonctions/fonction_favoris.php">
+				            		<svg 
+				            		<?php
+					            		if($element_favoris != 0)
+					            		{
+											$fav = false;
+											for($i=0; $i < sizeof($resultat_req_favoris); $i++)
+											{
+												if($resultat_req_favoris[$i][1] == $id && $resultat_req_favoris[$i][2] == $id_user_on)
+												{	
+													$fav = true;
+												}
+											}
+											if($fav == true)
+											{
+												?> class="bi bi-star-fill add_favoris"<?php
+											}
+											else
+											{
+												?> class="bi bi-star-fill none_favoris"<?php
+											}
+										}
+										else
+										{
+										?>
+											class="bi bi-star-fill none_favoris"
+										<?php	
+										}
+					            		?>
+						            		id="<?php echo "star_".$resultat_req_annonce['id'];?>"  width="1.3em" height="1.3em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+											<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+											</svg>
+									<?php
+									}
+									?>
+								</div>
 			            		<div class="lieu">
 			            			<iframe src="https://maps.google.com/maps?q=<?php echo $resultat_req_annonce['region'];?>&t=&z=6&ie=UTF8&iwloc=&output=embed" frameborder="0"
 										style="border:0 width:100%; height: 300px;" allowfullscreen >

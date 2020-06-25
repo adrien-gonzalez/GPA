@@ -34,6 +34,7 @@ $( document ).ready(function() {
     $("body").on("click", ".bi-star-fill", function () {
 
       id_star = $(this).attr('id')
+      url = $('#lien_fonction').val()
 
       if($("#"+id_star).hasClass("add_favoris") === false)
       {
@@ -41,7 +42,6 @@ $( document ).ready(function() {
         $("#"+id_star).addClass("add_favoris")
         id_annonce = id_star.substr(5)
         data = {id_annonce: id_annonce}
-        console.log("favori")
         add_favoris()
       }
       else
@@ -51,7 +51,6 @@ $( document ).ready(function() {
         id_annonce = id_star.substr(5)
         var del = true
         data = {id_annonce: id_annonce, del: del}
-        console.log("non favori") 
         add_favoris()
       }
     });
@@ -61,12 +60,17 @@ $( document ).ready(function() {
     // element
     var id_annonce = $(this).attr('id');
     console.log(id_annonce)
-    window.location.href = "sources/annonce.php?id="+id_annonce+"";
+    window.location.href = "sources/annonce.php?id="+id_annonce+""; 
+  });
+  $("body").on("click", ".liste_annonces_poste", function () {
 
+    id= $(this).attr("id")
+    location.href = "annonce.php?id="+id+"";
+  });
+  $("body").on("click", ".send_message", function () {
 
-
-
-   
+    id_annonce = $(this).attr("id")
+    window.location.href = "envoie_messages.php?annonce="+id_annonce+""; 
   });
 });
 
@@ -79,7 +83,7 @@ function getRandomInt(max) {
 function add_favoris(){
 
    $.ajax({
-        url: 'fonctions/fonction_favoris.php',
+        url: url,
         type: 'POST',  
         data: data,  
                    
@@ -87,3 +91,5 @@ function add_favoris(){
         }
     });
 }
+
+

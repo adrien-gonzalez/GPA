@@ -979,3 +979,34 @@ svg{
   
   transform: scale(1.5);
 }
+
+.favoris_publication{
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.nombre_favoris{
+
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nombre_favoris p{
+
+  word-break: break-word;
+}
+
+.p-40{
+
+  padding: 10px;
+}
+
+.button_del{
+
+  width: 250px;
+  display: flex;
+  justify-content: space-between;
+}
