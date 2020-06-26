@@ -117,6 +117,7 @@
 			<div id="affichage_annonces">
 				<?php
 				  	$condition = [];
+				  	$page = 1;
 					if(sizeof($_GET) == "0")
 					{	
 						$condition[] = "annonce.id_utilisateur=utilisateurs.id";
@@ -179,9 +180,16 @@
 					        		{
 					        			$val = implode('" or statut="',$val);
 					        		}
-					        	}	
-					        	$var = $get.'='.'"'.$val.'"';
-					        	array_push($condition, $var);
+					        	}
+					        	if($get != "page")	
+					        	{
+					        		$var = $get.'='.'"'.$val.'"';
+					        		array_push($condition, $var);
+					        	}
+					        	else
+					        	{
+					        		$page = $cond;
+					        	}
 					        }
 					    }
 					}
@@ -191,9 +199,50 @@
 					}
 					// ANNONCES
 					$condition = implode(" and ", $condition);
-					$req_annonces="SELECT annonce.id, profil, nom, prenom, region, type_attestation, tel, email, prix, disponibilite FROM utilisateurs INNER JOIN annonce on $condition WHERE annonce.id_utilisateur=utilisateurs.id";
+					$limit = 16;
+					if(isset($_GET['page']))
+					{
+						$page = $_GET['page'];
+					}
+					else
+					{	
+						$page = 1;
+					}
+					if($page > 1)
+					{
+						$offset = ($page-1)*$limit;
+					}
+					else
+					{
+						$offset = 0;
+					}
+
+					$req_annonces="SELECT annonce.id, profil, nom, prenom, region, type_attestation, tel, email, prix, disponibilite FROM utilisateurs INNER JOIN annonce on $condition WHERE annonce.id_utilisateur=utilisateurs.id LIMIT $limit OFFSET $offset";
 					$execute_req_annonces=mysqli_query($base, $req_annonces);
 					$element=mysqli_num_rows($execute_req_annonces);
+
+					// SI AUCUN ELEMENT RENVOIE A LA PREMIERE PAGE
+					if(isset($_GET['page']))
+					{
+						if($element == 0)
+						{
+				    		$tab = explode("&", $_SERVER['QUERY_STRING']);
+						  	unset($tab[array_search($tab[sizeof($tab)-1], $tab)]);
+						  	
+						   	$url = implode("&",$tab);
+						   	// echo $url;
+						   	?>
+						   		<meta http-equiv="refresh" content="0;?<?php echo $url;?>">
+			    			<?php
+
+
+						}
+					}
+
+					// NOMBRE DANNONCE
+					$req_nbr_annonces="SELECT annonce.id, profil, nom, prenom, region, type_attestation, tel, email, prix, disponibilite FROM utilisateurs INNER JOIN annonce on $condition WHERE annonce.id_utilisateur=utilisateurs.id";
+					$execute_nbr_annonce = mysqli_query($base, $req_nbr_annonces);
+					$nbr_annonces = mysqli_num_rows($execute_nbr_annonce);
 
 					// ANNONCES EN FAVORIS
 					$req_favoris = "SELECT *FROM favoris";
@@ -261,7 +310,57 @@
 						}
 					}
 				?>
-			</div>	
+			</div>
+			<nav class="d-flex w-100 justify-content-center pagination"aria-label="Page navigation example">
+			    <?php  
+
+			    	$tab = explode("&", $_SERVER['QUERY_STRING']);
+			    	$page_suivante = $page + 1;
+			    	$page_precedente = $page - 1;
+			    	if(isset($_GET['page']))
+			    	{	
+					 	unset($tab[array_search($tab[sizeof($tab)-1], $tab)]);
+					  }
+					$url = implode("&",$tab);
+
+			    	if($nbr_annonces > $limit)
+			    	{
+			    	?>
+			    	<ul class="pagination">
+					    <li class="page-item">
+					     	<a class="page-link" href="<?php echo "?".$url."&page=".$page_precedente;?>" aria-label="Previous">
+					        	<span aria-hidden="true">&laquo;</span>
+					        	<span class="sr-only">Previous</span>
+					      	</a>
+					    </li>
+			    	<?php
+			    		for($i=0; $i < $nbr_annonces; $i++)
+			    		{	
+			    			$j = $i+1;
+			    			if($i+1 == $page)
+			    			{
+			    			?>
+			    				<li id="<?php echo $i;?>" class="page-item active"><a class="page-link" href="<?php echo "?".$url."&page=".$j;?>"><?php echo $j;?></a></li>
+			    			<?php
+			    			}
+			    			else
+			    			{
+			    			?>
+			   					<li id="<?php echo $i;?>" class="page-item"><a class="page-link" href="<?php echo "?".$url."&page=".$j;?>"><?php echo $j;?></a></li>
+			    			<?php	
+			    			}
+			    		}
+			    		?>
+			    			<a class="page-link" href="<?php echo "?".$url."&page=".$page_suivante;?>" aria-label="Next">
+			        			<span aria-hidden="true">&raquo;</span>
+			        			<span class="sr-only">Next</span>
+			      			</a>
+			    		</li>
+			  		</ul>
+			    	<?php
+			    	}
+			    ?> 
+			</nav>	
 		</div>
 		<div id="footer">
             <?php include('sources/footer.php');?>

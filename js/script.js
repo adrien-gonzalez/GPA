@@ -55,18 +55,20 @@ $( document ).ready(function() {
       }
     });
 
-    $("body").on("click", ".image_profil", function () {
+  $("body").on("click", ".image_profil", function () {
 
     // element
     var id_annonce = $(this).attr('id');
     console.log(id_annonce)
     window.location.href = "sources/annonce.php?id="+id_annonce+""; 
   });
+
   $("body").on("click", ".liste_annonces_poste", function () {
 
     id= $(this).attr("id")
     location.href = "annonce.php?id="+id+"";
   });
+
   $("body").on("click", ".send_message", function () {
 
     id_annonce = $(this).attr("id")

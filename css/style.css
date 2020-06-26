@@ -7,7 +7,7 @@ body{
 }
 
 *{
-	outline: none;
+  outline: none !important;
 }
 
 button:focus{
@@ -194,9 +194,6 @@ a{
     width: 180px;
 }
 
-*{
-  border: none;
-}
 #page {
   width:100%; /* 2 */
   min-height:100vh;
@@ -1014,4 +1011,45 @@ svg{
 .envoie_message path{
 
   color: white;
+}
+
+.pagination{
+
+  margin-top: 50px;
+}
+
+.page-item.active .page-link{
+
+  background-color: #17A681;
+  border-color: #17A681;
+}
+
+.page-link{
+
+  color: black;
+  transition: 0.2s;
+}
+
+.page-link:hover{
+
+  color: black;
+  text-decoration: underline;
+}
+
+.page-link:focus{
+
+  outline-color: red;
+}
+
+.page-link:active, .page-link:focus{
+
+box-shadow: none !important;
+
+}
+
+button:focus{
+  box-shadow: none !important;
+}
+button:active{
+  box-shadow: none !important; 
 }
