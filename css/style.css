@@ -766,6 +766,11 @@ svg{
   margin-bottom: 20px;
 }
 
+#prix_annonce{
+
+  color: #17A681;
+}
+
 @media (max-width: 900px) {
   .envoie_message .container-fluid{
     display: flex;
@@ -831,24 +836,45 @@ svg{
 .liste_annonces_poste{
 
   margin-top: 50px;
-  border: 1px solid #109C71;
   border-radius: 0.25rem;
   height: auto;
   min-height: 100px;
   display: flex;
-  flex-direction: column;
   padding: 10px;
   min-width: 450px;
   transition: 0.2s;
   background-color: white;
+  justify-content: space-between;
+}
+
+.detail_annonce{
+
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.detail_annonce p, .detail_annonce h6,.detail_annonce div{
+
+  margin-left: 30px;
+}
+
+.image_user{
+
+  display: flex;
+  align-items: center;
+}
+
+.image_user img{
+
+  border-radius: 0.25rem;
 }
 
 .liste_annonces_poste:hover{
 
   cursor: pointer;
-  background-color: rgb(16, 156, 113, 0.5);
 }
-
 .Disponible{
 
   display: flex;
@@ -994,6 +1020,11 @@ svg{
 .nombre_favoris p{
 
   word-break: break-word;
+}
+
+.nombre_favoris  h5{
+
+  text-align: center;
 }
 
 .p-40{

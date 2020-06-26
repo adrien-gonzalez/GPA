@@ -74,6 +74,18 @@ $( document ).ready(function() {
     id_annonce = $(this).attr("id")
     window.location.href = "envoie_messages.php?annonce="+id_annonce+""; 
   });
+  $("body").on("mouseover", ".liste_annonces_poste", function () {
+
+    id_annonce = $(this).attr('id')
+    console.log(id_annonce)
+    $('#type_'+id_annonce).css({"text-decoration":"underline", "color": "#17A681", "transition" : "0.2s"})
+  });
+   $("body").on("mouseout", ".liste_annonces_poste", function () {
+
+    id_annonce = $(this).attr('id')
+    console.log(id_annonce)
+    $('#type_'+id_annonce).css({"text-decoration":"none", "color": "black"})
+  });
 });
 
 

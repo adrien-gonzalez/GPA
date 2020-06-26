@@ -42,11 +42,12 @@
 				$resultat_req_id_user = mysqli_fetch_array($execute_req_id_user);
 				$id_user = $resultat_req_id_user['id'];
 
-				$req_favoris = "SELECT favoris.id as favoris_id, annonce.id, annonce.id_utilisateur, descriptif, type_attestation, region, prix, favoris.id_utilisateur, id_annonce FROM favoris INNER JOIN annonce on favoris.id_utilisateur = '$id_user' and annonce.id = favoris.id_annonce";
+				$req_favoris = "SELECT login, profil, favoris.id as favoris_id, annonce.id, annonce.id_utilisateur, type_attestation, region, prix, favoris.id_utilisateur, id_annonce FROM favoris INNER JOIN annonce INNER JOIN utilisateurs on favoris.id_utilisateur = '$id_user' and annonce.id = favoris.id_annonce and utilisateurs.id=annonce.id_utilisateur";
 				$execute_req_favoris = mysqli_query($base, $req_favoris);
 				$ifnotnull = mysqli_num_rows($execute_req_favoris);
 				?> 
 			<div class="nombre_favoris w-100">
+				<h5>Retrouvez vos annonces sauvegardées sur tous vos appareils.</h5>
 				<?php
 				if($ifnotnull != 0)
 				{
@@ -54,9 +55,15 @@
 					{
 					?>
 				        <div id="<?php echo $resultat_req_favoris['id_annonce'];?>" class="w-75 liste_annonces_poste shadow">
-				        	<h6 id="type_<?php echo $resultat_req_favoris['id'];?>"><?php echo $resultat_req_favoris['type_attestation']." (".$resultat_req_favoris['region'].") ".$resultat_req_favoris['prix']." €";?></h6>
-				       		<p id="descriptif_<?php echo $resultat_req_favoris['id'];?>"><?php echo $resultat_req_favoris['descriptif'];?>
-							</p>
+				        <div class="image_user">
+				        	<img width="100px" height="100px" src="../img/profil/<?php echo $resultat_req_favoris['profil'];?>">
+				        </div>
+				        <div class="detail_annonce">
+				        	<h6 id="type_<?php echo $resultat_req_favoris['id'];?>"><?php echo $resultat_req_favoris['type_attestation']?></h6>
+				        	<p id="prix_annonce"><?php echo $resultat_req_favoris['prix']." €";?></p>
+				        	<div ><?php echo $resultat_req_favoris['login']?></div>
+				        	<div ><?php echo $resultat_req_favoris['region']?></div>
+				        </div>
 						</div>	
 						<div class="w-75 d-flex justify-content-end p-40">
 							<div class="d-flex button_del">
