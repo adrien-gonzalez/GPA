@@ -217,7 +217,7 @@
 						$offset = 0;
 					}
 
-					$req_annonces="SELECT annonce.id, profil, nom, prenom, region, type_attestation, tel, email, prix, disponibilite FROM utilisateurs INNER JOIN annonce on $condition WHERE annonce.id_utilisateur=utilisateurs.id LIMIT $limit OFFSET $offset";
+					$req_annonces="SELECT annonce.id, profil, nom, prenom, region, type_attestation, tel, email, prix, disponibilite FROM utilisateurs INNER JOIN annonce on $condition WHERE annonce.id_utilisateur=utilisateurs.id and verif = '1' LIMIT $limit OFFSET $offset";
 					$execute_req_annonces=mysqli_query($base, $req_annonces);
 					$element=mysqli_num_rows($execute_req_annonces);
 

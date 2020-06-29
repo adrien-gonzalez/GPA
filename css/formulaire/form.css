@@ -518,6 +518,14 @@ path{
   font-size: 18px;
 }
 
+.champ_vide, .admin .champ_vide{
+
+  color: #C0392B;
+  font-size: 15px;
+  position: absolute;
+  top: 185px;
+}
+
 .connexion .champ_vide{
 
   position: absolute;
@@ -642,4 +650,9 @@ img{
 
 #dispo_annonce, #statut_annonce{
   font-weight: bold;
+}
+
+.form_admin{
+
+  background-color: white;
 }
