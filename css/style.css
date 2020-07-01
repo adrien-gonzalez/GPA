@@ -882,6 +882,17 @@ svg{
   color: green;
 }
 
+.vert{
+  color: green;
+}
+
+.orange{
+
+  color: orange;
+  width: 100px;
+  text-align: center;
+}
+
 .Sous3mois{
 
   display: flex;

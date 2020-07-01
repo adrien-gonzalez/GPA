@@ -113,3 +113,25 @@ section{
 
 	transform: scale(0.8);
 }
+
+.list_user{
+
+	width: 350px;
+	max-height: 600px;
+	overflow-y: scroll;
+}
+
+
+.détail_user{
+
+	display: flex;
+	justify-content: space-between;
+}
+#profil_user{
+
+	position: absolute;
+	top: 30%;
+	right: 30px;
+	width: 50px;
+	border-radius: 50%;
+}

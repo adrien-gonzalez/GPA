@@ -1,3 +1,5 @@
+<?php require("../fonctions/config.php");?>
+
 <html>
 	<head>
 		<title></title>
@@ -30,6 +32,9 @@
 				{
 					header('Location: ../');
 				}
+				//DELETE ANNONCE > 60 JOURS
+				$delete_annonce = "DELETE from annonce where DATEDIFF(date_annonce, CURDATE()) > 60";
+	            mysqli_query($base, $delete_annonce);
 			?>
 		</div>
 		<input type="hidden" class="nom_user" id="<?php echo $_SESSION['login'];?>">

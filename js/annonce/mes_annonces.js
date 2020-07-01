@@ -10,6 +10,9 @@ $( document ).ready(function() {
 
 function mes_annonces(){
 
+
+	
+
 	login = $(".nom_user").attr("id")
 	 $.ajax({
         url: '../fonctions/fonction_mes_annonces.php',
@@ -17,7 +20,6 @@ function mes_annonces(){
         data: {login: login},
         
             success: function(data){ 
-            	console.log(data)
             	if(data != "0")
             	{
             		$("#nombre_annonce").text("Annonces en ligne ("+JSON.parse(data).length+")")
@@ -32,7 +34,15 @@ function mes_annonces(){
 							var type = Object.keys(result)[3]
 							var region = Object.keys(result)[4]
 							var prix = Object.keys(result)[5]
+							var verif = Object.keys(result)[6]
+							var date = Object.keys(result)[7]
 						}
+					
+						var timestamp = Math.round(new Date().getTime() / 1000);
+						var timestamp2 =  parseInt(Date.parse(result[date])/1000)
+						date_diff = timestamp - timestamp2
+						jours_restant = 60-parseInt(date_diff/86400)
+
 						$(".nombre").after('<div id="'+result[id]+'" class="w-75 liste_annonces_poste shadow"></div>')
 						$("#"+result[id]).append('<div id="image_user_'+result[id]+'" class="image_user"></div>')
 						$("#image_user_"+result[id]).append('<img width="100px" height="100px" src="../img/profil/'+result[profil]+'">')
@@ -40,10 +50,24 @@ function mes_annonces(){
 						$("#detail_annonce_"+result[id]).append('<h6 id="type_'+result[id]+'">'+result[type]+'</h6>')
 						$("#type_"+result[id]).after('<p class="prix_annonce_'+result[id]+'" id="prix_annonce">'+result[prix]+' €</p>')
 						$(".prix_annonce_"+result[id]).after('<div id="login_'+result[id]+'">'+result[login]+'</div>')
-						$("#login_"+result[id]).after('<div>'+result[region]+'</div>')
+						$("#login_"+result[id]).after('<div id="region_'+result[id]+'">'+result[region]+'</div>')		
+						
+						// AFFICHAGE NOMBRE DE JOUR
+						if(result[verif] === "0")
+						{
+							verif = "En attente";
+							color = "orange";
+							$("#detail_annonce_"+result[id]).after('<div class="'+color+'">'+verif+'</div>')
+						}
+						else
+						{
+							verif = "Validé";
+							color = "vert";
+							$("#detail_annonce_"+result[id]).after('<div class="verif_temps" id="verif_temps_'+result[id]+'"></div>')
+							$("#verif_temps_"+result[id]).append('<div id="verif_'+result[id]+'" class="'+color+'">'+verif+'</div>')
 
-
-							
+							$("#verif_"+result[id]).after('<p>'+jours_restant+" jours restants"+'</p>')
+						}							
 					}
             	}
             	else
@@ -55,3 +79,5 @@ function mes_annonces(){
         }
     });
 }
+
+

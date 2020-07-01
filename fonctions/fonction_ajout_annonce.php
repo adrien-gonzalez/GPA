@@ -19,7 +19,11 @@ $result_req_id_user = mysqli_fetch_array($execute_req_id_user);
 $id_user = $result_req_id_user['id'];
 
 // INSERT ANNONCE
-$insert_annonce = "INSERT INTO annonce VALUES (NULL, '$id_user', '$type', '$region', '$descriptif', '$tel', '$prix', NULL, '$disponibilite', '$statut', '0')";
+date_default_timezone_set('Europe/Paris');
+$now = new DateTime();
+$date_annonce=$now->format('Y-m-d'); 
+
+$insert_annonce = "INSERT INTO annonce VALUES (NULL, '$id_user', '$type', '$region', '$descriptif', '$tel', '$prix', NULL, '$disponibilite', '$statut', '0','$date_annonce')";
 mysqli_query($base, $insert_annonce);
 echo "ok";
 ?>

@@ -1,3 +1,10 @@
+<?php
+// DEBAN UTILISATEURS SI BAN 30 JOURS
+$deban = "DELETE from ban where DATEDIFF(date_ban, CURDATE()) >= 30";
+mysqli_query($base, $deban);
+
+?>
+
 <div class="limiter m-t-100">
     <div class="container-login100">
         <section>

@@ -1,3 +1,5 @@
+<?php require("../fonctions/config.php");?>
+
 <html>
 	<head>
 		<title>connexion</title>

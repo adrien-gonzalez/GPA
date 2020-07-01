@@ -103,7 +103,7 @@
 								}
 								?>
 					    	</li></a>
-					    	<a href="index.php?panel=liste_utilisateurs"><li id="liste_utilisateurs" class="list-group-item">Liste des utilisateur</li></a>
+					    	<a href="index.php?panel=liste_utilisateurs"><li id="liste_utilisateurs" class="list-group-item">Liste des utilisateurs</li></a>
 					 	</ul>
 					</div>
 					<div class="pannel_result">
@@ -117,9 +117,7 @@
 
 					       	// SI PANNEL FOCUS SUR LA VALIDATION ANNONCE
 						    if($_GET['panel'] == "validation_annonce")
-					       	{
-					       		
-
+					       	{					      
 							 	$tab = explode("&", $_SERVER['QUERY_STRING']);
 						    	if(isset($_GET['page']))
 						    	{	
@@ -147,21 +145,21 @@
 
 					       		if($ifelement != 0)
 					       		{	
-					       			while($resultat_req_annocne = mysqli_fetch_array($execute_req_annonce))
+					       			while($resultat_req_annonce = mysqli_fetch_array($execute_req_annonce))
 					       			{
 					       			?>
 					       			<div class="card" style="width: 18rem;">
 										<div class="card-body">
-									    	<h5 class="card-title"><?php echo $resultat_req_annocne['type_attestation']?></h5>
-									    	<h6 class="card-subtitle mb-2 text-muted"><?php echo "Publié par ".$resultat_req_annocne['login']?></h6>
-									    	<p class="card-text"><?php echo substr($resultat_req_annocne['descriptif'],0,80)."..." ?></p>
+									    	<h5 class="card-title"><?php echo $resultat_req_annonce['type_attestation']?></h5>
+									    	<h6 class="card-subtitle mb-2 text-muted"><?php echo "Publié par ".$resultat_req_annonce['login']?></h6>
+									    	<p class="card-text"><?php echo substr($resultat_req_annonce['descriptif'],0,80)."..." ?></p>
 
 									    	<!-- Button trigger modal -->
-											<button id="<?php echo $resultat_req_annocne['annonce_id']?>" type="button" class="btn btn-primary m-b-20 button_card" data-toggle="modal" data-target="#exampleModal">
+											<button id="<?php echo $resultat_req_annonce['annonce_id']?>" type="button" class="btn btn-primary m-b-20 button_card info_annonce" data-toggle="modal" data-target="#exampleModal">
 											  Voir détail
 											</button><br>
-									    	<button id="valid_<?php echo $resultat_req_annocne['annonce_id']?>" class="card-link validate">Valider</button>
-									    	<button id="delete_<?php echo $resultat_req_annocne['annonce_id']?>" class="card-link delete">Supprimer</button>
+									    	<button id="valid_<?php echo $resultat_req_annonce['annonce_id']?>" class="card-link validate">Valider</button>
+									    	<button id="delete_<?php echo $resultat_req_annonce['annonce_id']?>" class="card-link delete">Supprimer</button>
 									  	</div>
 									</div>
 									<?php
@@ -208,7 +206,33 @@
 				        	}
 				        	else if($_GET['panel'] == "liste_utilisateurs")
 				        	{
-				        		?><div>okiiii</div><?php
+				        		$req_user = "SELECT *FROM utilisateurs ORDER By login";
+				        		$execute_req_user = mysqli_query($base, $req_user);
+				        		$number_user = mysqli_num_rows($execute_req_user);
+
+				        		if($number_user != 0)
+				        		{
+				        		?>
+				        			<div class="list-group list_user">
+				        				<h6  class="list-group-item">
+				        					<?php echo "Nombre d'utilisateurs: ".$number_user;?>
+				        				</h6>
+				        		<?php
+				        			while($resultat_req_user = mysqli_fetch_array($execute_req_user))
+				        			{
+				        			?>
+				        				<div class="list-group-item list-group-item-action détail_user">
+									    <div><?php echo $resultat_req_user['login'];?></div>
+									    	<button id="<?php echo $resultat_req_user['id']?>" type="button" class="btn btn-primary m-b-20 button_card info_user" data-toggle="modal"data-target="#list_user">
+											Voir détail
+											</button>
+									  	</div>
+				        			<?php
+				        			}
+				        		?>
+				        			</div>
+				        		<?php
+				        		}
 				        	}
 				        	?> <input id="panel" type="hidden" value="<?php echo $panel_list;?>"> <?php
 				 		}
@@ -221,7 +245,7 @@
 			?>
 		</div>
 
-		<!-- Modal -->
+		<!-- Modal Validation d'annonce-->
 		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				 <div class="modal-content">
@@ -244,12 +268,40 @@
 				      	</div>
 				    </div>		     
 				    <div class="modal-footer">
-				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
 				    </div>
 				</div>
 			</div>
 		</div>
-		<!-- Modal -->
+		<!-- Modal Validation d'annonce-->
+		
+		<!-- Modal info utilisateurs-->
+		<div class="modal fade" id="list_user" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				 <div class="modal-content">
+				    <div class="modal-header">
+				        <h5 class="modal-title" id="login"></h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				         	<span aria-hidden="true">&times;</span>
+				        </button>
+				    </div>
+				    <div class="modal-body">
+				    	<p class="h6 text-muted" id="nom_prenom"></p>
+				    	<p class="h6 text-muted" id="age"></p>
+				    	<p class="h6 text-muted" id="inscription_date"><p>
+				    	<img id="profil_user" src="">
+				    </div>		     
+				    <div class="modal-footer">
+				    	<input type="hidden" id="id_user_hidden">
+				        <button id="ban" type="button" class="btn btn-secondary">Ban 30 jours</button>
+				        <button id="ban_perm" type="button" class="btn btn-secondary">Ban perm</button>
+				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+				    </div>
+				</div>
+			</div>
+		</div>
+		<!-- Modal info utilisateurs-->
+		
 		<div id="footer">
             <?php include('../sources/footer.php');?>
         </div>

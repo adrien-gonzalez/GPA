@@ -518,18 +518,25 @@ path{
   font-size: 18px;
 }
 
-.champ_vide, .admin .champ_vide{
+.champ_vide{
 
   color: #C0392B;
   font-size: 15px;
   position: absolute;
   top: 185px;
 }
+.admin .champ_vide{
+  
+  position: absolute;
+  margin-top: 120px;
+  color: #C0392B;
+  font-size: 18px;  
+}
 
 .connexion .champ_vide{
 
   position: absolute;
-  margin-top: 40px;
+  margin-top: 12px;
   color: #C0392B;
   font-size: 18px;
 

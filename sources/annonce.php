@@ -34,7 +34,7 @@
 	            		<!-- AFFICHAGE DES INFORMATIONS DE L'ANNONCE -->
 		            	<?php 
 		            		$id = $_GET['id'];
-		            		$req_annonce = "SELECT *FROM annonce WHERE id='$id'";
+		            		$req_annonce = "SELECT *FROM annonce WHERE id='$id' and verif = 1";
 		            		$execute_req_annonce = mysqli_query($base, $req_annonce);
 		            		$resultat_req_annonce = mysqli_fetch_array($execute_req_annonce);     
 		            		$ifnotnull = mysqli_num_rows($execute_req_annonce);
@@ -46,7 +46,6 @@
 		            		$req_user = "SELECT *FROM utilisateurs WHERE id = '$id_user'";
 		            		$execute_req_user = mysqli_query($base, $req_user);
 		            		$resultat_req_user = mysqli_fetch_array($execute_req_user);
-
 
 		            		// ANNONCES EN FAVORIS
 							$req_favoris = "SELECT *FROM favoris";

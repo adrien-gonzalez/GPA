@@ -25,7 +25,12 @@
 <main class="ie-stickyFooter">
     <div id="page">
 		<div id="header_content">	
-			<?php include('sources/header.php');?>
+			<?php include('sources/header.php');
+
+			//DELETE ANNONCE > 60 JOURS
+			$delete_annonce = "DELETE from annonce where DATEDIFF(date_annonce, CURDATE()) > 60";
+            mysqli_query($base, $delete_annonce);
+			?>
 		</div>
         <div id="content">
 			<div class="header_accueil">

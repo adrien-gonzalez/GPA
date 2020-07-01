@@ -7,12 +7,15 @@ $( document ).ready(function() {
     input.maxLength = nbr_lettre_max
 	$('#descriptif').keyup(function() {
  		$('#descriptif').css({"border" : "1px solid #e6e6e6"})
-	    var nombreCaractere = jQuery.trim($(this).val()).length;
+
+ 		text = $('#descriptif').val().replace(/ /g,"")
+	    nombreCaractere = text.length;
 	    // var nombreMots = jQuery.trim($(this).val()).split(' ').length;
 	    // if($(this).val() === '') {
 	    //  	nombreMots = 0;
 	    // }
 		$(".nombre_caractere").text(nombreCaractere+"/"+nbr_lettre_max)
+
 	});
 
 	$("body").on("click", "#delete_fichier", function () {
