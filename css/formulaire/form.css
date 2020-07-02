@@ -354,6 +354,10 @@ input.input100 {
     padding-right: 15px;
     padding-top: 150px;
   }
+  .flex-row{
+
+    width: 100% !important;
+  }
 }
 
 @media (max-width: 768px) {

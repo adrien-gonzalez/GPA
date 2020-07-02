@@ -162,7 +162,7 @@ $(document).ready(function (){
         $(".login_change").after('<div class="form1 password_confirm login wrap-input100 rs1-wrap-input100 validate-input taille1 m-b-20"></div>')
         $(".password_confirm").append('<input id="password_form1" class="form1 input100" type="password" name="password" placeholder="Mot de passe" value="">')
         $("#password_form1").after('<span class="form1 focus-input100"></span>')
-        $(".password_confirm").after('<div class="form1 validate_modif login wrap-input100 rs1-wrap-input100 validate-input taille1 m-b-20"></div>')
+        $(".password_confirm").after('<div class="form1 validate_modif login wrap-input100 rs1-wrap-input100 validate-input taille1"></div>')
         $(".validate_modif").append('<input type="button" id="modif_login" class="form1  login100-form-btn" value="Modifier">')
     });
     $("body").on("click", "#change_pass", function () { 
@@ -176,7 +176,7 @@ $(document).ready(function (){
         $(".login_change").after('<div class="form2 password_confirm login wrap-input100 rs1-wrap-input100 validate-input taille1 m-b-20"></div>')
         $(".password_confirm").append('<input id="password1_form2" class="form2 input100" type="password" name="password1" placeholder="Ancien mot de passe" value="">')
         $("#password1_form2").after('<span class="form2 focus-input100"></span>')
-        $(".password_confirm").after('<div class="form2 validate_modif login wrap-input100 rs1-wrap-input100 validate-input taille1 m-b-20"></div>')
+        $(".password_confirm").after('<div class="form2 validate_modif login wrap-input100 rs1-wrap-input100 validate-input taille1"></div>')
         $(".validate_modif").append('<input type="button" id="modif_pass" class="form2 login100-form-btn" value="Modifier">')
     });
     $("body").on("click", "#modif_login", function () { 

@@ -249,7 +249,7 @@
 								                    informations
 								                </span>
 								                <div class="flex-row align-items-center m-b-20">
-									                <div class="login wrap-input100 rs1-wrap-input100 validate-input taille2">
+									                <div class="login wrap-input100 rs1-wrap-input100 validate-input taille2 admin_login_change">
 									                    <input id="login" disabled class="input100" type="text" name="login" placeholder="Login" value="<?php echo $login_admin?>">
 									                    <span class="focus-input100"></span>
 									                </div>	
