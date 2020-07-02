@@ -151,6 +151,112 @@ $(document).ready(function (){
             }); 
         }
     });
+    $("body").on("click", "#change_login", function () { 
+
+        $(".form1").remove()
+        $(".form2").remove()
+        $(".erreur").remove()
+        $(".input-pass").after('<div class="form1 login_change login wrap-input100 rs1-wrap-input100 validate-input taille1 m-b-20 m-t-40"></div>')
+        $(".login_change").append('<input id="login_form1" class="form1 input100" type="text" name="login" placeholder="Nouveau login" value="">')
+        $("#login_form1").after('<span class="form1 focus-input100"></span>')
+        $(".login_change").after('<div class="form1 password_confirm login wrap-input100 rs1-wrap-input100 validate-input taille1 m-b-20"></div>')
+        $(".password_confirm").append('<input id="password_form1" class="form1 input100" type="password" name="password" placeholder="Mot de passe" value="">')
+        $("#password_form1").after('<span class="form1 focus-input100"></span>')
+        $(".password_confirm").after('<div class="form1 validate_modif login wrap-input100 rs1-wrap-input100 validate-input taille1 m-b-20"></div>')
+        $(".validate_modif").append('<input type="button" id="modif_login" class="form1  login100-form-btn" value="Modifier">')
+    });
+    $("body").on("click", "#change_pass", function () { 
+
+        $(".form1").remove()
+        $(".form2").remove()
+        $(".erreur").remove()
+        $(".input-pass").after('<div class="form2 login_change login wrap-input100 rs1-wrap-input100 validate-input taille1 m-b-20 m-t-40"></div>')
+        $(".login_change").append('<input id="password_form2" class="form2 input100" type="password" name="password" placeholder="Nouveau mot de passe" value="">')
+        $("#password_form2").after('<span class="form2 focus-input100"></span>')
+        $(".login_change").after('<div class="form2 password_confirm login wrap-input100 rs1-wrap-input100 validate-input taille1 m-b-20"></div>')
+        $(".password_confirm").append('<input id="password1_form2" class="form2 input100" type="password" name="password1" placeholder="Ancien mot de passe" value="">')
+        $("#password1_form2").after('<span class="form2 focus-input100"></span>')
+        $(".password_confirm").after('<div class="form2 validate_modif login wrap-input100 rs1-wrap-input100 validate-input taille1 m-b-20"></div>')
+        $(".validate_modif").append('<input type="button" id="modif_pass" class="form2 login100-form-btn" value="Modifier">')
+    });
+    $("body").on("click", "#modif_login", function () { 
+
+        login = $("#login").val()
+        new_login = $("#login_form1").val()
+        password = $("#password_form1").val()
+
+        if(password === "" || new_login === "")
+        {
+            if(password === "")
+            {
+                $('#password_form1').css({"border":"1px solid #C0392B"})
+            }
+            if(new_login === "")
+            {
+                $('#login_form1').css({"border":"1px solid #C0392B"})
+            }
+        }
+        else
+        {
+            $.ajax({
+            url: 'fonctions/fonction_administration.php',
+            type: 'POST',
+            data: {login: login, new_login: new_login, password: password},        
+                           
+                success: function(data){ 
+                    console.log(data)
+                    if(data === "wrong_pass")
+                    {
+                        $(".login100-form-title").after('<div class="erreur">*Mot de passe inccorrect</div>')
+                        $('#password_form1').css({"border":"1px solid #C0392B"})
+                    }
+                    else
+                    {
+                        document.location.reload(true);  
+                    }
+                }
+            }); 
+        }
+    });
+    $("body").on("click", "#modif_pass", function () { 
+
+        login = $("#login").val()
+        new_pass = $("#password_form2").val()
+        password = $("#password1_form2").val()
+
+        if(password === "" || new_pass === "")
+        {
+            if(password === "")
+            {
+                $('#password1_form2').css({"border":"1px solid #C0392B"})
+            }
+            if(new_pass === "")
+            {
+                $('#password_form2').css({"border":"1px solid #C0392B"})
+            }
+        }
+        else
+        {
+            $.ajax({
+            url: 'fonctions/fonction_administration.php',
+            type: 'POST',
+            data: {login: login, new_pass: new_pass, password: password},        
+                           
+                success: function(data){ 
+                    console.log(data)
+                    if(data === "wrong_pass")
+                    {
+                        $(".login100-form-title").after('<div class="erreur">*Mot de passe inccorrect</div>')
+                        $('#password1_form2').css({"border":"1px solid #C0392B"})
+                    }
+                    else
+                    {
+                        document.location.reload(true);  
+                    }
+                }
+            }); 
+        }
+    });
 });
 
 function getAge(date) { 

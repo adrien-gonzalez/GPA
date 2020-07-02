@@ -102,8 +102,10 @@
 								<?php
 								}
 								?>
-					    	</li></a>
-					    	<a href="index.php?panel=liste_utilisateurs"><li id="liste_utilisateurs" class="list-group-item">Liste des utilisateurs</li></a>
+					    		</li>
+					    	</a>
+					    		<a href="index.php?panel=liste_utilisateurs"><li id="liste_utilisateurs" class="list-group-item">Liste des utilisateurs</li></a>
+					    		<a href="index.php?panel=parametres"><li id="parametres" class="list-group-item">Paramètres</li></a>
 					 	</ul>
 					</div>
 					<div class="pannel_result">
@@ -233,6 +235,38 @@
 				        			</div>
 				        		<?php
 				        		}
+				        	}
+				        	else if($_GET['panel'] == "parametres")
+				        	{
+				        		$login_admin = $_SESSION['admin'];
+				        		$password_admin = $_SESSION['password'];
+				        	?>
+				        		<div class="limiter admin_form">
+			    					<div class="container-login100">
+								        <section class="form_admin shadow">
+								            <form class="login100-form validate-form">
+								                <span class="login100-form-title p-b-70">
+								                    informations
+								                </span>
+								                <div class="flex-row align-items-center m-b-20">
+									                <div class="login wrap-input100 rs1-wrap-input100 validate-input taille2">
+									                    <input id="login" disabled class="input100" type="text" name="login" placeholder="Login" value="<?php echo $login_admin?>">
+									                    <span class="focus-input100"></span>
+									                </div>	
+									                <input type="button" id="change_login" class="modif_button w-25 responsive_button login100-form-btn" value="Changer">
+								            	</div>
+								            	<div class="input-pass flex-row align-items-center">
+									                <div class="password1 wrap-input100 rs1-wrap-input100 validate-input taille2" >
+									                    <input id="password" disabled class="input100" type="password" name="password" placeholder="Mot de passe" value="<?php echo $password_admin ?>">
+									                    <span class="focus-input100"></span>
+									                </div>
+									                <input type="button" id="change_pass" class="modif_button w-25 responsive_button login100-form-btn" value="Changer">
+									            </div>
+								           </form>
+								        </section>
+			    					</div>
+								</div>
+				        	<?php
 				        	}
 				        	?> <input id="panel" type="hidden" value="<?php echo $panel_list;?>"> <?php
 				 		}

@@ -13,7 +13,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 		<!-- MON SCRIPT -->
         <script type="text/javascript" src="../js/script.js"></script>
-        <script type="text/javascript" src="../js/annonce/mes_annonces.js"></script>
+        <!-- <script type="text/javascript" src="../js/annonce/mes_annonces.js"></script> -->
 		<!-- BOOTSTRAP -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>	
@@ -41,9 +41,9 @@
 		            if($ifnotnull == 0)
 		           			header('Location: ../');
 
-		            $req_annonce = "SELECT *FROM annonce WHERE id_utilisateur='$id_user'";
+		            $req_annonce = "SELECT utilisateurs.id as user_id, annonce.id as annonce_id, login, profil, type_attestation, prix, region FROM annonce INNER JOIN utilisateurs on utilisateurs.id = id_utilisateur WHERE id_utilisateur='$id_user' and verif = 1";
 		            $execute_req_annonce = mysqli_query($base, $req_annonce);
-		           	$resultat_req_annonce = mysqli_fetch_array($execute_req_annonce); 
+		           	// $resultat_req_annonce = mysqli_fetch_array($execute_req_annonce); 
 		           	$nombre_annonce = mysqli_num_rows($execute_req_annonce);     
             	?>
 		        <input type="hidden" class="nom_user" id="<?php echo $resultat_req_user['login'];?>">
@@ -72,8 +72,27 @@
             		</div>
             	</div>
             	<div class="nombre_annonce w-100">
-            		<div class="nombre w-75">
-        			</div>
+            		<?php 
+            			if($nombre_annonce > 0)
+            			{
+		           			while($resultat_req_annonce = mysqli_fetch_array($execute_req_annonce))
+		           			{
+            				?>
+            					<div id="<?php echo $resultat_req_annonce['annonce_id']?>" class="w-75 liste_annonces_poste shadow">
+            						<div class="image_user">
+            							<img width="100px" height="100px" src="../img/profil/<?php echo $resultat_req_annonce['profil']?>">
+            						</div>
+            						<div class="detail_annonce">
+            							<h6 id="type_<?php echo $resultat_req_annonce['annonce_id']?>" style="text-decoration: none; color: black; transition: all 0.2s ease 0s;"><?php echo $resultat_req_annonce['type_attestation']?></h6>
+            							<p class="prix_annonce_36" id="prix_annonce"><?php echo $resultat_req_annonce['prix']." €"?></p>
+            							<div><?php echo $resultat_req_annonce['login']?></div>
+            							<div><?php echo $resultat_req_annonce['region']?></div>
+            						</div>
+            					</div>
+            				<?php
+		           			}
+            			}
+            		?>
             	</div>
             </div>
             <div id="footer">

@@ -525,6 +525,14 @@ path{
   position: absolute;
   top: 185px;
 }
+
+.erreur{
+
+  color: #C0392B;
+  margin-top: 40px;
+  position: absolute;
+}
+
 .admin .champ_vide{
   
   position: absolute;

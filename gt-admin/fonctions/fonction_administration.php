@@ -90,5 +90,46 @@ else if(isset($_POST['id_user_ban_perm'])) {
 	$ban_perm = "DELETE FROM utilisateurs WHERE id='$id_user_ban_perm'";
 	mysqli_query($base, $deban);
 }
+else if(isset($_POST['new_login']))
+{	
+	$login = $_POST['login'];
+	$new_login = $_POST['new_login'];
+	$password = $_POST['password'];
 
+	$req_admin = "SELECT password FROM admin WHERE login ='$login'";
+	$execute_req_admin = mysqli_query($base, $req_admin);
+	$resultat_req_admin = mysqli_fetch_array($execute_req_admin);
+
+	if(password_verify($password, $resultat_req_admin['password']))
+	{
+		$update_admin = "UPDATE admin set login = '$new_login' WHERE login ='$login'";
+		mysqli_query($base, $update_admin);
+		$_SESSION['admin'] = $new_login;
+	}
+	else
+	{
+		echo "wrong_pass";
+	}
+}
+else if(isset($_POST['new_pass']))
+{
+	$login = $_POST['login'];
+	$new_pass = $_POST['new_pass'];
+	$password = $_POST['password'];
+
+	$req_admin = "SELECT password FROM admin WHERE login ='$login'";
+	$execute_req_admin = mysqli_query($base, $req_admin);
+	$resultat_req_admin = mysqli_fetch_array($execute_req_admin);
+
+	if(password_verify($password, $resultat_req_admin['password']))
+	{
+		$new_pass = password_hash($new_pass, PASSWORD_BCRYPT, ["cost" => 12]);
+		$update_admin = "UPDATE admin set password = '$new_pass' WHERE login ='$login'";
+		mysqli_query($base, $update_admin);
+	}
+	else
+	{
+		echo "wrong_pass";
+	}
+}
 ?>
