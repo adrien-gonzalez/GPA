@@ -250,6 +250,13 @@ footer a:hover{
   width: 100%;
   margin-top: 80px;
   display: flex;
+  flex-direction: column;
+}
+
+.resultat_recherche{
+
+  width: 100%;
+  display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
 }
@@ -1048,6 +1055,26 @@ svg{
   width: 250px;
   display: flex;
   justify-content: space-between;
+}
+
+.button_supprm{
+
+  width: 250px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+#delete_ok{
+
+background-color: #17A681;
+border: none;
+transition: 0.2s;
+
+}
+
+#delete_ok:hover{
+
+  background-color: #0D836E;
 }
 
 .envoie_message path{

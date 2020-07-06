@@ -6,26 +6,10 @@
     <!-- Call to action -->
     <ul class="list-unstyled list-inline text-center py-2">
       <li class="list-inline-item">
-        <h5 class="mb-1">Inscrivez-vous gratuitement</h5>
-      </li>
-      <li class="list-inline-item">
-        <?php if(ma_courante == "index.php")
-        {
-        ?>
-          <a href="sources/inscription.php">S'inscrire !</a>
-        <?php 
-        }
-        else
-        {
-        ?>
-          <a href="inscription.php">S'inscrire !</a>
-        <?php
-        }
-        ?>
+        <h5 class="mb-1">Administration</h5>
       </li>
     </ul>
     <!-- Call to action -->
-
   </div>
   <!-- Footer Elements -->
 

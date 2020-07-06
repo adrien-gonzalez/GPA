@@ -80,8 +80,7 @@
 					{
 						$offset = 0;
 					}
-
-					$req_annonce = "SELECT annonce.id as annonce_id, type_attestation, region, descriptif, login FROM annonce INNER JOIN utilisateurs on utilisateurs.id = id_utilisateur WHERE verif = '0' LIMIT $limit OFFSET $offset";
+					$req_annonce = "SELECT annonce.id as annonce_id, type_attestation, region, descriptif, login, date_annonce FROM annonce INNER JOIN utilisateurs on utilisateurs.id = id_utilisateur WHERE verif = '0' LIMIT $limit OFFSET $offset";
 					$execute_req_annonce = mysqli_query($base, $req_annonce);
 					$ifelement = mysqli_num_rows($execute_req_annonce);
 					
@@ -337,7 +336,7 @@
 		<!-- Modal info utilisateurs-->
 		
 		<div id="footer">
-            <?php include('../sources/footer.php');?>
+            <?php include('sources/footer_admin.php');?>
         </div>
 	</div>
 </main>

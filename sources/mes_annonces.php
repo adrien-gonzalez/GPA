@@ -38,7 +38,7 @@
 			?>
 		</div>
 		<input type="hidden" class="nom_user" id="<?php echo $_SESSION['login'];?>">
-        <div id="content">	
+        <div id="content">
         	<div class="nombre_annonce w-100">
         		<div class="nombre w-75">
 	        		<div id="nombre_annonce" class="shadow">
@@ -52,5 +52,29 @@
         </div>
 	</div>
 </main>
+
+
+
+<div class="modal fade"  id="delete" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Supprimer une annonce</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Voulez-vous supprimer votre annonce ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="delete_ok" class="btn btn-primary">Oui</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 </body>
 </html>

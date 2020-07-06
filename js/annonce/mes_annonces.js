@@ -6,15 +6,29 @@ $( document ).ready(function() {
 		id= $(this).attr("id")
 		location.href = "annonce.php?id="+id+"";
 	});
+	$("body").on("click", ".button_design", function () {
+
+		id=$(this).attr("id")
+
+		$("body").on("click", "#delete_ok", function () {
+
+			 $.ajax({
+		        url: '../fonctions/fonction_mes_annonces.php',
+		        type: 'POST',  
+		        data: {id_annonce: id_annonce},  
+		                   
+		        success: function(data){ 
+                     document.location.reload(true);
+		        }
+		    });
+		});
+	});
 });
 
 function mes_annonces(){
 
-
-	
-
 	login = $(".nom_user").attr("id")
-	 $.ajax({
+	$.ajax({
         url: '../fonctions/fonction_mes_annonces.php',
         type: 'POST',
         data: {login: login},
@@ -50,7 +64,12 @@ function mes_annonces(){
 						$("#detail_annonce_"+result[id]).append('<h6 id="type_'+result[id]+'">'+result[type]+'</h6>')
 						$("#type_"+result[id]).after('<p class="prix_annonce_'+result[id]+'" id="prix_annonce">'+result[prix]+' €</p>')
 						$(".prix_annonce_"+result[id]).after('<div id="login_'+result[id]+'">'+result[login]+'</div>')
-						$("#login_"+result[id]).after('<div id="region_'+result[id]+'">'+result[region]+'</div>')		
+						$("#login_"+result[id]).after('<div id="region_'+result[id]+'">'+result[region]+'</div>')	
+
+						$("#"+result[id]).after('<div id="div_message_'+result[id]+'" class="w-75 d-flex justify-content-end p-40"></div>')
+						$("#div_message_"+result[id]).append('<div id="button_del_'+result[id]+'" class="d-flex button_supprm">')	
+						$("#button_del_"+result[id]).append('<form id="form_'+result[id]+'" action="" method="post"></form>')
+						$("#form_"+result[id]).append('<input type="button" id="'+result[id]+'" name="delete" class="button_design w-10" value="Supprimer" data-toggle="modal" data-target="#delete">')
 						
 						// AFFICHAGE NOMBRE DE JOUR
 						if(result[verif] === "0")
@@ -79,5 +98,3 @@ function mes_annonces(){
         }
     });
 }
-
-

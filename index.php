@@ -222,7 +222,7 @@
 						$offset = 0;
 					}
 
-					$req_annonces="SELECT annonce.id, profil, nom, prenom, region, type_attestation, tel, email, prix, disponibilite FROM utilisateurs INNER JOIN annonce on $condition WHERE annonce.id_utilisateur=utilisateurs.id and verif = '1' LIMIT $limit OFFSET $offset";
+					$req_annonces="SELECT annonce.id, profil, nom, prenom, region, type_attestation, tel, email, prix, disponibilite FROM utilisateurs INNER JOIN annonce on $condition WHERE annonce.id_utilisateur=utilisateurs.id and verif = '1' ORDER BY date_annonce DESC LIMIT $limit OFFSET $offset";
 					$execute_req_annonces=mysqli_query($base, $req_annonces);
 					$element=mysqli_num_rows($execute_req_annonces);
 
@@ -239,11 +239,8 @@
 						   	?>
 						   		<meta http-equiv="refresh" content="0;?<?php echo $url;?>">
 			    			<?php
-
-
 						}
 					}
-
 					// NOMBRE DANNONCE
 					$req_nbr_annonces="SELECT annonce.id, profil, nom, prenom, region, type_attestation, tel, email, prix, disponibilite FROM utilisateurs INNER JOIN annonce on $condition WHERE annonce.id_utilisateur=utilisateurs.id";
 					$execute_nbr_annonce = mysqli_query($base, $req_nbr_annonces);
@@ -264,16 +261,18 @@
 					}
 					if($element != 0)
 					{
+					?>
+						<div class="resultat_recherche">
+						<?php
 						while($data = mysqli_fetch_array($execute_req_annonces))
 						{
 						?>
-
 							<div class="liste_profil Marchandises - 3.5T" id="<?php echo $data['id'];?>">
 								<img class="image_profil rounded-circle" id="<?php echo $data['id'];?>" src="<?php echo "img/profil/".$data['profil'];?>" width="125">
 								<div id="name_24"><?php echo $data['nom'].' '.$data['prenom'];?></div>
 								<div id="region_24"><?php echo $data['region']; ?></div>
 								<div class="attestation" id="attestation_24"><?php echo $data['type_attestation'];?></div>
-								<div id="tarif_24"><?php echo $data['prix'].' €';?></div>
+								<div style="font-weight: bold;" id="tarif_24"><?php echo $data['prix'].' €';?></div>
 								<div class="<?php echo str_replace(' ','',$data['disponibilite']);?>" id="dispo_24"><?php echo $data['disponibilite'];?></div>
 								<?php if(isset($_SESSION['login'])){?>
 									<input id="lien_fonction" type="hidden" value="fonctions/fonction_favoris.php">
@@ -313,6 +312,7 @@
 							</div>
 						<?php
 						}
+						?></div><?php
 					}
 				?>
 			</div>
