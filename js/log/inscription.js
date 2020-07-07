@@ -93,7 +93,7 @@ $(function(){
 
 function inscription(){
 
-$(".wrap-input100").css({"border": "solid 1px #E6E6E6"})
+		$(".wrap-input100").css({"border": "solid 1px #E6E6E6"})
 		$(".genre").css({"color" : "black"})
 		if($("#nom").val() != "" && $("#prenom").val() != "" && $("#adresse").val() != "" && 
 		   $("#email").val() != "" && $("#naissance").val() != "" && $("#login").val() != "" && 

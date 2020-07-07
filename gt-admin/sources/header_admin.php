@@ -20,7 +20,7 @@ define('ma_courante', preg_replace($reg, '$2', $url)); ?>
 			?>
 	        <ul class="navbar-nav  ml-auto ">
 	         	<li class="nav-item text-uppercase">
-	            	<a class="nav-link js-scroll-trigger"  href="">Retour au site</a>
+	            	<a class="nav-link js-scroll-trigger"  href="../">Retour au site</a>
 	          	</li>
 			<div class="dropdown">
 				<a class="nav-link js-scroll-trigger text-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

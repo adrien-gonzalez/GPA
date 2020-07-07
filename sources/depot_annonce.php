@@ -1,3 +1,5 @@
+<?php require "../fonctions/config.php"; ?>
+
 <html>
 	<head>
 		<title>Déposer une annonce</title>
@@ -26,14 +28,13 @@
     <main class="ie-stickyFooter">
         <div id="page">
             <div id="header_content">    
-                <?php include('header.php');
-                    if(!isset($_SESSION['login']))
-                    {
-                        header('location: connexion.php');
-                    }
-                ?>
+                <?php include('header.php');?>
             </div>
             <div id="content">
+                <?php
+                if(isset($_SESSION['login']))
+                {
+                ?>
                 <div class="limiter m-t-100">
                     <div class="container-login100">
                         <section>
@@ -139,6 +140,16 @@
                         </section>
                     </div>
                 </div>
+                <?php
+                }
+                else
+                {
+                    require "../fonctions/form_connexion.php";
+                    ?>
+                    <script type="text/javascript" src="../js/log/connexion.js"></script>
+                    <?php 
+                }
+                ?>
             </div>
             <div id="footer">
                 <?php include('footer.php');?>
