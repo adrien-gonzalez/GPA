@@ -492,6 +492,7 @@ input.input100 {
   width: 215px;
 }
 
+
 path{
 
   color : #C0392B;
@@ -674,4 +675,8 @@ img{
 .form_admin{
 
   background-color: white;
+}
+
+.erreur_form::-webkit-input-placeholder {
+    color: #C0392B;
 }

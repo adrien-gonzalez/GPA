@@ -6,7 +6,7 @@ $(document).ready(function (){
 		$('.list-group-item').removeClass("active")
 		$('#'+id_annonce).addClass("active")
 	}
-
+    // AFFICHE DETAIL D'UNE ANNONCE SELECTIONEE
 	$("body").on("click", ".info_annonce", function () { 
 
 		id_annonce=$(this).attr("id")
@@ -36,6 +36,7 @@ $(document).ready(function (){
             }
         });
 	});
+    // VALIDE UNE ANNONCE 
 	$("body").on("click", ".validate", function () {
 
 		id_annonce_validate = $(this).attr("id").substr(6)
@@ -49,6 +50,7 @@ $(document).ready(function (){
             }
         });
 	});
+    // SUPPRIME UNE ANNONCE SI NON VALIDEE
 	$("body").on("click", ".delete", function () {
 
 		id_annonce_delete = $(this).attr("id").substr(7)
@@ -63,6 +65,7 @@ $(document).ready(function (){
             }
         });
 	});
+    // AFFICHE INFO UTILISATEUR
     $("body").on("click", ".info_user", function () { 
 
         id_user = $(this).attr("id")
@@ -112,6 +115,7 @@ $(document).ready(function (){
             }
         });
     });
+    // BAN UN UTILISATEUR (30 JOURS)
     $("body").on("click", "#ban", function () { 
 
         valeur = $("#ban").text()
@@ -135,6 +139,7 @@ $(document).ready(function (){
             }
         }); 
     });
+    // BAN UN UTILISATEUR (PERMANENT = DELETE)
     $("body").on("click", "#ban_perm", function () { 
 
         id_user_ban_perm = $("#id_user_hidden").attr("value")
@@ -151,6 +156,7 @@ $(document).ready(function (){
             }); 
         }
     });
+    // AFFICHE FORM CHANGE LOGIN ADMIN
     $("body").on("click", "#change_login", function () { 
 
         $(".form1").remove()
@@ -165,6 +171,7 @@ $(document).ready(function (){
         $(".password_confirm").after('<div class="form1 validate_modif login wrap-input100 rs1-wrap-input100 validate-input taille1"></div>')
         $(".validate_modif").append('<input type="button" id="modif_login" class="form1  login100-form-btn" value="Modifier">')
     });
+    // AFFICHE FORM CHANGE PASSWORD ADMIN
     $("body").on("click", "#change_pass", function () { 
 
         $(".form1").remove()
@@ -179,6 +186,7 @@ $(document).ready(function (){
         $(".password_confirm").after('<div class="form2 validate_modif login wrap-input100 rs1-wrap-input100 validate-input taille1"></div>')
         $(".validate_modif").append('<input type="button" id="modif_pass" class="form2 login100-form-btn" value="Modifier">')
     });
+    // CHANGE LOGIN ADMIN
     $("body").on("click", "#modif_login", function () { 
 
         login = $("#login").val()
@@ -218,6 +226,7 @@ $(document).ready(function (){
             }); 
         }
     });
+    // CHANGE PASSWORD ADMIN
     $("body").on("click", "#modif_pass", function () { 
 
         login = $("#login").val()
@@ -256,6 +265,157 @@ $(document).ready(function (){
                 }
             }); 
         }
+    });
+    // AJOUTER UN PRODUIT
+    $("body").on("click", "#valid_ajout", function () {
+
+    $("#nom_produit").css({"border": "1px solid #E6E6E6"})
+    $("#description_produit").css({"border": "1px solid #E6E6E6"})
+    $("#prix").css({"border": "1px solid #E6E6E6"})
+
+    if($("#nom_produit").val() != "" && $("#description_produit").val() != "" && $("#prix").val() != "")
+    {
+        nom_produit = $("#nom_produit").val()
+        description_produit = $("#description_produit").val()
+        prix = $("#prix").val()
+        categorie = $("#categorie").val()
+
+        $.ajax({
+            url: 'fonctions/fonction_administration.php',
+            type: 'POST',
+            data: {nom_produit: nom_produit, description_produit: description_produit, prix: prix, categorie: categorie},        
+                           
+                success: function(data){ 
+                    document.location.href="?panel=mes_produits";    
+                }
+            });   
+    }
+    else
+    {
+        if($("#nom_produit").val() == "")
+        {
+            $('#nom_produit').css({"border":"1px solid #C0392B"})
+            $('#nom_produit').attr("placeholder","*Veuillez entrer un nom")
+            $('#nom_produit').addClass("erreur_form")
+        }
+        if($("#description_produit").val() == "")
+        {
+            $('#description_produit').css({"border":"1px solid #C0392B"})
+            $('#description_produit').attr("placeholder","*Veuillez entrer une description")
+            $('#description_produit').addClass("erreur_form")
+        }
+        if($("#prix").val() == "")
+        {
+            $('#prix').css({"border":"1px solid #C0392B"})
+            $('#prix').attr("placeholder","*Veuillez entrer un prix")
+            $('#prix').addClass("erreur_form")
+        }
+    }
+    });
+
+    // AJOUTER PRODUIT
+    $("body").on("click", ".add_product", function () {
+
+         document.location.href="?panel=ajout_produit";  
+    });
+
+    // AFFICHE UN PRODUIT SELECTIONNE
+    $("body").on("click", ".bi-pencil", function () {
+
+        $("#produit_update").removeClass("erreur_update")
+        $("#prix_update").removeClass("erreur_update")
+        $("#description_update").removeClass("erreur_update")
+
+        id_produit = $(this).attr("id")
+
+        $.ajax({
+            url: 'fonctions/fonction_administration.php',
+            type: 'POST',
+            data: {id_produit: id_produit},        
+                           
+                success: function(data){ 
+                    for(i=0; i < JSON.parse(data).length; i++)
+                    {       
+                        var result = JSON.parse(data)[i];
+                        for(j=0; j < Object.keys(result).length; j++)
+                        {
+                            var id_produit = Object.keys(result)[1]
+                            var nom = Object.keys(result)[2]
+                            var description = Object.keys(result)[3]
+                            var prix = Object.keys(result)[4]
+                            var categorie = Object.keys(result)[5]
+
+                        }
+                    }
+                    $("#produit_update").val(result[nom])
+                    $("#prix_update").val(result[prix])
+                    $("#description_update").val(result[description])  
+                    $("#id_produit").val(result[id_produit])
+                }
+        });  
+    });
+    // UPDATE PRODUIT
+    $("body").on("click", "#update", function () {
+
+        if($("#produit_update").val() != "" && $("#prix_update").val() != "" && $("#description_update").val() != "")
+        {   
+            update_nom = $("#produit_update").val()
+            update_prix = $("#prix_update").val()
+            update_description = $("#description_update").val()
+            id_produit = $("#id_produit").val()
+
+            $.ajax({
+            url: 'fonctions/fonction_administration.php',
+            type: 'GET',
+            data: {update_nom: update_nom, update_prix: update_prix, update_description: update_description, id_produit: id_produit},        
+                           
+                success: function(data){ 
+                    document.location.reload(true); 
+                }
+            });  
+        }
+        else
+        {
+            if($("#produit_update").val() == "")
+            {
+                $('#produit_update').addClass("erreur_update")
+                $('#produit_update').attr("placeholder","*Veuillez entrer un nom")
+                $('#produit_update').addClass("erreur_form")
+            }
+            if($("#prix_update").val() == "")
+            {
+                $('#prix_update').addClass("erreur_update")
+                $('#prix_update').attr("placeholder","*Veuillez entrer un prix")
+                $('#prix_update').addClass("erreur_form")
+            }
+            if($("#description_update").val() == "")
+            {
+                $('#description_update').addClass("erreur_update")
+                $('#description_update').attr("placeholder","*Veuillez entrer une description")
+                $('#description_update').addClass("erreur_form")
+            }
+            
+        }
+    });
+    $("body").on("click", ".bi-x", function () {
+
+        id_product_delete = $(this).attr("id")
+
+
+
+        $("body").on("click", "#delete", function () {
+
+            $.ajax({
+                url: 'fonctions/fonction_administration.php',
+                type: 'GET',
+                data: {id_product_delete: id_product_delete},        
+                               
+                    success: function(data){ 
+                        document.location.reload(true);  
+                    }
+            });  
+        });
+       
     });
 });
 

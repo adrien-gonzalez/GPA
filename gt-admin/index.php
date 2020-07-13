@@ -105,6 +105,7 @@
 					    	</a>
 					    		<a href="index.php?panel=liste_utilisateurs"><li id="liste_utilisateurs" class="list-group-item">Liste des utilisateurs</li></a>
 					    		<a href="index.php?panel=parametres"><li id="parametres" class="list-group-item">Paramètres</li></a>
+					    		<a href="index.php?panel=mes_produits"><li id="mes_produits" class="list-group-item">Mes produits</li></a>
 					 	</ul>
 					</div>
 					<div class="pannel_result">
@@ -267,6 +268,98 @@
 								</div>
 				        	<?php
 				        	}
+				        	else if($_GET['panel'] == "mes_produits")
+				        	{
+								$req_produit = "SELECT *FROM produits";
+								$execute_req_produit = mysqli_query($base, $req_produit);
+								$number_produit = mysqli_num_rows($execute_req_produit);
+							?>
+							<div class="table_produits w-75">
+								<table class="table w-100 table_produit shadow">
+									  <thead>
+									    <tr>
+									      <th scope="col">Nom produit</th>
+									      <th scope="col">Description</th>
+									      <th scope="col">Prix</th>
+									      <th scope="col"></th>
+									      <th scope="col"></th>
+									    </tr>
+									  </thead>
+									  <tbody>
+								<?php
+
+								if($number_produit != 0)
+								{
+									while($resultat_req_produit = mysqli_fetch_array($execute_req_produit))
+									{									
+									?>
+										<tr>
+										    <td><?php echo $resultat_req_produit['nom']; ?></td>
+										    <td><?php echo $resultat_req_produit['description']; ?></td>
+										    <td><?php echo $resultat_req_produit['prix']." €"; ?></td>
+										    <td>
+										    	<svg id="<?php echo $resultat_req_produit['id']?>"  width="1em" height="1em" viewBox="0 0 16 16" data-toggle="modal" data-target="#update_produit" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+													<path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
+													<path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"/>
+												</svg>
+											 </td>
+											 <td>
+											 	<svg id="<?php echo $resultat_req_produit['id_produit']?>" width="1.2em" height="1.2em" viewBox="0 0 16 16" data-toggle="modal" data-target="#delete_produit" class="bi bi-x" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+													<path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>
+											  		<path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"/>
+												</svg>
+										 	</td>
+										</tr>
+									<?php
+									}
+								}
+								?>
+								 </tbody>
+									</table>
+									<svg width="2.5em" height="2.5em" viewBox="0 0 16 16" class="add_product bi bi-plus-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+										<path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4a.5.5 0 0 0-1 0v3.5H4a.5.5 0 0 0 0 1h3.5V12a.5.5 0 0 0 1 0V8.5H12a.5.5 0 0 0 0-1H8.5V4z"/>
+									</svg>
+								</div>
+							<?php
+				        	}
+				        	else if($_GET['panel'] == "ajout_produit")
+				        	{
+				        	?>
+				        		<div class="limiter m-t-100 admin_form">
+			    					<div class="container-login100">
+								        <section class="form_admin shadow">
+								            <form class="login100-form validate-form">
+								                <span class="login100-form-title p-b-70">
+								                    Ajout produit
+								                </span>
+								                <div class="d-flex flex-row rs1-wrap-input100 validate-input taille1 m-b-20 statut">
+								                	<div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20 taille2">
+								                    	<input id="nom_produit" class="input100" type="text" placeholder="Nom produit">
+								                    	<span class="focus-input100"></span>
+								                    </div>
+								                    <div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20 taille2">
+								                    	<input id="prix" class="input100" type="number" placeholder="Prix">
+								                    	<span class="focus-input100"></span>
+								                	</div>
+								                </div>
+								                <div class="d-flex flex-column rs1-wrap-input100 validate-input m-b-20 taille1">
+			                                        <textarea id="description_produit" class="input100 wrap-input100" placeholder="Description..."></textarea>
+			                                        <span id="span_descriptif" class="focus-input100"></span>
+			                                    </div>
+			                                    <div class="d-flex flex-column rs1-wrap-input100 validate-input m-b-20 taille1">
+			                                    	<select id="categorie">
+			                                    		<option val="annonce">Annonce</option>
+			                                    	</select>
+			                                    </div>
+								                <div class="container-login100-form-btn">
+								                    <input type="button" id="valid_ajout" class="responsive_button login100-form-btn" value="Ajouter">	
+								                </div>
+								           </form>
+								        </section>
+			    					</div>
+								</div>	
+				        	<?php
+				        	}
 				        	?> <input id="panel" type="hidden" value="<?php echo $panel_list;?>"> <?php
 				 		}
 				 	?>
@@ -334,6 +427,73 @@
 			</div>
 		</div>
 		<!-- Modal info utilisateurs-->
+
+		<!-- Modal update produit-->
+		<div class="modal fade" id="update_produit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+		    	<div class="modal-content">
+		      		<div class="modal-header">
+		        		<h5 class="modal-title" id="exampleModalLongTitle">Mise à jour produit</h5>
+		        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          			<span aria-hidden="true">&times;</span>
+		        		</button>
+		      		</div>
+		      		<div class="modal-body">
+						<div class="limiter">
+		      				<div class="container-login100">
+								<div class="update_form">
+		      	 					<form class="login100-form validate-form">
+		      	 						<div class="d-flex flex-row rs1-wrap-input100 validate-input taille1 m-b-20 statut">
+											<div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20 taille2">
+												<input id="produit_update" class="input100" type="text" placeholder="Nom produit">
+												<span class="focus-input100"></span>
+											</div>
+											<div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20 taille2">
+												<input id="prix_update" class="input100" type="number" placeholder="Prix">
+												<span class="focus-input100"></span>
+											</div>
+										</div>
+										<div class="d-flex flex-column rs1-wrap-input100 validate-input m-b-20 taille1">
+											<textarea id="description_update" class="input100 wrap-input100" placeholder="Description..."></textarea>
+			                                <span id="span_descriptif" class="focus-input100"></span>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+		      		</div>
+		      	<div class="modal-footer">
+		      		<input id="id_produit" type="hidden">
+		        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+		        	<button id="update" type="button" class="btn btn-primary">Valider</button>
+		      	</div>
+		    	</div>
+		  	</div>
+		</div>
+		<!-- Modal update produit -->
+
+		<!-- Modal delete produit -->
+		<div class="modal fade" id="delete_produit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+		    	<div class="modal-content">
+		      		<div class="modal-header">
+		        		<h5 class="modal-title" id="exampleModalLongTitle">Suppression du produit</h5>
+		        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          			<span aria-hidden="true">&times;</span>
+		        		</button>
+		      		</div>
+		      		<div class="modal-body">	
+		      			<p>Voulez-vous supprimer le produit ?</p>		
+		      		</div>
+		      	<div class="modal-footer">
+		      		<input id="id_produit" type="hidden">
+		        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+		        	<button id="delete" type="button" class="btn btn-primary">Supprimer</button>
+		      	</div>
+		    	</div>
+		  	</div>
+		</div>
+		<!-- Modal delete produit -->
 		
 		<div id="footer">
             <?php include('sources/footer_admin.php');?>

@@ -59,7 +59,6 @@ $( document ).ready(function() {
 
     // element
     var id_annonce = $(this).attr('id');
-    console.log(id_annonce)
     window.location.href = "sources/annonce.php?id="+id_annonce+""; 
   });
 

@@ -1,4 +1,6 @@
-<?php require "../fonctions/config.php"; ?>
+<?php require "../fonctions/config.php"; 
+    require "../stripe-php/init.php";
+?>
 
 <html>
 	<head>
@@ -13,13 +15,11 @@
 		<!-- JQUERY -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 		<!-- MON SCRIPT -->
-		<script type="text/javascript" src="../js/annonce/ajout_annonce.js"></script>
         <script type="text/javascript" src="../js/script.js"></script>
 		<!-- BOOTSTRAP -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>	
 		<script type="text/javascript" src="https://unpkg.com/@popperjs/core@2"></script>
-
 		<!--===============================================================================================-->
     </head>
     
@@ -35,9 +35,18 @@
                 if(isset($_SESSION['login']))
                 {
                 ?>
+                <script type="text/javascript" src="../js/annonce/ajout_annonce.js"></script>
                 <div class="limiter m-t-100">
                     <div class="container-login100">
                         <section>
+                            <!-- <div class="card" style="width: 18rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Remonter en tête de liste pendant 7 jours</h5>
+                                    <p class="card-text">Voulez-vous utilisez ce service ?</p>
+                                    <button id="accept" class="btn btn-secondary">Oui</button>
+                                    <button id="refuse" class="btn btn-secondary">Non</button>
+                                </div>
+                            </div> -->
                             <div class="wrap-login100 shadow">
                                 <form class="login100-form validate-form" enctype="multipart/form-data" method="post">
                                     <span class="login100-form-title p-b-70">

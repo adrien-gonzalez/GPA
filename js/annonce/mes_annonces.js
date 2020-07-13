@@ -34,6 +34,7 @@ function mes_annonces(){
         data: {login: login},
         
             success: function(data){ 
+            	console.log(data)
             	if(data != "0")
             	{
             		$("#nombre_annonce").text("Annonces en ligne ("+JSON.parse(data).length+")")

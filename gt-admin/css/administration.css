@@ -13,7 +13,7 @@
 .list_panel{
 
 	width: 18rem;
-	height: 144px;
+	height: 192px;
 }
 
 .list-group-item.active{
@@ -48,6 +48,10 @@ section{
 	.admin_form{
 
 		margin-top: 300px;
+	}
+	.table_produits{
+
+		width: 100% !important;
 	}
 }
 
@@ -188,3 +192,67 @@ section{
         opacity: 1;
     }
 }
+
+#description_produit, #description_update{
+
+	height: 100px;
+	padding: 5 25px;
+}
+
+.table_produit{
+
+	background-color: white;
+}
+
+.table_produit thead{
+
+	background-color: #17A681;
+	color: white;
+}
+
+.table_produits{
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.add_product{
+
+	margin-top: 30px;
+	transition: 0.2s;
+}
+
+.add_product:hover{
+	transform: scale(1.3);
+}
+
+.add_product path{
+
+	color : #17A681;
+}
+
+.bi-pencil path{
+
+	color: #21202E;
+}
+
+.bi-pencil, .bi-x{
+
+	transition: 0.2s;
+}
+
+.bi-pencil:hover, .bi-x:hover{
+	transform: scale(1.5);
+}
+
+.update_form form{
+
+	width: 100%;
+}
+
+.erreur_update{
+
+	border: 1px solid #C0392B !important;
+}
+
