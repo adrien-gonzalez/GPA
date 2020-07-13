@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 require "../stripe-php/init.php";
 ?>
@@ -76,4 +77,4 @@ $charge = \Stripe\Charge::create(array(
     	sessionStorage.clear();
 	</script>
 </body>
-
+</html>

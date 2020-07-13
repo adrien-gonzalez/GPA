@@ -154,7 +154,7 @@ else if(isset($_POST['nom_produit']) && isset($_POST['description_produit']) && 
 	$id_produit = $product['id'];
 
 	// REQUETE INSERT PRODUIT
-	$insert_produit = "INSERT INTO produits VALUES (NULL, '$id_produit', '$nom_produit', '$description_produit', '$prix', '$categorie')";
+	$insert_produit = "INSERT INTO services VALUES (NULL, '$id_produit', '$nom_produit', '$description_produit', '$prix', '$categorie')";
 	mysqli_query($base, $insert_produit);
 
 }
@@ -162,7 +162,7 @@ else if(isset($_POST['id_produit']))
 {
 	$id_produit = $_POST['id_produit'];
 
-	$info_produit = "SELECT *FROM produits WHERE id='$id_produit'";
+	$info_produit = "SELECT *FROM services WHERE id='$id_produit'";
 	$execute_info_produit = mysqli_query($base, $info_produit);
 	$element = mysqli_num_rows($execute_info_produit);
 
@@ -195,7 +195,7 @@ else if(isset($_GET['update_nom']) && isset($_GET['update_prix']) && isset($_GET
 	  ['description' => $description]
 	);
 
-	$update_produit = "UPDATE produits SET nom = '$nom', description = '$description', prix = '$prix_update' WHERE id_produit = '$id_produit'";
+	$update_produit = "UPDATE services SET nom = '$nom', description = '$description', prix = '$prix_update' WHERE id_produit = '$id_produit'";
 	mysqli_query($base, $update_produit);
 }
 else if(isset($_GET['id_product_delete']))
@@ -212,7 +212,7 @@ else if(isset($_GET['id_product_delete']))
 	  []
 	);
 
-	$delete_produit = "DELETE FROM produits WHERE id_produit = '$id_product_delete'";
+	$delete_produit = "DELETE FROM services WHERE id_produit = '$id_product_delete'";
 	mysqli_query($base, $delete_produit);
 }
 ?>

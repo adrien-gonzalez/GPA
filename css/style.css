@@ -82,8 +82,15 @@ button:focus{
 	min-width:900px;
 	height: 100px;
 	padding: 10px;
-	background-color: rgba(33, 32, 46, 0.9)
+	background-color: rgba(33, 32, 46, 0.9);
+  display: flex;
+  align-items: center;
+}
 
+.option_recherche form{
+
+  width: 100%;
+  justify-content: space-between;
 }
 
 .option{
@@ -108,6 +115,11 @@ button:focus{
 		height: 300px;
 		background-color: rgba(33, 32, 46, 0.9);
 	}
+  .option_recherche form{
+
+    height: 100%;
+
+  }
   .content_header{
     display: flex;
     justify-content: center;
@@ -408,6 +420,10 @@ footer a:hover{
   .profil_user{
   
     width: 100%;
+  }
+  .profil_message{
+
+    margin-top: 100px;
   }
 }
 
@@ -795,6 +811,9 @@ svg{
 
     width: 400px;
   }
+  .info{
+    margin-top: 100px;
+  }
 }
 
 .nombre{
@@ -1152,6 +1171,10 @@ button:active{
   width: 100%;
   display: flex;
   justify-content: center;
+}
+
+html, body{
+  height: 100%;
 }
 
 .stripe-button-el span{

@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php require("../fonctions/config.php");?>
 <html>
 	<head>
@@ -19,7 +20,6 @@
 		<!-- BOOTSTRAP -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-
 	</head>
 
 <body class="admin">
@@ -105,7 +105,7 @@
 					    	</a>
 					    		<a href="index.php?panel=liste_utilisateurs"><li id="liste_utilisateurs" class="list-group-item">Liste des utilisateurs</li></a>
 					    		<a href="index.php?panel=parametres"><li id="parametres" class="list-group-item">Paramètres</li></a>
-					    		<a href="index.php?panel=mes_produits"><li id="mes_produits" class="list-group-item">Mes produits</li></a>
+					    		<a href="index.php?panel=mes_produits"><li id="mes_produits" class="list-group-item">Mes services</li></a>
 					 	</ul>
 					</div>
 					<div class="pannel_result">
@@ -270,7 +270,7 @@
 				        	}
 				        	else if($_GET['panel'] == "mes_produits")
 				        	{
-								$req_produit = "SELECT *FROM produits";
+								$req_produit = "SELECT *FROM services";
 								$execute_req_produit = mysqli_query($base, $req_produit);
 								$number_produit = mysqli_num_rows($execute_req_produit);
 							?>
@@ -278,7 +278,7 @@
 								<table class="table w-100 table_produit shadow">
 									  <thead>
 									    <tr>
-									      <th scope="col">Nom produit</th>
+									      <th scope="col">Nom service</th>
 									      <th scope="col">Description</th>
 									      <th scope="col">Prix</th>
 									      <th scope="col"></th>
@@ -325,16 +325,16 @@
 				        	else if($_GET['panel'] == "ajout_produit")
 				        	{
 				        	?>
-				        		<div class="limiter m-t-100 admin_form">
+				        		<div class="limiter m-t-100 admin_form form_service">
 			    					<div class="container-login100">
 								        <section class="form_admin shadow">
 								            <form class="login100-form validate-form">
 								                <span class="login100-form-title p-b-70">
-								                    Ajout produit
+								                    Ajout d'un service
 								                </span>
 								                <div class="d-flex flex-row rs1-wrap-input100 validate-input taille1 m-b-20 statut">
 								                	<div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20 taille2">
-								                    	<input id="nom_produit" class="input100" type="text" placeholder="Nom produit">
+								                    	<input id="nom_produit" class="input100" type="text" placeholder="Nom du service">
 								                    	<span class="focus-input100"></span>
 								                    </div>
 								                    <div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20 taille2">
@@ -347,9 +347,10 @@
 			                                        <span id="span_descriptif" class="focus-input100"></span>
 			                                    </div>
 			                                    <div class="d-flex flex-column rs1-wrap-input100 validate-input m-b-20 taille1">
-			                                    	<select id="categorie">
+			                                    	<select id="categorie" class="input100 wrap-input100">
 			                                    		<option val="annonce">Annonce</option>
 			                                    	</select>
+			                                        <span class="focus-input100"></span>		                                    	
 			                                    </div>
 								                <div class="container-login100-form-btn">
 								                    <input type="button" id="valid_ajout" class="responsive_button login100-form-btn" value="Ajouter">	

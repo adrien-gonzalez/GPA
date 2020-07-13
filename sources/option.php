@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
     require "../fonctions/config.php"; 
     require "../stripe-php/init.php";

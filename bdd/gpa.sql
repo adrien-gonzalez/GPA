@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 13 juil. 2020 à 12:01
--- Version du serveur :  5.7.26
--- Version de PHP :  7.2.18
+-- Généré le :  lun. 13 juil. 2020 à 15:29
+-- Version du serveur :  10.4.10-MariaDB
+-- Version de PHP :  7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -63,10 +63,10 @@ CREATE TABLE IF NOT EXISTS `annonce` (
   `document` varchar(255) DEFAULT NULL,
   `disponibilite` varchar(30) NOT NULL,
   `statut` varchar(10) NOT NULL,
-  `verif` int(11) NOT NULL DEFAULT '0',
+  `verif` int(11) NOT NULL DEFAULT 0,
   `date_annonce` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `annonce`
@@ -164,11 +164,11 @@ INSERT DELAYED INTO `message` (`id`, `id_utilisateur`, `id_utilisateur_prive`, `
 -- --------------------------------------------------------
 
 --
--- Structure de la table `produits`
+-- Structure de la table `services`
 --
 
-DROP TABLE IF EXISTS `produits`;
-CREATE TABLE IF NOT EXISTS `produits` (
+DROP TABLE IF EXISTS `services`;
+CREATE TABLE IF NOT EXISTS `services` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_produit` varchar(255) NOT NULL,
   `nom` varchar(255) NOT NULL,
@@ -179,10 +179,10 @@ CREATE TABLE IF NOT EXISTS `produits` (
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `produits`
+-- Déchargement des données de la table `services`
 --
 
-INSERT DELAYED INTO `produits` (`id`, `id_produit`, `nom`, `description`, `prix`, `categorie`) VALUES
+INSERT DELAYED INTO `services` (`id`, `id_produit`, `nom`, `description`, `prix`, `categorie`) VALUES
 (4, 'prod_Hddvz5OFD0MWZ8', 'Mise en avant (7 jours)', 'Met en tête de liste votre annonce pendant 7 jours\n', 5, 'Annonce');
 
 -- --------------------------------------------------------

@@ -256,3 +256,7 @@ section{
 	border: 1px solid #C0392B !important;
 }
 
+.form_service form{
+
+	width: 100%;
+}
