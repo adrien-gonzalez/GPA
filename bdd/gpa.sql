@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mer. 01 juil. 2020 à 18:56
+-- Généré le :  lun. 13 juil. 2020 à 12:01
 -- Version du serveur :  5.7.26
 -- Version de PHP :  7.2.18
 
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
 --
 
 INSERT DELAYED INTO `admin` (`id`, `login`, `password`) VALUES
-(1, 'Stéphanie', '$2y$12$XK620QC.2Gba6zlnR/dDbuujbAKEwYm2sDa60e6gyh6/hlHbczija');
+(1, 'adrien', '$2y$12$8Ok1z6zguNRVq/K0ZzhmzOIpFFoTpA7zPraVeGNcNEhmCY4KP8fgG');
 
 -- --------------------------------------------------------
 
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `annonce` (
   `verif` int(11) NOT NULL DEFAULT '0',
   `date_annonce` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `annonce`
@@ -77,6 +77,20 @@ INSERT DELAYED INTO `annonce` (`id`, `id_utilisateur`, `type_attestation`, `regi
 (23, 1, 'Commissionnaire', 'Provence-Alpes-Côte d\'Azur', 'Bonjour, je suis Adrien, j\'ai 20 ans et je propose mes services en tant que commissionnaire, pour plus d\'informations, contactez-moi.\n', '0678343361', 50, '8f8dd749f51e721c376bbeee7376947b5fa4963f.pdf', 'Sous 3 mois', 'Associé', 1, '2020-06-24'),
 (35, 1, 'Voyageurs', 'Auvergne-Rhône-Alpes', 'Bonjour, je propose mes services de transports de voyageurs, je suis donc disponible pour toutes question concernant mes parcours / expériences, contactez moi.', '0678343361', 100, '2a583c14ba53ded99f7f1aeffd040297534a9a2e.pdf', 'Disponible', 'Externe', 0, '2020-07-01'),
 (36, 1, 'Marchandises + 3.5T', 'Provence-Alpes-Côte d\'Azur', 'Bonjour, j\'offre mes services en tant que transports de marchandises de plus de 3.5 Tonnes, je travail dans le transports de marchandises depuis 2 ans et demi et j\'ai toujours eu de bon retour.', '0678343361', 250, 'df155d7172ba70442ddeec75e50c0dc149c62d33.pdf', 'Disponible', 'Salarié', 1, '2020-07-01');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `avantage`
+--
+
+DROP TABLE IF EXISTS `avantage`;
+CREATE TABLE IF NOT EXISTS `avantage` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_utilisateur` int(11) NOT NULL,
+  `nom` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -111,14 +125,14 @@ CREATE TABLE IF NOT EXISTS `favoris` (
   `id_annonce` int(11) NOT NULL,
   `id_utilisateur` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=108 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=114 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `favoris`
 --
 
 INSERT DELAYED INTO `favoris` (`id`, `id_annonce`, `id_utilisateur`) VALUES
-(103, 24, 1);
+(113, 36, 1);
 
 -- --------------------------------------------------------
 
@@ -134,7 +148,7 @@ CREATE TABLE IF NOT EXISTS `message` (
   `message` varchar(255) NOT NULL,
   `date_message` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=88 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=89 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `message`
@@ -146,6 +160,30 @@ INSERT DELAYED INTO `message` (`id`, `id_utilisateur`, `id_utilisateur_prive`, `
 (54, 20, 1, 'ça va ?', '2020-06-04 16:00:00'),
 (80, 1, 20, 'cc', '2020-06-15 16:07:23'),
 (48, 20, 1, 'Salut', '2020-06-04 15:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `produits`
+--
+
+DROP TABLE IF EXISTS `produits`;
+CREATE TABLE IF NOT EXISTS `produits` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_produit` varchar(255) NOT NULL,
+  `nom` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `prix` int(11) NOT NULL,
+  `categorie` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `produits`
+--
+
+INSERT DELAYED INTO `produits` (`id`, `id_produit`, `nom`, `description`, `prix`, `categorie`) VALUES
+(4, 'prod_Hddvz5OFD0MWZ8', 'Mise en avant (7 jours)', 'Met en tête de liste votre annonce pendant 7 jours\n', 5, 'Annonce');
 
 -- --------------------------------------------------------
 
