@@ -10,6 +10,7 @@ $sujet = $_POST['sujet'];
 $msg = $email."\n".$nom." ".$prenom."\n\n".$message;
 
 // send email
-mail("adrien.gonzalez@laplateforme.io", $sujet ,$msg);
+mail("adrien1361@gmail.com", $sujet ,$msg);
+
 ?>
 

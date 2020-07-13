@@ -3,7 +3,18 @@
     require "../stripe-php/init.php";
 ?>
 
- <script>
+<?php
+    if(isset($_POST['refuse']))
+    {
+    ?>
+        <script>
+            sessionStorage.clear();
+        </script>
+    <?php
+    }
+?>
+
+<script>
     if(sessionStorage.getItem("option") == null)
     {
         document.location.href="../"
@@ -81,7 +92,9 @@
                                         }
                                     }   
                                 ?>
-                                <button id="refuse" class="button_design">Poster mon annonce sans avantages</button>
+                                <form method="post">
+                                    <input name="refuse" type="submit" id="refuse" class="button_design" value="Ne pas prendre d'avantages">
+                                </form>
                     </section>
                 </div>
             </div>

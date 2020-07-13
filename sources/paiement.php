@@ -73,7 +73,7 @@ $charge = \Stripe\Charge::create(array(
 		</div>
 	</section>
 	<script>
-    	localStorage.clear();
+    	sessionStorage.clear();
 	</script>
 </body>
 

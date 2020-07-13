@@ -10,10 +10,6 @@ $( document ).ready(function() {
 
  		text = $('#descriptif').val().replace(/ /g,"")
 	    nombreCaractere = text.length;
-	    // var nombreMots = jQuery.trim($(this).val()).split(' ').length;
-	    // if($(this).val() === '') {
-	    //  	nombreMots = 0;
-	    // }
 		$(".nombre_caractere").text(nombreCaractere+"/"+nbr_lettre_max)
 
 	});
@@ -142,50 +138,46 @@ function ajout_annonce(){
 		{
 			if(validatePhone($("#tel").val()) == true)
 			{
-				$(".wrap-login100").remove()
+				type 		= $("#attestation").val()
+				region 		= $("#region").val()
+				descriptif 	= $("#descriptif").val()
+				tel 		= $("#tel").val()
+				prix 		= $("#prix").val()
+				disponibilite = document.querySelector('input[name="dispo"]:checked').value;
+				statut = document.querySelector('input[name="statut"]:checked').value;
 
-
-				// var chemin = window.location.pathname
-				sessionStorage.setItem("option","ok")
-				document.location.href="option.php"
-
-				// type 		= $("#attestation").val()
-				// region 		= $("#region").val()
-				// descriptif 	= $("#descriptif").val()
-				// tel 		= $("#tel").val()
-				// prix 		= $("#prix").val()
-				// disponibilite = document.querySelector('input[name="dispo"]:checked').value;
-				// statut = document.querySelector('input[name="statut"]:checked').value;
-
-				// $.ajax({
-    //                 url: '../fonctions/fonction_ajout_annonce.php',
-    //                 type: 'POST',
-    //                 data: {type: type, region: region, descriptif: descriptif, tel: tel, prix: prix, disponibilite: disponibilite, statut: statut},        
+				$.ajax({
+                    url: '../fonctions/fonction_ajout_annonce.php',
+                    type: 'POST',
+                    data: {type: type, region: region, descriptif: descriptif, tel: tel, prix: prix, disponibilite: disponibilite, statut: statut},        
                    
-    //                 success: function(data){             	
-    //                 	if(data == "ok")
-				// 		{
-				// 			var fd = new FormData();
-				// 		    var files = file_info;
-				// 		    fd.append('file',files);
+                    success: function(data){             	
+                    	if(data == "ok")
+						{
+							var fd = new FormData();
+						    var files = file_info;
+						    fd.append('file',files);
 
-				// 		    if(files != undefined)
-				// 		    {
-				// 		    	$.ajax({
-				// 				    url: '../fonctions/upload_documentpdf.php',
-				// 			        type: 'post',
-				// 			        data: fd,
-				// 			        contentType: false,
-				// 			        processData: false,
-				// 			        success: function(response){
-				// 			        console.log(response)			        	
-				// 			        }
-				// 				});
-				// 		    }
-				// 		    window.location.href = "../";
-				// 		}  
-    //                 }
-    //             });
+						    if(files != undefined)
+						    {
+						    	$.ajax({
+								    url: '../fonctions/upload_documentpdf.php',
+							        type: 'post',
+							        data: fd,
+							        contentType: false,
+							        processData: false,
+							        success: function(response){
+							        console.log(response)			        	
+							        }
+								});
+						    }
+						    // window.location.href = "../";
+						    sessionStorage.setItem("option","ok")
+							document.location.href="option.php"
+						    
+						}  
+                    }
+                });  
 			}
 			else
 			{
