@@ -25,11 +25,39 @@
 <main class="ie-stickyFooter">
     <div id="page">
 		<div id="header_content">	
-			<?php include('sources/header.php');
+			<?php 
+			include('sources/header.php');
+
+			date_default_timezone_set('Europe/Paris');
+			$now = new DateTime();
+			$date=$now->format('Y-m-d');
 
 			//DELETE ANNONCE > 60 JOURS
-			$delete_annonce = "DELETE from annonce where DATEDIFF(date_annonce, CURDATE()) > 60";
+			$delete_annonce = "DELETE from annonce where DATEDIFF('$date' ,date_annonce) > 60";
             mysqli_query($base, $delete_annonce);
+
+            // AVANTAGE BOOST ANNONCE (7, 30 ou 60 jours)
+
+            $select_avantage = "SELECT date_avantage, duree, id_service FROM avantage INNER JOIN services on id_service = services.id";
+            $execute_req_avantage = mysqli_query($base, $select_avantage);
+           	$nombre_avantage = mysqli_num_rows($execute_req_avantage);
+
+           	if($nombre_avantage != 0)
+           	{	
+           		while($resultat_select_avantage = mysqli_fetch_array($execute_req_avantage))
+           		{
+           			$duree = $resultat_select_avantage['duree'];
+           			$id_service = $resultat_select_avantage['id_service'];
+           			$delete_avantage = "DELETE from avantage where DATEDIFF('$date', date_avantage) > '$duree' and id_service = '$id_service'";
+           			mysqli_query($base, $delete_avantage);
+           		}
+
+           		// $select_annonce_avantage = "SELECT id_utilisateur.annonce FROM annonce INNER JOIN avantage on id_utilisateur.annonce  = id_utilisateur.avantage";
+           		// echo $select_annonce_avantage;
+           	}
+
+            // SELECT *FROM avantage where DATEDIFF(date_avantage, CURDATE()) < 7
+
 			?>
 		</div>
         <div id="content">

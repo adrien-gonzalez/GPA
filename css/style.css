@@ -28,7 +28,7 @@ button:focus{
     padding-left: .5rem;
     color: white;
     display: block;
-    padding: .5rem 1rem;
+    /*padding: .5rem 1rem;*/
 }
 
 .button_design{

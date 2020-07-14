@@ -4,17 +4,6 @@
     require "../stripe-php/init.php";
 ?>
 
-<?php
-    if(isset($_POST['refuse']))
-    {
-    ?>
-        <script>
-            sessionStorage.clear();
-        </script>
-    <?php
-    }
-?>
-
 <script>
     if(sessionStorage.getItem("option") == null)
     {
@@ -36,6 +25,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 		<!-- MON SCRIPT -->
         <script type="text/javascript" src="../js/script.js"></script>
+        <script type="text/javascript" src="../js/annonce/option.js"></script>
 		<!-- BOOTSTRAP -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>	
@@ -54,7 +44,7 @@
                         <section class="avantage">
                             <?php
 
-                                $select_produit = "SELECT *FROM produits WHERE categorie = 'Annonce'";
+                                $select_produit = "SELECT *FROM services WHERE categorie = 'Annonce'";
                                 $execute_select_produit = mysqli_query($base, $select_produit);
                                 $element = mysqli_num_rows($execute_select_produit);
 
@@ -76,6 +66,7 @@
                                                     <form action="paiement.php" method="POST">
                                                         <input type="hidden" name="prix" value="<?php echo $resultat_select_produit['prix'] ?>">
                                                         <input type="hidden" name="description" value="<?php echo $resultat_select_produit['description']?>">
+                                                        <input type="hidden" name="id" value="<?php echo $resultat_select_produit['id']?>">
                                                         <script
                                                             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                                                             data-key="pk_test_51H2BsNKouFi2buoUlba3dKbK4ZTYxcZvTiIRE0C2XAXqoDFM34hElyPjz6rWqZQDhktUATKW7BoQos1UzdMn7pjJ00yd1jcvEM"
@@ -94,7 +85,7 @@
                                     }   
                                 ?>
                                 <form method="post">
-                                    <input name="refuse" type="submit" id="refuse" class="button_design" value="Ne pas prendre d'avantages">
+                                    <input name="refuse" type="button" id="refuse" class="button_design" value="Ne pas prendre d'avantages">
                                 </form>
                     </section>
                 </div>

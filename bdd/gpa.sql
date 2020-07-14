@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 13 juil. 2020 à 15:29
+-- Généré le :  mar. 14 juil. 2020 à 16:00
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `annonce` (
   `verif` int(11) NOT NULL DEFAULT 0,
   `date_annonce` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=58 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `annonce`
@@ -87,10 +87,18 @@ INSERT DELAYED INTO `annonce` (`id`, `id_utilisateur`, `type_attestation`, `regi
 DROP TABLE IF EXISTS `avantage`;
 CREATE TABLE IF NOT EXISTS `avantage` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_utilisateur` int(11) NOT NULL,
-  `nom` varchar(255) NOT NULL,
+  `id_annonce` int(11) NOT NULL,
+  `id_service` int(11) NOT NULL,
+  `date_avantage` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `avantage`
+--
+
+INSERT DELAYED INTO `avantage` (`id`, `id_annonce`, `id_service`, `date_avantage`) VALUES
+(1, 23, 4, '2020-07-14');
 
 -- --------------------------------------------------------
 
@@ -104,14 +112,7 @@ CREATE TABLE IF NOT EXISTS `ban` (
   `id_utilisateur` int(11) NOT NULL,
   `date_ban` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `ban`
---
-
-INSERT DELAYED INTO `ban` (`id`, `id_utilisateur`, `date_ban`) VALUES
-(16, 21, '2020-07-01');
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -125,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `favoris` (
   `id_annonce` int(11) NOT NULL,
   `id_utilisateur` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=114 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=116 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `favoris`
@@ -175,15 +176,17 @@ CREATE TABLE IF NOT EXISTS `services` (
   `description` text NOT NULL,
   `prix` int(11) NOT NULL,
   `categorie` varchar(255) NOT NULL,
+  `duree` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `services`
 --
 
-INSERT DELAYED INTO `services` (`id`, `id_produit`, `nom`, `description`, `prix`, `categorie`) VALUES
-(4, 'prod_Hddvz5OFD0MWZ8', 'Mise en avant (7 jours)', 'Met en tête de liste votre annonce pendant 7 jours\n', 5, 'Annonce');
+INSERT DELAYED INTO `services` (`id`, `id_produit`, `nom`, `description`, `prix`, `categorie`, `duree`) VALUES
+(4, 'prod_Hddvz5OFD0MWZ8', 'Mise en avant (7 jours)', 'Met en tête de liste votre annonce pendant 7 jours\n', 5, 'Annonce', 7),
+(5, 'prod_He4aq7bmW5AQhS', 'Mise en avant (30 jours)', 'Met en tête de liste votre annonce pendant 30 jours.', 10, 'Annonce', 30);
 
 -- --------------------------------------------------------
 

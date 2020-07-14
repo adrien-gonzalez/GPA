@@ -1,5 +1,23 @@
 $(document).ready(function (){
 
+    $("body").on("click", "#categorie", function () { 
+
+    $("#durée_avantage").remove()
+    $("#duree").remove()
+    categorie = $("#categorie").val()
+
+        if(categorie == "Annonce")
+        {
+             $(".categorie").after('<div id="durée_avantage" class="d-flex flex-column rs1-wrap-input100 validate-input m-b-20 taille1"></div>')
+             $("#durée_avantage").before('<label id="duree">Durée du service :</label>')
+             $("#durée_avantage").append('<select id="liste_durée" class="input100 wrap-input100">')
+             $("#liste_durée").append('<option id="7days" value="7">7 Jours</option>')
+             $("#7days").after('<option id="30days" value="30">30 Jours</option>')
+             $("#30days").after('<option id="60days" value="60">60 Jours</option>')
+             $("#liste_durée").after('<span class="focus-input100"></span>')
+        }
+    });
+
 	var id_annonce = $("#panel").val()
 	if(id_annonce != "")
 	{
@@ -272,18 +290,28 @@ $(document).ready(function (){
     $("#nom_produit").css({"border": "1px solid #E6E6E6"})
     $("#description_produit").css({"border": "1px solid #E6E6E6"})
     $("#prix").css({"border": "1px solid #E6E6E6"})
+    $("#categorie").css({"border": "1px solid #E6E6E6"})
 
-    if($("#nom_produit").val() != "" && $("#description_produit").val() != "" && $("#prix").val() != "")
+    if($("#nom_produit").val() != "" && $("#description_produit").val() != "" && $("#prix").val() != "" && $("#categorie").val() != "")
     {
         nom_produit = $("#nom_produit").val()
         description_produit = $("#description_produit").val()
         prix = $("#prix").val()
         categorie = $("#categorie").val()
 
+       
+            if($("#liste_durée").val() == undefined)
+            {
+                duree = false;
+            }
+            else
+            {
+                duree = $("#liste_durée").val()
+            }        
         $.ajax({
             url: 'fonctions/fonction_administration.php',
             type: 'POST',
-            data: {nom_produit: nom_produit, description_produit: description_produit, prix: prix, categorie: categorie},        
+            data: {nom_produit: nom_produit, description_produit: description_produit, prix: prix, categorie: categorie, duree: duree},        
                            
                 success: function(data){ 
                     document.location.href="?panel=mes_produits";    
@@ -309,6 +337,10 @@ $(document).ready(function (){
             $('#prix').css({"border":"1px solid #C0392B"})
             $('#prix').attr("placeholder","*Veuillez entrer un prix")
             $('#prix').addClass("erreur_form")
+        }
+        if($("#categorie").val() == "")
+        {
+            $('#categorie').css({"border":"1px solid #C0392B"})
         }
     }
     });

@@ -346,9 +346,11 @@
 			                                        <textarea id="description_produit" class="input100 wrap-input100" placeholder="Description..."></textarea>
 			                                        <span id="span_descriptif" class="focus-input100"></span>
 			                                    </div>
-			                                    <div class="d-flex flex-column rs1-wrap-input100 validate-input m-b-20 taille1">
+			                                    <div class="categorie d-flex flex-column rs1-wrap-input100 validate-input m-b-20 taille1">
 			                                    	<select id="categorie" class="input100 wrap-input100">
-			                                    		<option val="annonce">Annonce</option>
+			                                    		<option value="">Catégorie</option>
+			                                    		<option value="Annonce">Annonce</option>
+			                                    		<option value="Publicité">Publicité</option>
 			                                    	</select>
 			                                        <span class="focus-input100"></span>		                                    	
 			                                    </div>
