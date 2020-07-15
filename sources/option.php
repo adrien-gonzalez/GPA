@@ -20,7 +20,6 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 		<link rel="stylesheet" type="text/css" href="../css/formulaire/form.css">
         <link href="../css/style.css" rel="stylesheet">
-		<!--===============================================================================================-->
 		<!-- JQUERY -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 		<!-- MON SCRIPT -->
@@ -84,10 +83,10 @@
                                         }
                                     }   
                                 ?>
-                                <form method="post">
-                                    <input name="refuse" type="button" id="refuse" class="button_design" value="Ne pas prendre d'avantages">
-                                </form>
-                    </section>
+                        </section>
+                        <form method="post">
+                            <input name="refuse" type="button" id="refuse" class="button_design shadow" value="Déposer mon annonce sans avantages">
+                        </form>
                 </div>
             </div>
                            

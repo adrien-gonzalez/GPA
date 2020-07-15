@@ -36,7 +36,6 @@ $charge = \Stripe\Charge::create(array(
    ));
 ?>
 
-
 <html>
 	<head>
 		<title>Global Prestations Annexes</title>
@@ -52,33 +51,37 @@ $charge = \Stripe\Charge::create(array(
 
 <body class="paiement">
 	<section>
-		<div class="paiement_accepted shadow">
-			<div class="titre_svg">
-				<?php
-				if($charge != null)
-				{	
-				?>
-					<input id="id_avantage" value="<?php echo $id?>" type="hidden">
-					<h1>Paiement accepté !</h1>
-					<svg style="color:green;"width="4em" height="4em" viewBox="0 0 16 16" class="bi bi-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-				  		<path fill-rule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"/>
-					</svg>
-				<?php	
-				}
-				else
-				{
-				?>
-					<h1>Paiement refusé !</h1>
-					<svg style="color: red;" width="4em" height="4em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-						<path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>
-					  	<path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"/>
-					</svg>
-				<?php
-				}
-				?>
-				
-			</div>
-			<a href="../"><button class="button_design">Retourner sur le site</button></a>
+		<div class="paiement_accepted">
+			<?php
+			
+			if($charge != null)
+			{	
+			?>	
+				<input id="id_avantage" value="<?php echo $id?>" type="hidden">
+				<div class="alert alert-success w-100" role="alert">
+					<h4 class="alert-heading">Paiement accepté !</h4>
+					<hr>
+					<div class="d-flex justify-content-between">
+						<p>Merci pour votre achat</p>
+						<a href="../"><button class="button_design">Retourner sur le site</button></a>
+					</div>
+			 	</div>
+			<?php
+			}
+			else
+			{
+			?>
+				<div class="alert alert-danger w-100" role="alert">
+					<h4 class="alert-heading">Paiement refusé !</h4>
+					<hr>
+					<div class="d-flex justify-content-between">
+						<p>Une erreur s'est produite, veuillez rééssayer plus tard</p>
+						<a href="../"><button class="button_design">Retourner sur le site</button></a>
+					</div>
+			 	</div>
+			<?php
+			}
+			?>
 		</div>
 	</section>
 </body>

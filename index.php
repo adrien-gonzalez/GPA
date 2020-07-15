@@ -25,8 +25,7 @@
 <main class="ie-stickyFooter">
     <div id="page">
 		<div id="header_content">	
-			<?php 
-			include('sources/header.php');
+			<?php include('sources/header.php');
 
 			date_default_timezone_set('Europe/Paris');
 			$now = new DateTime();
@@ -37,7 +36,6 @@
             mysqli_query($base, $delete_annonce);
 
             // AVANTAGE BOOST ANNONCE (7, 30 ou 60 jours)
-
             $select_avantage = "SELECT date_avantage, duree, id_service FROM avantage INNER JOIN services on id_service = services.id";
             $execute_req_avantage = mysqli_query($base, $select_avantage);
            	$nombre_avantage = mysqli_num_rows($execute_req_avantage);
@@ -52,12 +50,22 @@
            			mysqli_query($base, $delete_avantage);
            		}
 
-           		// $select_annonce_avantage = "SELECT id_utilisateur.annonce FROM annonce INNER JOIN avantage on id_utilisateur.annonce  = id_utilisateur.avantage";
-           		// echo $select_annonce_avantage;
+           		// MET DATE A JOUR POUR ANNONCES QUI ONT DES AVANTAGES POUR METTRE EN TETE DE LISTE
+           		$select_annonce_avantage = "SELECT annonce.id FROM annonce INNER JOIN avantage on annonce.id = id_annonce";
+           		$execute_annonce_avantage = mysqli_query($base, $select_annonce_avantage);
+           		$nombre_annonce = mysqli_num_rows($execute_annonce_avantage);
+
+           		if($nombre_annonce != 0)
+           		{
+           			while($resultat_annonce_avantage = mysqli_fetch_array($execute_annonce_avantage))
+           			{
+           				$id_annonce = $resultat_annonce_avantage['id'];
+           				$update_date_annonce = "UPDATE annonce SET date_annonce = '$date' WHERE id = '$id_annonce'";
+           				mysqli_query($base, $update_date_annonce);
+           			}
+           		}
+
            	}
-
-            // SELECT *FROM avantage where DATEDIFF(date_avantage, CURDATE()) < 7
-
 			?>
 		</div>
         <div id="content">
