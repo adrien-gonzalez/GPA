@@ -224,6 +224,35 @@ else if(isset($_GET['id_product_delete']))
 	$delete_produit = "DELETE FROM services WHERE id_produit = '$id_product_delete'";
 	mysqli_query($base, $delete_produit);
 }
+else if(isset($_GET['id_paiement']))
+{
+	$id_paiement = $_GET['id_paiement'];
+
+	$stripe = new \Stripe\StripeClient(
+  		'sk_test_51H2BsNKouFi2buoUWmyNEiPXAfPA7hNDpZH6vbsPJ8cWRnWESRXEZCR8p1qSUS1RdEKq35YnFy68eZ4fygBYmSUf00kTzuIVfe'
+	);
+
+	$info = $stripe->charges->retrieve(
+	  $id_paiement,
+	  []
+	);
+
+	echo '['.json_encode($info).']';
+}
+else if(isset($_POST['id_paiement_rembouser']))
+{
+
+	$remboursement = $_POST['id_paiement_rembouser'];
+
+	$stripe = new \Stripe\StripeClient(
+  		'sk_test_51H2BsNKouFi2buoUWmyNEiPXAfPA7hNDpZH6vbsPJ8cWRnWESRXEZCR8p1qSUS1RdEKq35YnFy68eZ4fygBYmSUf00kTzuIVfe'
+	);
+	$stripe->refunds->create([
+	  'charge' => $remboursement,
+	]);
+}
 ?>
+
+
 
 

@@ -352,7 +352,7 @@ $(document).ready(function (){
     });
 
     // AFFICHE UN PRODUIT SELECTIONNE
-    $("body").on("click", ".bi-pencil", function () {
+    $("body").on("click", ".affiche_produit", function () {
 
         $("#produit_update").removeClass("erreur_update")
         $("#prix_update").removeClass("erreur_update")
@@ -429,7 +429,7 @@ $(document).ready(function (){
             
         }
     });
-    $("body").on("click", ".bi-x", function () {
+    $("body").on("click", ".delete_produit", function () {
 
         id_product_delete = $(this).attr("id")
 
@@ -448,6 +448,51 @@ $(document).ready(function (){
             });  
         });
        
+    });
+    $("body").on("click", ".info_paiement", function () {
+
+        id_paiement = $(this).attr("id")
+
+        $.ajax({
+            url: 'fonctions/fonction_administration.php',
+            type: 'GET',
+            data: {id_paiement: id_paiement},        
+                               
+                success: function(data){ 
+
+                    for(i=0; i < JSON.parse(data).length; i++)
+                    {       
+                        var result = JSON.parse(data)[i];
+                    }
+                        card = result.payment_method_details.card.brand
+                        origine = result.payment_method_details.card.country
+                        dernier_chiffre = result.payment_method_details.card.last4
+                        description_paiement = result.description
+
+                    
+                        $("#moyen_paiement").text("Moyen de paiement : "+card)
+                        $("#origine").text("Origine du paiement : "+origine)
+                        $("#dernier_chiffre").text("Numéro : ... "+dernier_chiffre)
+                        $("#description_paiement").text(description_paiement)
+                }
+        });  
+    });
+    $("body").on("click", ".rembourser", function () {
+
+        id_paiement_rembouser = $(this).attr('id')
+
+        $("body").on("click", "#rembourser", function () {
+
+             $.ajax({
+                url: 'fonctions/fonction_administration.php',
+                type: 'POST',
+                data: {id_paiement_rembouser: id_paiement_rembouser},        
+                               
+                    success: function(data){ 
+                        document.location.reload(true);  
+                    }
+            });  
+        });
     });
 });
 

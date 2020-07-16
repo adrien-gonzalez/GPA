@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<?php require("../fonctions/config.php");?>
+<?php 
+	require("../fonctions/config.php");
+	require "../stripe-php/init.php";
+?>
 <html>
 	<head>
 		<title>Global Prestations Annexes</title>
@@ -106,6 +109,7 @@
 					    		<a href="index.php?panel=liste_utilisateurs"><li id="liste_utilisateurs" class="list-group-item">Liste des utilisateurs</li></a>
 					    		<a href="index.php?panel=parametres"><li id="parametres" class="list-group-item">Paramètres</li></a>
 					    		<a href="index.php?panel=mes_produits"><li id="mes_produits" class="list-group-item">Mes services</li></a>
+					    		<a href="index.php?panel=liste_paiements"><li id="liste_paiements" class="list-group-item">Paiements effectués</li></a>
 					 	</ul>
 					</div>
 					<div class="pannel_result">
@@ -298,13 +302,13 @@
 										    <td><?php echo $resultat_req_produit['description']; ?></td>
 										    <td><?php echo $resultat_req_produit['prix']." €"; ?></td>
 										    <td>
-										    	<svg id="<?php echo $resultat_req_produit['id']?>"  width="1em" height="1em" viewBox="0 0 16 16" data-toggle="modal" data-target="#update_produit" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+										    	<svg id="<?php echo $resultat_req_produit['id']?>"  width="1em" height="1em" viewBox="0 0 16 16" data-toggle="modal" data-target="#update_produit" class="bi bi-pencil affiche_produit" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 													<path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
 													<path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"/>
 												</svg>
 											 </td>
 											 <td>
-											 	<svg id="<?php echo $resultat_req_produit['id_produit']?>" width="1.2em" height="1.2em" viewBox="0 0 16 16" data-toggle="modal" data-target="#delete_produit" class="bi bi-x" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+											 	<svg id="<?php echo $resultat_req_produit['id_produit']?>" width="1.2em" height="1.2em" viewBox="0 0 16 16" data-toggle="modal" data-target="#delete_produit" class="bi bi-x delete_produit" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 													<path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>
 											  		<path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"/>
 												</svg>
@@ -363,15 +367,103 @@
 								</div>	
 				        	<?php
 				        	}
+				        	else if($_GET['panel'] == "liste_paiements")
+				        	{
+				        		$stripe = new \Stripe\StripeClient(
+								  'sk_test_51H2BsNKouFi2buoUWmyNEiPXAfPA7hNDpZH6vbsPJ8cWRnWESRXEZCR8p1qSUS1RdEKq35YnFy68eZ4fygBYmSUf00kTzuIVfe'
+								);
+								$paiement = $stripe->charges->all(['limit' => 50]);
+				        	?>
+				        	<div class="table_produits w-75 tab_paiement shadow">
+								<table class="table w-100 table_produit">
+									  <thead>
+									    <tr>
+									      <!-- <th scope="col">Nom service</th> -->
+									      <th scope="col">Prix</th>
+									      <th scope="col">Status</th>
+									      <th scope="col">Nom </th>
+									      <th scope="col">Date </th>
+									      <th scope="col"></th>
+									      <th scope="col"></th>								    							    
+									    </tr>
+									  </thead>
+									  <tbody>
+								<?php
+
+								if(sizeof($paiement) > 0)
+								{
+									for($i=0; $i < sizeof($paiement); $i++)
+									{								
+									?>
+										<tr>
+										    <td><?php  echo $paiement["data"][$i]["amount"]/100 ?> €</td>
+										    <?php 
+										    	if($paiement["data"][$i]['status'] == "succeeded" && $paiement["data"][$i]["refunded"] != true)
+										    	{
+										    	?>
+										    	<td>
+											    	<svg data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?" width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-check" fill="green" xmlns="http://www.w3.org/2000/svg">
+														<path fill-rule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"/>
+													</svg>
+												</td>
+										    	<?php
+										    	}
+										    	else if($paiement["data"][$i]['status'] != "succeeded" && $paiement["data"][$i]["refunded"] != true)
+										    	{
+										    	?>
+										    	<td>
+											    	<svg  width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-x" fill="red" xmlns="http://www.w3.org/2000/svg">
+														<path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>
+												  		<path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"/>
+													</svg>
+												</td>
+										    	<?php
+										    	}
+										    	else if($paiement["data"][$i]["refunded"] == true)
+										    	{
+										    	?>
+										    	<td>
+											    	<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-90deg-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+														<path fill-rule="evenodd" d="M6.104 2.396a.5.5 0 0 1 0 .708L3.457 5.75l2.647 2.646a.5.5 0 1 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
+														<path fill-rule="evenodd" d="M2.75 5.75a.5.5 0 0 1 .5-.5h6.5a2.5 2.5 0 0 1 2.5 2.5v5.5a.5.5 0 0 1-1 0v-5.5a1.5 1.5 0 0 0-1.5-1.5h-6.5a.5.5 0 0 1-.5-.5z"/>
+													</svg>
+												</td>
+										    	<?php
+										    	}
+
+										    ?>
+										    <td><?php  echo $paiement["data"][$i]['billing_details']["name"] ?></td>
+										    <?php
+										    	date_default_timezone_set('Europe/Paris');
+										    ?>
+										    <td><?php  echo date('d/m/Y H:i', $paiement["data"][$i]["created"]);  ?></td>
+										    <td>
+										    	<svg id="<?php echo $paiement["data"][$i]["id"]?>" data-toggle="modal" data-target="#remboursement" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-reply-fill rembourser" fill="black" xmlns="http://www.w3.org/2000/svg">
+													<path d="M9.079 11.9l4.568-3.281a.719.719 0 0 0 0-1.238L9.079 4.1A.716.716 0 0 0 8 4.719V6c-1.5 0-6 0-7 8 2.5-4.5 7-4 7-4v1.281c0 .56.606.898 1.079.62z"/>
+												</svg>
+										    </td>										   
+										    <td>
+										    	<svg id="<?php echo $paiement["data"][$i]["id"]?>" width="1em" data-toggle="modal" data-target="#info_paiement" height="1em" viewBox="0 0 16 16" class="bi bi-card-text info_paiement" fill="black" xmlns="http://www.w3.org/2000/svg">
+													<path fill-rule="evenodd" d="M14.5 3h-13a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
+											  		<path fill-rule="evenodd" d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>
+												</svg>
+											</td>
+										</tr>
+									<?php
+									}
+								}
+								?>
+								 </tbody>
+									</table>
+								</div>	
+				        	<?php
+				        	}
 				        	?> <input id="panel" type="hidden" value="<?php echo $panel_list;?>"> <?php
 				 		}
+				 	}
 				 	?>
 				 	</div>
 				</section>
-
-				<?php
-				}
-			?>
 		</div>
 
 		<!-- Modal Validation d'annonce-->
@@ -497,6 +589,54 @@
 		  	</div>
 		</div>
 		<!-- Modal delete produit -->
+
+		<!-- Modal info paiement -->
+		<div class="modal fade" id="info_paiement" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+		    	<div class="modal-content">
+		      		<div class="modal-header">
+		        		<h5 class="modal-title" id="exampleModalLongTitle">Information Paiement</h5>
+		        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          			<span aria-hidden="true">&times;</span>
+		        		</button>
+		      		</div>
+		      		<div class="modal-body">
+		      			<p class="h6 text-muted" id="moyen_paiement"></p>
+				    	<p class="h6 text-muted" id="origine"></p>
+				    	<p class="h6 text-muted" id="dernier_chiffre"><p>
+		      		<hr>
+		      			<p class="h6">Description :</p>
+		      			<p class="h6 text-muted" id="description_paiement"></p>
+		      		</div>
+		      	<div class="modal-footer">
+		        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+		      	</div>
+		    	</div>
+		  	</div>
+		</div>
+		<!-- Modal info paiement -->
+
+		<!-- Modal remboursement paiement -->
+		<div class="modal fade" id="remboursement" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+		    	<div class="modal-content">
+		      		<div class="modal-header">
+		        		<h5 class="modal-title" id="exampleModalLongTitle">Information Paiement</h5>
+		        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          			<span aria-hidden="true">&times;</span>
+		        		</button>
+		      		</div>
+		      		<div class="modal-body">
+		      			<p>Voulez-vous rembourser le paiement ?</p>
+		      		</div>
+		      	<div class="modal-footer">
+		        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+		        	<button id="rembourser" type="button" class="btn btn-primary" data-dismiss="modal">Oui</button>
+		      	</div>
+		    	</div>
+		  	</div>
+		</div>
+		<!-- Modal remboursement paiement -->
 		
 		<div id="footer">
             <?php include('sources/footer_admin.php');?>

@@ -5,7 +5,7 @@
 ?>
 
 <script>
-    if(sessionStorage.getItem("option") == null)
+    if(localStorage.getItem("option") == null)
     {
         document.location.href="../"
     }
@@ -54,15 +54,15 @@
                                     ?>
                                         <div class="card" style="width: 18rem;">
                                             <div class="card-body">
-                                                <h5 class="card-title"><?php echo $resultat_select_produit['nom']?></h5>
-                                                <p class="card-text">Voulez-vous utilisez ce service pour <?php echo $resultat_select_produit['prix']." € ?" ?></p>
+                                                <h5 class="card-title"><?php echo $resultat_select_produit['nom'] ?></h5>
+                                                <p class="card-text"><?php echo $resultat_select_produit['description'] ?></p>
                                                 <input id="id_product" type="hidden" value="<?php echo  $resultat_select_produit['id_produit'] ?>">
                                                     <form action="" method="post">
                                                         <input name="name" type="hidden" value="<?php echo $resultat_select_produit['nom']?>">
                                                         <input name="description" type="hidden" value="<?php echo $resultat_select_produit['description']?>">
                                                         <input name="prix" type="hidden" value="<?php echo $resultat_select_produit['prix']?>">
                                                     </form>
-                                                    <form action="paiement.php" method="POST">
+                                                    <form class="achat" action="paiement.php" method="POST">
                                                         <input type="hidden" name="prix" value="<?php echo $resultat_select_produit['prix'] ?>">
                                                         <input type="hidden" name="description" value="<?php echo $resultat_select_produit['description']?>">
                                                         <input type="hidden" name="id" value="<?php echo $resultat_select_produit['id']?>">
@@ -74,7 +74,7 @@
                                                             data-description="<?php echo $resultat_select_produit['description'] ?>"
                                                             data-locale="auto"
                                                             data-currency="eur"
-                                                            data-label="Acheter">
+                                                            data-label="Acheter <?php echo $resultat_select_produit['prix']." €"?>">
                                                         </script>
                                                     </form>
                                                 </div>

@@ -159,10 +159,9 @@ function ajout_annonce(){
 								localStorage.setItem('annonce', JSON.stringify(annonce_donnees));	
 							}
 					});
-				}
-				
-				sessionStorage.setItem("option","ok")
-				document.location.href="option.php" 
+					localStorage.setItem("option","ok")
+					document.location.href="option.php"
+				} 
 			}
 			else
 			{

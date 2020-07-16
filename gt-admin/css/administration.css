@@ -13,7 +13,7 @@
 .list_panel{
 
 	width: 18rem;
-	height: 192px;
+	height: 240px;
 }
 
 .list-group-item.active{
@@ -259,4 +259,22 @@ section{
 .form_service form{
 
 	width: 100%;
+}
+
+.tab_paiement{
+
+	max-height: 600px;
+	overflow-y: scroll;
+	background-color: white;
+}
+
+.rembourser, .info_paiement{
+
+	transition: 0.2s;
+}
+
+.rembourser:hover, .info_paiement:hover{
+
+	transform: scale(1.5);
+
 }

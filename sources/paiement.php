@@ -6,11 +6,14 @@ require "../stripe-php/init.php";
 ?>
 
 <script>
-    if(sessionStorage.getItem("option") == null)
+    if(localStorage.getItem("option") == null)
     {
         document.location.href="../"
     }
-    	sessionStorage.setItem("paiement", "ok")
+    else
+    {
+    	localStorage.removeItem('option');
+    }
 </script>
 
 <?php
@@ -43,7 +46,7 @@ $charge = \Stripe\Charge::create(array(
 		<meta name="viewport" content="width=device-width, initial-scale=0.7">
 		<!-- MON SCRIPT -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        <script type="text/javascript" src="../js/annonce/option.js"></script>
+        <script type="text/javascript" src="../js/annonce/paiement.js"></script>
 		<!-- CSS -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 		<link href="../css/style.css" rel="stylesheet">
