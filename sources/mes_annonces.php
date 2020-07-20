@@ -34,7 +34,7 @@
 					header('Location: ../');
 				}
 				//DELETE ANNONCE > 60 JOURS
-				$delete_annonce = "DELETE from annonce where DATEDIFF(date_annonce, CURDATE()) > 60";
+				$delete_annonce = "DELETE from annonce where DATEDIFF(date_validite, CURDATE()) > 60";
 	            mysqli_query($base, $delete_annonce);
 			?>
 		</div>

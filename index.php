@@ -32,7 +32,7 @@
 			$date=$now->format('Y-m-d');
 
 			//DELETE ANNONCE > 60 JOURS
-			$delete_annonce = "DELETE from annonce where DATEDIFF('$date' ,date_annonce) > 60";
+			$delete_annonce = "DELETE from annonce where DATEDIFF('$date' , date_validite) > 60";
             mysqli_query($base, $delete_annonce);
 
             // AVANTAGE BOOST ANNONCE (7, 30 ou 60 jours)

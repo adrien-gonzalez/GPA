@@ -1,0 +1,3 @@
+ErrorDocument 403 http://localhost/GPA/index.php
+ORDER allow,deny
+DENY from all

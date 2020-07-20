@@ -35,7 +35,12 @@
 <main class="ie-stickyFooter">
 	<div id="page">
 		<div id="header_content">
-			<?php include('header.php');?>
+			<?php include('header.php');
+                if(isset($_SESSION['login']))
+                {
+                    header('Location: ../');
+                }
+            ?>
 		</div>
 		<div id="content">
 			<div class="limiter m-t-100">
@@ -86,7 +91,6 @@
 											<input name="input" id="fileToUpload" accept="image/*" type="file">
 										</div>
 									</div>
-
 									</div>
 									<div class="naissance_input">	
 										<label>Date de naissance :</label>

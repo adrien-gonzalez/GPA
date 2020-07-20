@@ -6,7 +6,7 @@ $uploadOk = 1;
 $valid_extensions = array("jpg","jpeg","png");
 $imageFileType = pathinfo($_FILES['file']['name'],PATHINFO_EXTENSION);
 
-if( !in_array(strtolower($imageFileType),$valid_extensions) ) {
+if(!in_array(strtolower($imageFileType),$valid_extensions) ) {
    
    echo "wrong_format";
 }
@@ -28,6 +28,6 @@ $result_req_id=mysqli_fetch_array($execute_req_id);
 $id = $result_req_id['id'];
 
 // INSERT PHOTO DE PROFIL
-$insert_image = "UPDATE utilisateurs SET profil = '$location' WHERE id = '$id'";
+$insert_image = "UPDATE utilisateurs SET profil = '$filename' WHERE id = '$id'";
 mysqli_query($base, $insert_image);
 ?>

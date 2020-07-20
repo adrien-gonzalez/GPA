@@ -1299,3 +1299,162 @@ html, body{
 
   margin-top: 30px;
 }
+
+.list_panel {
+    width: 18rem;
+    height: 240px;
+}
+
+.parametre section{
+
+  padding: 30px;
+  margin-top: 100px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.parametre .card a{
+
+  text-decoration: none !important;
+  color: black;
+}
+
+.card{
+
+  border: none; 
+}
+
+.list-group-item.active {
+    background-color: #17A681;
+    border: none;
+    transition: 0.2s;
+}
+
+.pannel_result{
+
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.pannel_result .card{
+
+  margin-top: 10px;
+}
+
+@media screen and (max-width: 900px) {
+  .parametre section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pannel_result{
+
+    margin-top: 150px;
+  }
+}
+
+.parametre_form{
+
+  margin-top: -100px;
+}
+
+.parametre_form form{
+
+  width: 100%;
+  height: 100%;
+}
+
+.parametre .alert-success{
+
+  min-width: 350px;
+}
+
+.form1, .form2, .form2-1, .form_admin{
+  
+  animation: fadein 2s;
+    -moz-animation: fadein 2s; /* Firefox */
+    -webkit-animation: fadein 2s; /* Safari et Chrome */
+    -o-animation: fadein 2s; /* Opera */
+}
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-moz-keyframes fadein { /* sur Firefox */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-webkit-keyframes fadein { /* sur Safari et Chrome */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-o-keyframes fadein { /* sur Opera */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.div_delete{
+
+  min-width: 300px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.parametre .profil_user_image img{
+
+  width: 150px;
+  border-radius: 50%;
+  transition: 0.2s;
+  height: 150px;
+  width: 150px;
+}
+
+.image-upload path{
+
+  transition: 0.2s;
+  color: black;
+}
+
+.image-upload path:hover{
+
+  color: grey;
+}
+
+.parametre .profil_user_image{
+
+  border: 1px solid #e6e6e6;
+  background-color: white;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+.button_valid{
+
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}

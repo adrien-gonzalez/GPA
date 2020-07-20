@@ -11,8 +11,8 @@ $( document ).ready(function() {
 
         if($("textarea").val() != "")
         {
-           id_utilisateur_prive = $(".profil_user").attr("id")
-           message = $("textarea").val()
+          id_utilisateur_prive = $(".profil_user").attr("id")
+          message = $("textarea").val()
 
            $.ajax({
             url: '../fonctions/fonction_messages.php',

@@ -22,9 +22,9 @@ $id_user = $result_req_id_user['id'];
 // INSERT ANNONCE
 date_default_timezone_set('Europe/Paris');
 $now = new DateTime();
-$date_annonce=$now->format('Y-m-d'); 
+$date=$now->format('Y-m-d'); 
 
-$insert_annonce = "INSERT INTO annonce VALUES (NULL, '$id_user', '$type', '$region', '$descriptif', '$tel', '$prix', '$file_name', '$disponibilite', '$statut', '0','$date_annonce')";
+$insert_annonce = "INSERT INTO annonce VALUES (NULL, '$id_user', '$type', '$region', '$descriptif', '$tel', '$prix', '$file_name', '$disponibilite', '$statut', '0','$date', '$date')";
 mysqli_query($base, $insert_annonce);
 
 if(isset($_POST['id_avantage']))
