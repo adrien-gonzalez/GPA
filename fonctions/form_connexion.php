@@ -26,7 +26,7 @@ mysqli_query($base, $deban);
                         </div>
                         <div class="text-center m-t-40 ">
                             <p>Besoin d'un compte ? <a class="txt3" href="inscription.php">Inscrivez-vous</a></p>
-                            <p>Mot de passe oublié ? <a href="" class="txt3">Cliquez ici</a></p>
+                            <p>Mot de passe oublié ? <a href="reset_password.php" class="txt3">Cliquez ici</a></p>
                         </div>
                     </form>
                 <div id="background_log" class="login100-more"></div>

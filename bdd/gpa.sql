@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mar. 14 juil. 2020 à 16:00
--- Version du serveur :  10.4.10-MariaDB
--- Version de PHP :  7.3.12
+-- Généré le :  lun. 20 juil. 2020 à 11:45
+-- Version du serveur :  5.7.26
+-- Version de PHP :  7.2.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -63,20 +63,21 @@ CREATE TABLE IF NOT EXISTS `annonce` (
   `document` varchar(255) DEFAULT NULL,
   `disponibilite` varchar(30) NOT NULL,
   `statut` varchar(10) NOT NULL,
-  `verif` int(11) NOT NULL DEFAULT 0,
+  `verif` int(11) NOT NULL DEFAULT '0',
   `date_annonce` date DEFAULT NULL,
+  `date_validite` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=58 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=68 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `annonce`
 --
 
-INSERT DELAYED INTO `annonce` (`id`, `id_utilisateur`, `type_attestation`, `region`, `descriptif`, `tel`, `prix`, `document`, `disponibilite`, `statut`, `verif`, `date_annonce`) VALUES
-(24, 20, 'Marchandises - 3.5T', 'Auvergne-Rhône-Alpes', 'TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest', '0678956365', 100, 'ae9d10f5617c3480a37b07629d2a2f114cc1bb48.pdf', 'Disponible', 'Salarié', 1, '2020-07-01'),
-(23, 1, 'Commissionnaire', 'Provence-Alpes-Côte d\'Azur', 'Bonjour, je suis Adrien, j\'ai 20 ans et je propose mes services en tant que commissionnaire, pour plus d\'informations, contactez-moi.\n', '0678343361', 50, '8f8dd749f51e721c376bbeee7376947b5fa4963f.pdf', 'Sous 3 mois', 'Associé', 1, '2020-06-24'),
-(35, 1, 'Voyageurs', 'Auvergne-Rhône-Alpes', 'Bonjour, je propose mes services de transports de voyageurs, je suis donc disponible pour toutes question concernant mes parcours / expériences, contactez moi.', '0678343361', 100, '2a583c14ba53ded99f7f1aeffd040297534a9a2e.pdf', 'Disponible', 'Externe', 0, '2020-07-01'),
-(36, 1, 'Marchandises + 3.5T', 'Provence-Alpes-Côte d\'Azur', 'Bonjour, j\'offre mes services en tant que transports de marchandises de plus de 3.5 Tonnes, je travail dans le transports de marchandises depuis 2 ans et demi et j\'ai toujours eu de bon retour.', '0678343361', 250, 'df155d7172ba70442ddeec75e50c0dc149c62d33.pdf', 'Disponible', 'Salarié', 1, '2020-07-01');
+INSERT DELAYED INTO `annonce` (`id`, `id_utilisateur`, `type_attestation`, `region`, `descriptif`, `tel`, `prix`, `document`, `disponibilite`, `statut`, `verif`, `date_annonce`, `date_validite`) VALUES
+(24, 20, 'Marchandises - 3.5T', 'Auvergne-Rhône-Alpes', 'TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest', '0678956365', 100, 'ae9d10f5617c3480a37b07629d2a2f114cc1bb48.pdf', 'Disponible', 'Salarié', 1, '2020-07-01', '2020-07-08'),
+(23, 1, 'Commissionnaire', 'Provence-Alpes-Côte d\'Azur', 'Bonjour, je suis Adrien, j\'ai 20 ans et je propose mes services en tant que commissionnaire, pour plus d\'informations, contactez-moi.\n', '0678343361', 50, '8f8dd749f51e721c376bbeee7376947b5fa4963f.pdf', 'Sous 3 mois', 'Associé', 1, '2020-07-20', '2020-07-08'),
+(35, 1, 'Voyageurs', 'Auvergne-Rhône-Alpes', 'Bonjour, je propose mes services de transports de voyageurs, je suis donc disponible pour toutes question concernant mes parcours / expériences, contactez moi.', '0678343361', 100, '2a583c14ba53ded99f7f1aeffd040297534a9a2e.pdf', 'Disponible', 'Externe', 0, '2020-07-20', '2020-07-15'),
+(36, 1, 'Marchandises + 3.5T', 'Provence-Alpes-Côte d\'Azur', 'Bonjour, j\'offre mes services en tant que transports de marchandises de plus de 3.5 Tonnes, je travail dans le transports de marchandises depuis 2 ans et demi et j\'ai toujours eu de bon retour.', '0678343361', 250, 'df155d7172ba70442ddeec75e50c0dc149c62d33.pdf', 'Disponible', 'Salarié', 1, '2020-07-01', '2020-07-15');
 
 -- --------------------------------------------------------
 
@@ -91,14 +92,15 @@ CREATE TABLE IF NOT EXISTS `avantage` (
   `id_service` int(11) NOT NULL,
   `date_avantage` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `avantage`
 --
 
 INSERT DELAYED INTO `avantage` (`id`, `id_annonce`, `id_service`, `date_avantage`) VALUES
-(1, 23, 4, '2020-07-14');
+(1, 23, 4, '2020-07-14'),
+(10, 35, 5, '2020-07-10');
 
 -- --------------------------------------------------------
 
@@ -126,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `favoris` (
   `id_annonce` int(11) NOT NULL,
   `id_utilisateur` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=116 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=117 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `favoris`
@@ -149,7 +151,7 @@ CREATE TABLE IF NOT EXISTS `message` (
   `message` varchar(255) NOT NULL,
   `date_message` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=89 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=90 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `message`
@@ -161,6 +163,20 @@ INSERT DELAYED INTO `message` (`id`, `id_utilisateur`, `id_utilisateur_prive`, `
 (54, 20, 1, 'ça va ?', '2020-06-04 16:00:00'),
 (80, 1, 20, 'cc', '2020-06-15 16:07:23'),
 (48, 20, 1, 'Salut', '2020-06-04 15:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `recuperation`
+--
+
+DROP TABLE IF EXISTS `recuperation`;
+CREATE TABLE IF NOT EXISTS `recuperation` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `mail` varchar(255) NOT NULL,
+  `code` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -178,7 +194,7 @@ CREATE TABLE IF NOT EXISTS `services` (
   `categorie` varchar(255) NOT NULL,
   `duree` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `services`
@@ -186,7 +202,8 @@ CREATE TABLE IF NOT EXISTS `services` (
 
 INSERT DELAYED INTO `services` (`id`, `id_produit`, `nom`, `description`, `prix`, `categorie`, `duree`) VALUES
 (4, 'prod_Hddvz5OFD0MWZ8', 'Mise en avant (7 jours)', 'Met en tête de liste votre annonce pendant 7 jours\n', 5, 'Annonce', 7),
-(5, 'prod_He4aq7bmW5AQhS', 'Mise en avant (30 jours)', 'Met en tête de liste votre annonce pendant 30 jours.', 10, 'Annonce', 30);
+(5, 'prod_He4aq7bmW5AQhS', 'Mise en avant (30 jours)', 'Met en tête de liste votre annonce pendant 30 jours.', 10, 'Annonce', 30),
+(6, 'prod_HeOl743151EB7A', 'Mise en avant (60 jours)', 'Met en tête de liste votre annonce pendant 60 jours.', 15, 'Annonce', 60);
 
 -- --------------------------------------------------------
 
@@ -215,8 +232,8 @@ CREATE TABLE IF NOT EXISTS `utilisateurs` (
 --
 
 INSERT DELAYED INTO `utilisateurs` (`id`, `genre`, `nom`, `prenom`, `adresse`, `email`, `naissance`, `login`, `password`, `profil`, `date`) VALUES
-(1, 'Homme', 'Gonzalez', 'Adrien', '430 Avenue de Lattre de Tassigny', 'adrien.gonzalez@laplateforme.io', '1999-06-02', 'Firefou', '$2y$12$NwQdt4coiy2LwTyb1ygUj.IYA/BfxVmqpDbk9Sboz7qxzJ3zBb.f6', 'profil_defaut.png', '2020-06-02'),
-(21, 'Homme', 'Dupont', 'Monsieur', '430 Avenue de Lattre de Tassigny', 'adrien1362@live.fr', '2002-05-02', 'Dupont', '$2y$12$h16.bpWoWCkkgn1UU.Sd4eAO9xNN5so2ihRDyYYp7ZG8slJwtKIMK', 'profil_defaut.png', '2020-06-14'),
+(1, 'Homme', 'Gonzalez', 'Adrien', '430 Avenue de Lattre de Tassigny', 'adrien.gonzalez@laplateforme.io', '1999-06-02', 'Firefou', '$2y$12$AchVp6D.C6xvSroao5ZKLuf.60r/zEJj6no3c3U0uH8vJlRJo4FNq', '6aaa11ea3cfc1c1e2fe4bc2a74c1db2eed571299', '2020-06-02'),
+(21, 'Homme', 'Dupont', 'Monsieur', '430 Avenue de Lattre de Tassigny', 'adrien1362@live.fr', '2002-05-02', 'Dupont', '$2y$12$h16.bpWoWCkkgn1UU.Sd4eAO9xNN5so2ihRDyYYp7ZG8slJwtKIMK', 'fc1d161de04fa316db16700279a63cfb027b4174', '2020-06-14'),
 (20, 'Homme', 'Gonzalez', 'Alexandre', '430 Avenue de Lattre de Tassigny', 'adrien1361@gmail.com', '2002-05-02', 'Walken99', '$2y$12$41am7/4vx6vyO9eikvYuce.04K4AReQRShmNrwrIuNcjJiFvYHh7e', 'f9625301b5151cef4bc5c259cb19565243f9644a.jpg', '2020-06-05');
 COMMIT;
 
