@@ -29,8 +29,19 @@ else if(isset($_POST['email']) && isset($_POST['password']))
 
 	if(password_verify($password, $resultat_req_user['password']))
 	{
-		$update_user = "UPDATE utilisateurs set email = '$email' WHERE login ='$login'";
-		mysqli_query($base, $update_user);
+		$email_exist = "SELECT email FROM utilisateurs WHERE email = '$email'";
+		$execute_email_exist = mysqli_query($base, $email_exist);
+		$resultat_email_exist = mysqli_num_rows($execute_email_exist);
+
+		if($resultat_email_exist == 0)
+		{
+			$update_user = "UPDATE utilisateurs set email = '$email' WHERE login ='$login'";
+			mysqli_query($base, $update_user);
+		}
+		else
+		{
+			echo "email already use";
+		}	
 	}
 	else
 	{
@@ -42,19 +53,27 @@ else if(isset($_POST['password_update']))
 	$password_update = $_POST['password_update'];
 	$password2 = $_POST['password2'];
 
-	$req_user = "SELECT password FROM utilisateurs WHERE login ='$login'";
-	$execute_req_user = mysqli_query($base, $req_user);
-	$resultat_req_user = mysqli_fetch_array($execute_req_user);
-
-	if(password_verify($password2, $resultat_req_user['password']))
+	if(strlen($password_update) < 8 )
 	{
-		$new_password = password_hash($password_update, PASSWORD_BCRYPT, ["cost" => 12]);
-		$update_user = "UPDATE utilisateurs set password = '$new_password' WHERE login ='$login'";
-		mysqli_query($base, $update_user);
+		echo "password to short";
 	}
 	else
 	{
-		echo "wrong_pass";
+
+		$req_user = "SELECT password FROM utilisateurs WHERE login ='$login'";
+		$execute_req_user = mysqli_query($base, $req_user);
+		$resultat_req_user = mysqli_fetch_array($execute_req_user);
+
+		if(password_verify($password2, $resultat_req_user['password']))
+		{
+			$new_password = password_hash($password_update, PASSWORD_BCRYPT, ["cost" => 12]);
+			$update_user = "UPDATE utilisateurs set password = '$new_password' WHERE login ='$login'";
+			mysqli_query($base, $update_user);
+		}
+		else
+		{
+			echo "wrong_pass";
+		}
 	}
 }
 else if(isset($_POST['delete_account']))

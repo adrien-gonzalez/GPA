@@ -87,18 +87,25 @@ $(document).ready(function (){
 			     	
 				    success:function(data)
 					{
-						if(data != "wrong_pass")
-						{
-							$(".form2").remove()
-	                    	$(".limiter").append('<div class="confirm_message w-100 d-flex justify-content-center parametre_form"></div>')
-	                    	$(".confirm_message").append("<div class='alert alert-success w-50' role='alert'>L'adresse a bien été modifiée !</div>")
-						}
-						else
+						if(data === "wrong_pass")
 						{
 							$('#password1').css({"border":"1px solid #C0392B"})
 							$('#password1').val("")
 							$('#password1').attr("placeholder","*Mauvais mot de passe")
-			            	$('#password1').addClass("erreur_form")
+			            	$('#password1').addClass("erreur_form")		
+						}
+						if(data === "email already use")
+						{
+							$('#email_update').css({"border":"1px solid #C0392B"})
+							$('#email_update').val("")
+							$('#email_update').attr("placeholder","*Email déjà utilisé")
+			            	$('#email_update').addClass("erreur_form")	
+						}
+						if(data === "")
+						{
+							$(".form2").remove()
+	                    	$(".limiter").append('<div class="confirm_message w-100 d-flex justify-content-center parametre_form"></div>')
+	                    	$(".confirm_message").append("<div class='alert alert-success w-50' role='alert'>L'adresse a bien été modifiée !</div>")
 						}
 					}
 				});
@@ -157,19 +164,26 @@ $(document).ready(function (){
 		       	data: {password_update: password_update, password2: password2},
 			     	
 			    success:function(data)
+				{
+					if(data === "password to short")
 					{
-					if(data != "wrong_pass")
-					{
-						$(".form3").remove()
-	                   	$(".limiter").append('<div class="confirm_message w-100 d-flex justify-content-center parametre_form"></div>')
-	                   	$(".confirm_message").append("<div class='alert alert-success w-50' role='alert'>Le mot de passe a bien été modifié !</div>")
+						$('#password2').css({"border":"1px solid #C0392B"})
+						$('#password2').val("")
+						$('#password2').attr("placeholder","*Mot de passe trop court")
+			           	$('#password2').addClass("erreur_form")
 					}
-					else
+					if(data === "wrong_pass")
 					{
 						$('#password2').css({"border":"1px solid #C0392B"})
 						$('#password2').val("")
 						$('#password2').attr("placeholder","*Mauvais mot de passe")
 			           	$('#password2').addClass("erreur_form")
+					}
+					if(data === "")
+					{
+						$(".form3").remove()
+	                   	$(".limiter").append('<div class="confirm_message w-100 d-flex justify-content-center parametre_form"></div>')
+	                   	$(".confirm_message").append("<div class='alert alert-success w-50' role='alert'>Le mot de passe a bien été modifié !</div>")
 					}
 				}
 			});
