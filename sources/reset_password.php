@@ -82,7 +82,6 @@
                                            <td>
                                              <div align="center">Bonjour <b>'.$login.'</b>,</div>
                                              Voici votre code de récupération: <b>'.$recup_code.'</b><br>
-                                             Ce code est valide 10 minutes !
                                            </td>
                                          </tr>
                                          <tr>
@@ -101,19 +100,18 @@
                                 mail($email, "Récupération de mot de passe - Votresite", $message, $header);
                                
                             } else {
-                                $error_email = "Cette adresse mail n'est pas enregistrée";
+                                $error_email = "Cette adresse email n'est pas enregistrée";
                             }
                         } else {
-                            $error_email = "Adresse mail invalide";
+                            $error_email = "Veuillez entrer votre adresse email";
                         }
-                    } else {
-                        $error_email = "Veuillez entrer votre adresse mail";
-                    }
-
+                    } 
                     if(isset($_POST['send_code'])) 
                     {
                         if(!empty($_POST['code']))
                         {
+                            // $delete_code = "DELETE from annonce where DATEDIFF('$date' , date_validite) > 60";
+
                             $code = $_POST['code'];
                             $code_exist = "SELECT id FROM recuperation WHERE code = '$code'";
                             $execute_code_exist = mysqli_query($base, $code_exist);
@@ -226,9 +224,9 @@
                                 <input name="email" required type="email">
                                 <input class="button_design" name="send_email" required type="submit" value="Envoyer">
                             </form>
-                            <?php if(isset($error_mail))
+                            <?php if(isset($error_email))
                             {
-                                ?><p class="error"><?php echo $error_mail ?></p><?php
+                                ?><p class="error"><?php echo $error_email ?></p><?php
 
                             }?>
                         </div>

@@ -98,3 +98,8 @@ else if(isset($_POST['delete_account']))
 	mysqli_query($base, $req_delete);
 }
 ?>
+
+if(!empty($results))
+{
+	
+}

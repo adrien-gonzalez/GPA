@@ -16,7 +16,7 @@ $( document ).ready(function() {
 	
 		data = {type: type, region: region, descriptif: descriptif, tel: tel, prix: prix, disponibilite: disponibilite, statut: statut, file_name: file_name} 
 		add_annonce()
-		// document.location.reload(true);
+		document.location.reload(true);
 	});
 
 });

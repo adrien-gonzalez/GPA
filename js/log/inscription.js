@@ -96,7 +96,7 @@ function inscription(){
 		$(".wrap-input100").css({"border": "solid 1px #E6E6E6"})
 		$(".genre").css({"color" : "black"})
 		if($("#nom").val() != "" && $("#prenom").val() != "" && $("#adresse").val() != "" && 
-		   $("#email").val() != "" && $("#naissance").val() != "" && $("#login").val() != "" && 
+		   checkEmail($("#email").val()) == true && $("#naissance").val() != "" && $("#login").val() != "" && 
 		   $("#password1").val() != "" && $("#password2").val() != "" && 
 		   $('#homme').is(':checked') || $('#femme').is(':checked') )
 		{
@@ -224,9 +224,11 @@ function inscription(){
 			{
 				$('.adresse').css({"border":"1px solid #C0392B"})
 			}
-			if($("#email").val() === "")
+			if(checkEmail($("#email").val()) === false)
 			{
 				$('.email').css({"border":"1px solid #C0392B"})
+				$('#email').val("")
+				$('#email').attr("placeholder","*Mauvais format d'email")
 			}
 			if($("#naissance").val() === "")
 			{
@@ -245,4 +247,21 @@ function inscription(){
 				$('.password2').css({"border":"1px solid #C0392B"})
 			}
 		}
+}
+
+function checkEmail(email) {
+             var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+             return re.test(email);
+}
+
+function validate(email) {
+         
+    if (checkEmail(email)) {
+        alert('Adresse e-mail valide');
+    }
+    else
+    {
+        alert('Adresse e-mail non valide');
+    }
+        return false;
 }
