@@ -1458,3 +1458,27 @@ html, body{
   display: flex;
   justify-content: space-evenly;
 }
+
+.send_email{
+
+  background-color: #17A681;
+  border: none;
+  transition: 0.2s;
+  color: white;
+  height: 38px;
+}
+
+.send_email:hover{
+
+  background-color: #0D836E; 
+}
+
+.bi-reply-fill path{
+
+  color: white;
+}
+
+.profil #email{
+
+  border: none;
+}

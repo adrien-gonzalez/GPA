@@ -73,15 +73,51 @@ $( document ).ready(function() {
     id_annonce = $(this).attr("id")
     window.location.href = "envoie_messages.php?annonce="+id_annonce+""; 
   });
+  
   $("body").on("mouseover", ".liste_annonces_poste", function () {
 
     id_annonce = $(this).attr('id')
     $('#type_'+id_annonce).css({"text-decoration":"underline", "color": "#17A681", "transition" : "0.2s"})
   });
-   $("body").on("mouseout", ".liste_annonces_poste", function () {
+   
+  $("body").on("mouseout", ".liste_annonces_poste", function () {
 
     id_annonce = $(this).attr('id')
     $('#type_'+id_annonce).css({"text-decoration":"none", "color": "black"})
+  });
+
+  // PARTAGER PROFIL USER VIA EMAIL
+  $("body").on("click", "#partager_email", function () {
+
+      if($("#email").val() != "")
+      {
+        email = $("#email").val()
+        url_user = $("#url_user").val()
+
+        if(checkEmail(email) === true)
+        {
+            $.ajax({
+            url: '../fonctions/fonction_share.php',
+            type: 'POST', 
+            data: {email: email, url_user: url_user},  
+
+            success: function(data){  
+              document.location.reload(true);
+            }
+          }); 
+        }
+        else
+        {
+          $('#email').css({"border":"1px solid #C0392B"})
+          $("#email").val("")
+          $('#email').attr("placeholder", "*Veuillez entrer un format correct (ex: dupont@gmail.com)")
+          $('#email').addClass("erreur_form")
+        }
+      }
+      else
+      {
+        $('#email').css({"border":"1px solid #C0392B"})
+      }
   });
 });
 
@@ -104,3 +140,19 @@ function add_favoris(){
 }
 
 
+function checkEmail(email) {
+             var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+             return re.test(email);
+}
+
+function validate(email) {
+         
+    if (checkEmail(email)) {
+        alert('Adresse e-mail valide');
+    }
+    else
+    {
+        alert('Adresse e-mail non valide');
+    }
+        return false;
+}

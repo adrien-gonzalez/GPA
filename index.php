@@ -350,6 +350,17 @@
 						}
 						?></div><?php
 					}
+					else
+					{
+					?>
+						<div class="w-100 d-flex justify-content-center">
+							<div class="d-flex flex-column align-items-center">
+								<h3>Aucun résultat !</h3>
+								<img class="mt-5" width="30%" src="img/images_site/messagerie_vide.jpg">
+							</div>
+						</div>
+					<?php
+					}
 				?>
 			</div>
 			<nav class="d-flex w-100 justify-content-center pagination"aria-label="Page navigation example">

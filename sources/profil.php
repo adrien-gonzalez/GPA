@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=0.7">
 		<!-- CSS -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-		<!-- <link rel="stylesheet" type="text/css" href="../css/formulaire/form.css"> -->
+		<link rel="stylesheet" type="text/css" href="../css/formulaire/form.css">
         <link href="../css/style.css" rel="stylesheet">
 		<!--===============================================================================================-->
 		<!-- JQUERY -->
@@ -57,7 +57,7 @@
 		            			<p><?php echo $resultat_req_user['nom']." ".$resultat_req_user['prenom'];?></p>
 	            			</div>
 	            			<div>
-				            	<button id="envoyer_message" class="button_gpa">
+				            	<button id="envoyer_message" class="button_gpa" data-toggle="modal" data-target="#exampleModal">
 				            		<svg class="bi bi-reply-fill" width="1.2em" height="1.2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 									<path d="M9.079 11.9l4.568-3.281a.719.719 0 0 0 0-1.238L9.079 4.1A.716.716 0 0 0 8 4.719V6c-1.5 0-6 0-7 8 2.5-4.5 7-4 7-4v1.281c0 .56.606.898 1.079.62z"/>
 									</svg>
@@ -95,6 +95,35 @@
             			}
             		?>
             	</div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Partager par e-mail</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form class="login100-form validate-form">
+                            <div class="email wrap-input100 rs1-wrap-input100 validate-input m-b-20 taille1" >
+                                <input id="email" class="input100" type="email" placeholder="Email">
+                                <span class="focus-input100"></span>
+                            </div> 
+                        </form> 
+                      </div>
+                      <div class="modal-footer">
+                        <input type="hidden" id="url_user" value="<?php echo $_SERVER['HTTP_HOST']."".$_SERVER['PHP_SELF']; ?>">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        <button id="partager_email" type="button" class="send_email btn">Envoyer</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Modal -->
+
             </div>
             <div id="footer">
                 <?php include('footer.php');?>
