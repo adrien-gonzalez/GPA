@@ -6,16 +6,28 @@
     <!-- Call to action -->
     <ul class="list-unstyled list-inline text-center py-2">
       <li class="list-inline-item">
-        <h5 class="mb-1">Inscrivez-vous gratuitement</h5>
+        <?php if(!isset($_SESSION['login']))
+        {
+        ?>
+          <h5 class="mb-1">Inscrivez-vous gratuitement</h5>
+        <?php
+        }
+        else
+        {
+        ?>
+          <h5 class="mb-1">Bienvenue</h5>
+        <?php
+        }
+        ?>
       </li>
       <li class="list-inline-item">
-        <?php if(ma_courante == "index.php")
+        <?php if(ma_courante == "index.php" && !isset($_SESSION['login']))
         {
         ?>
           <a href="sources/inscription.php">S'inscrire !</a>
         <?php 
         }
-        else
+        else if(ma_courante != "index.php" && !isset($_SESSION['login']))
         {
         ?>
           <a href="inscription.php">S'inscrire !</a>
