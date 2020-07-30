@@ -74,16 +74,33 @@ $(document).ready(function (){
 	$("body").on("click", ".delete", function () {
 
 		id_annonce_delete = $(this).attr("id").substr(7)
-		$.ajax({
-            url: 'fonctions/fonction_administration.php',
-            type: 'POST',
-            data: {id_annonce_delete: id_annonce_delete},        
+        email = $("#"+id_annonce_delete+"email").val()
+
+        $("body").on("click", "#envoie_note", function () {
+
+            if($("#note_annonce").val() != "")
+            {
+                note = $("#note_annonce").val()
+
+                $.ajax({
+                url: 'fonctions/fonction_administration.php',
+                type: 'POST',
+                data: {id_annonce_delete: id_annonce_delete, note: note, email: email},        
                        
-                success: function(data){ 
-                	// SUPPRIMER DOC PDF DU DOSSIER
-                    document.location.reload(true);
+                    success: function(data){ 
+                     // SUPPRIMER DOC PDF DU DOSSIER
+                        document.location.reload(true);
+                    }
+                });
             }
+            else
+            {
+                 $('#note_annonce').css({"border":"1px solid #C0392B"})  
+            }
+
+
         });
+		
 	});
     // AFFICHE INFO UTILISATEUR
     $("body").on("click", ".info_user", function () { 

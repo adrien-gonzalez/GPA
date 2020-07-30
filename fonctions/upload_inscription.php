@@ -15,7 +15,6 @@ move_uploaded_file($_FILES['file']['tmp_name'],$location);
 echo "uploadOk";
 
 
-
 // SELECT ID
 $req_id="SELECT id FROM utilisateurs ORDER BY id DESC";
 $execute_req_id=mysqli_query($base, $req_id);

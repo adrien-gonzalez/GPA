@@ -581,6 +581,18 @@ footer a:hover{
   float: left;
   width: 11%;
 }
+.chat_img{
+
+  height: 50px;
+  width: 50px;
+
+}
+
+.chat_img img{
+
+  width: 100%;
+  height: 100%;
+}
 .chat_ib {
   float: left;
   padding: 0 0 0 15px;
@@ -599,7 +611,7 @@ footer a:hover{
   cursor: pointer;
    background: #e3e3e3;
 }
-.inbox_chat { height: 550px; overflow-y: scroll;}
+.inbox_chat { height: 550px; overflow-y: scroll hidden;}
 
 .active_chat{ background:#e3e3e3;}
 
@@ -611,6 +623,11 @@ footer a:hover{
 .incoming_msg{
 
   margin: 26px 0 26px;
+}
+.incoming_msg_img img{
+
+  width: 30px;
+  height: 30px;
 }
 .received_msg {
   display: inline-block;
@@ -797,6 +814,51 @@ svg{
 }
 
 @media (max-width: 900px) {
+  .inbox_msg{
+
+    display: flex;
+    flex-direction: column;
+    border: none;
+  }
+  .inbox_chat{
+
+    display: flex;
+    height: 130px;
+  }
+  .mesgs{
+
+    width: 100%;
+
+  }
+  .inbox_people{
+
+    width: 100%;
+    overflow-x: scroll hidden;
+    margin-bottom: 30px;
+    border: none;
+  }
+  .chat_list{
+
+    border: none;
+    width: 150px;
+  }
+  .chat_people{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .chat_ib{
+    text-align: center;
+    width: 100%;
+    padding: 0px;
+    margin-top: 10px;
+  }
+  .bi-trash{
+
+    width: 1.7em;
+    height : 1.7em;
+  }
   .envoie_message .container-fluid{
     display: flex;
     flex-direction: column;
@@ -1330,7 +1392,7 @@ html, body{
     transition: 0.2s;
 }
 
-.pannel_result{
+.parametre .pannel_result{
 
   width: 100%;
   display: flex;
@@ -1338,6 +1400,13 @@ html, body{
   align-items: center;
   justify-content: space-evenly;
   flex-wrap: wrap;
+}
+.pannel_result{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap; 
 }
 
 .pannel_result .card{

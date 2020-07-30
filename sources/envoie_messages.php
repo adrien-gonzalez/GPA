@@ -50,7 +50,7 @@
 	         	?>
 	         	<article class="w-50 message_user shadow">
 		         	<div class="profil_user d-flex flex-column w-100" id="<?php echo $resultat_req_user['login']?>">
-			            <img class="rounded-circle" src="../img/profil/<?php echo $resultat_req_user['profil'];?>" width="125">
+			            <img class="rounded-circle" src="../img/profil/<?php echo $resultat_req_user['profil'];?>" width="125" height="125">
 			            <div class="nom_prenom" id="<?php echo $resultat_req_user['id'];?>">
 			            	<div><?php echo $resultat_req_user['nom'] ?>  <?php echo $resultat_req_user['prenom'] ?><br><?php echo $resultat_req_user['login']?></div>
 			            </div>

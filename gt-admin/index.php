@@ -164,7 +164,7 @@
 											  Voir détail
 											</button><br>
 									    	<button id="valid_<?php echo $resultat_req_annonce['annonce_id']?>" class="card-link validate">Valider</button>
-									    	<button id="delete_<?php echo $resultat_req_annonce['annonce_id']?>" class="card-link delete">Supprimer</button>
+									    	<button data-toggle="modal" data-target="#note" id="delete_<?php echo $resultat_req_annonce['annonce_id']?>" class="card-link delete">Supprimer</button>
 									  	</div>
 									</div>
 									<input type="hidden" id="<?php echo $resultat_req_annonce['annonce_id'] ?>email" value="<?php echo $resultat_req_annonce['email'] ?>">
@@ -495,6 +495,33 @@
 			</div>
 		</div>
 		<!-- Modal Validation d'annonce-->
+
+		<!-- Modal note annonce refusé -->
+		<div class="modal fade" id="note" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+		    	<div class="modal-content">
+		      		<div class="modal-header">
+		        		<h5 class="modal-title" id="exampleModalLongTitle">Annonce refusée</h5>
+		        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          			<span aria-hidden="true">&times;</span>
+		        		</button>
+		      		</div>
+		      		<div class="modal-body">
+		      			<form class="login100-form validate-form">
+                            <div style="height: 200px;" class="wrap-input100 rs1-wrap-input100 validate-input m-b-20 taille1">
+                                <textarea id="note_annonce" class="input100" placeholder="Note"></textarea>
+                                <span class="focus-input100"></span>
+                            </div> 
+                        </form>
+		      		</div>
+		      	<div class="modal-footer">
+		        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+		        	<button id="envoie_note" type="button" class="btn btn-primary">Envoyer</button>
+		      	</div>
+		    	</div>
+		  	</div>
+		</div>
+		<!-- Modal note annonce refusé -->
 		
 		<!-- Modal info utilisateurs-->
 		<div class="modal fade" id="list_user" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

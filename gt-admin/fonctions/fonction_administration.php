@@ -47,8 +47,8 @@ $message = '
                                        <table width="600px">
                                          <tr>
                                            <td>
-                                             <div align="center">Bonjour, votre annonce a été acceptée et postée !</div>
-                                             <a href="https://adrien-gonzalez.students-laplateforme.io/gpa">Cliquez-ici</a>
+                                             <div align="center">Bonjour, votre annonce a été acceptée et postée !</div><br>
+                                             <div align="center"><a href="https://adrien-gonzalez.students-laplateforme.io/gpa">Revenir sur le site</a></div>
                                            </td>
                                          </tr>
                                          <tr>
@@ -66,9 +66,10 @@ mail($email, $sujet ,$message, $header);
 
 
 }
-else if(isset($_POST['id_annonce_delete'])){
+else if(isset($_POST['id_annonce_delete']) && isset($_POST['note'])){
 
 	$id_annonce_delete = $_POST['id_annonce_delete'];
+	$note = $_POST['note'];
 	$req_annonce_delete = "DELETE FROM annonce WHERE id = '$id_annonce_delete'";
 	mysqli_query($base, $req_annonce_delete);
 	
@@ -90,8 +91,9 @@ $message = '
                                        <table width="600px">
                                          <tr>
                                            <td>
-                                             <div align="center">Bonjour, votre annonce a été refusée !</div>
-                                              <a href="https://adrien-gonzalez.students-laplateforme.io/gpa">Cliquez-ici</a>
+                                             <div align="center">Bonjour, votre annonce a été refusée !</div><br>
+                                             <div align="center">'.$note.'</div><br><br>
+                                              <div align="center"><a href="https://adrien-gonzalez.students-laplateforme.io/gpa">Revenir sur le site</a></div>
                                            </td>
                                          </tr>
                                          <tr>
