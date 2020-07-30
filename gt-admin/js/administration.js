@@ -58,10 +58,12 @@ $(document).ready(function (){
 	$("body").on("click", ".validate", function () {
 
 		id_annonce_validate = $(this).attr("id").substr(6)
+        email = $("#"+id_annonce_validate+"email").val()
+
 		$.ajax({
             url: 'fonctions/fonction_administration.php',
             type: 'POST',
-            data: {id_annonce_validate: id_annonce_validate},        
+            data: {id_annonce_validate: id_annonce_validate, email: email},        
                        
                 success: function(data){ 
                     document.location.reload(true);

@@ -30,7 +30,7 @@ $(document).ready(function (){
 $(function(){
 		
 		var container = $('.container2'), inputFile = $('#fileToUpload'), img, btn, txt = 'Rechercher', txtAfter = "Changer d'image";
-				
+			
 		if(!container.find('#upload').length){
 			container.find('.input').append('<input type="button" value="'+txt+'" id="upload">');
 			btn = $('#upload');
@@ -53,16 +53,15 @@ $(function(){
 			}
 			else
 			{
-
 				container.prepend("<div id='image_none'>Aucne image</div>")
 			}
-
+			image_size = document.getElementById('fileToUpload').files[0].size
 			valid_extensions = $('#fileToUpload').attr("accept");
 			if(type.substr(0, 5) == valid_extensions.substr(0, 5))
 			{
 				upload = 1
 			}
-			if(upload  == 1)
+			if(upload  == 1 && image_size < 30000)
 			{		
 				$("#label_image").css({"display" : "none"})	
 				$("#erreur_format").remove()
@@ -83,10 +82,20 @@ $(function(){
 			}
 			else
 			{
-				$("#label_image").text("Mauvais format")
-				$("#image_none").remove()
-				$("#label_image").css({"display" : "inherit"})
-				img.addClass('hidden');
+				if(upload != 1)
+				{
+					$("#label_image").text("Mauvais format")
+					$("#image_none").remove()
+					$("#label_image").css({"display" : "inherit"})
+					img.addClass('hidden');
+				}
+				else if(image_size > 30000)
+				{
+					$("#label_image").text("Image trop grosse !")
+					$("#image_none").remove()
+					$("#label_image").css({"display" : "inherit"})
+					img.addClass('hidden');
+				}
 			}
 		});
 });
@@ -133,7 +142,7 @@ function inscription(){
 						        data: fd,
 						        contentType: false,
 						        processData: false,
-						        success: function(response){			        	
+						        success: function(response){		        	
 						        }
 							});
 					    }

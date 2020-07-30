@@ -83,7 +83,7 @@
 					{
 						$offset = 0;
 					}
-					$req_annonce = "SELECT annonce.id as annonce_id, type_attestation, region, descriptif, login, date_annonce FROM annonce INNER JOIN utilisateurs on utilisateurs.id = id_utilisateur WHERE verif = '0' LIMIT $limit OFFSET $offset";
+					$req_annonce = "SELECT annonce.id as annonce_id, type_attestation, region, descriptif, login, date_annonce, email FROM annonce INNER JOIN utilisateurs on utilisateurs.id = id_utilisateur WHERE verif = '0' LIMIT $limit OFFSET $offset";
 					$execute_req_annonce = mysqli_query($base, $req_annonce);
 					$ifelement = mysqli_num_rows($execute_req_annonce);
 					
@@ -159,7 +159,6 @@
 									    	<h5 class="card-title"><?php echo $resultat_req_annonce['type_attestation']?></h5>
 									    	<h6 class="card-subtitle mb-2 text-muted"><?php echo "Publié par ".$resultat_req_annonce['login']?></h6>
 									    	<p class="card-text"><?php echo substr($resultat_req_annonce['descriptif'],0,80)."..." ?></p>
-
 									    	<!-- Button trigger modal -->
 											<button id="<?php echo $resultat_req_annonce['annonce_id']?>" type="button" class="btn btn-primary m-b-20 button_card info_annonce" data-toggle="modal" data-target="#exampleModal">
 											  Voir détail
@@ -168,6 +167,7 @@
 									    	<button id="delete_<?php echo $resultat_req_annonce['annonce_id']?>" class="card-link delete">Supprimer</button>
 									  	</div>
 									</div>
+									<input type="hidden" id="<?php echo $resultat_req_annonce['annonce_id'] ?>email" value="<?php echo $resultat_req_annonce['email'] ?>">
 									<?php
 					       			}				       		
 					       		}

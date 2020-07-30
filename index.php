@@ -304,7 +304,7 @@
 						{
 						?>
 							<div class="liste_profil Marchandises - 3.5T" id="<?php echo $data['id'];?>">
-								<img class="image_profil rounded-circle" id="<?php echo $data['id'];?>" src="<?php echo "img/profil/".$data['profil'];?>" width="125">
+								<img class="image_profil rounded-circle" id="<?php echo $data['id'];?>" src="<?php echo "img/profil/".$data['profil'];?>" width="125" height="125">
 								<div id="name_24"><?php echo $data['nom'].' '.$data['prenom'];?></div>
 								<div id="region_24"><?php echo $data['region']; ?></div>
 								<div class="attestation" id="attestation_24"><?php echo $data['type_attestation'];?></div>

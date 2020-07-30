@@ -128,7 +128,7 @@
 		            	</article>
 		            	<article class="profil_message shadow">
 		            		<div class="profil_user shadow">
-		            			<img class="rounded-circle" src="../img/profil/<?php echo $resultat_req_user['profil'];?>" width="125">
+		            			<img class="rounded-circle" src="../img/profil/<?php echo $resultat_req_user['profil'];?>" width="125" height="125">
 		            			<div class="nom_prenom" id="<?php echo $resultat_req_user['id'];?>">
 		            				<div><?php echo $resultat_req_user['nom'];?>  <?php echo $resultat_req_user['prenom'] ?><br><?php echo $resultat_req_user['login'];?></div>
 		            			</div>

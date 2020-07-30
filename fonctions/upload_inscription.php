@@ -9,9 +9,11 @@ $uploadOk = 0;
 $name = sha1(session_id().microtime().'.jpg');
 $filename=$name.".jpg";
 $location = "../img/profil/".$filename;
-	
+
+
 move_uploaded_file($_FILES['file']['tmp_name'],$location);
 echo "uploadOk";
+
 
 
 // SELECT ID

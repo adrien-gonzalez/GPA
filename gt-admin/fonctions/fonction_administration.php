@@ -28,12 +28,83 @@ else if(isset($_POST['id_annonce_validate']))
 	$id_annonce_validate = $_POST['id_annonce_validate'];
 	$req_annonce_validate = "UPDATE annonce SET verif = '1', date_annonce = '$date_annonce' WHERE id = '$id_annonce_validate'";
 	mysqli_query($base, $req_annonce_validate);
+	
+$sujet = "Annonce déposée";
+$email = $_POST['email'];
+$header="MIME-Version: 1.0\r\n";
+$header.='From:"[GPA]"<adrien1361@mail.com>'."\n";
+$header.='Content-Type:text/html; charset="utf-8"'."\n";
+$header.='Content-Transfer-Encoding: 8bit';
+$message = '
+                                 <html>
+                                 <head>
+                                   <title>GPA</title>
+                                   <meta charset="utf-8" />
+                                 </head>
+                                 <body>
+                                   <font color="#303030";>
+                                     <div align="center">
+                                       <table width="600px">
+                                         <tr>
+                                           <td>
+                                             <div align="center">Bonjour, votre annonce a été acceptée et postée !</div>
+                                             <a href="https://adrien-gonzalez.students-laplateforme.io/gpa">Cliquez-ici</a>
+                                           </td>
+                                         </tr>
+                                         <tr>
+
+                                         </tr>
+                                       </table>
+                                     </div>
+                                   </font>
+                                 </body>
+                                 </html>
+                                 ';
+
+// send email
+mail($email, $sujet ,$message, $header);
+
+
 }
 else if(isset($_POST['id_annonce_delete'])){
 
 	$id_annonce_delete = $_POST['id_annonce_delete'];
 	$req_annonce_delete = "DELETE FROM annonce WHERE id = '$id_annonce_delete'";
 	mysqli_query($base, $req_annonce_delete);
+	
+$sujet = "Annonce refusée";
+$email = $_POST['email'];
+$header="MIME-Version: 1.0\r\n";
+$header.='From:"[GPA]"<adrien1361@mail.com>'."\n";
+$header.='Content-Type:text/html; charset="utf-8"'."\n";
+$header.='Content-Transfer-Encoding: 8bit';
+$message = '
+                                 <html>
+                                 <head>
+                                   <title>GPA</title>
+                                   <meta charset="utf-8" />
+                                 </head>
+                                 <body>
+                                   <font color="#303030";>
+                                     <div align="center">
+                                       <table width="600px">
+                                         <tr>
+                                           <td>
+                                             <div align="center">Bonjour, votre annonce a été refusée !</div>
+                                              <a href="https://adrien-gonzalez.students-laplateforme.io/gpa">Cliquez-ici</a>
+                                           </td>
+                                         </tr>
+                                         <tr>
+                                         </tr>
+                                       </table>
+                                     </div>
+                                   </font>
+                                 </body>
+                                 </html>
+                                 ';
+
+// send email
+mail($email, $sujet ,$message, $header);
 }
 else if(isset($_POST['id_user'])){
 
@@ -41,6 +112,7 @@ else if(isset($_POST['id_user'])){
 	$req_user = "SELECT *FROM utilisateurs WHERE id='$id_user'";
 	$execute_req_user = mysqli_query($base, $req_user);
 	$element=mysqli_num_rows($execute_req_user);
+	$email = $_POST['email'];
 
 	if($element > 0)
 	{
@@ -252,7 +324,3 @@ else if(isset($_POST['id_paiement_rembouser']))
 	]);
 }
 ?>
-
-
-
-

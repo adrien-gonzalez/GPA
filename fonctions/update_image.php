@@ -26,19 +26,27 @@ else
 		$filename=$name.".jpg";
 		$location = "../img/profil/".$filename;
 
-		move_uploaded_file($_FILES['file']['tmp_name'],$location);
-		echo "uploadOk";
+		if($_FILES["file"]["size"] < 30000) 
+		{
+			move_uploaded_file($_FILES['file']['tmp_name'],$location);
+
+			// SELECT ID
+			$login = $_SESSION['login'];
+			$req_id="SELECT id FROM utilisateurs WHERE login='$login'";
+			$execute_req_id=mysqli_query($base, $req_id);
+			$result_req_id=mysqli_fetch_array($execute_req_id);
+			$id = $result_req_id['id'];
+
+			// INSERT PHOTO DE PROFIL
+			$insert_image = "UPDATE utilisateurs SET profil = '$filename' WHERE id = '$id'";
+			mysqli_query($base, $insert_image);
+
+			echo "uploadOk";
+		}
+		else
+		{
+			echo "too large";
+		}
 	}
-
-	// SELECT ID
-	$login = $_SESSION['login'];
-	$req_id="SELECT id FROM utilisateurs WHERE login='$login'";
-	$execute_req_id=mysqli_query($base, $req_id);
-	$result_req_id=mysqli_fetch_array($execute_req_id);
-	$id = $result_req_id['id'];
-
-	// INSERT PHOTO DE PROFIL
-	$insert_image = "UPDATE utilisateurs SET profil = '$filename' WHERE id = '$id'";
-	mysqli_query($base, $insert_image);
 }
 ?>

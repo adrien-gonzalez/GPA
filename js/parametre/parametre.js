@@ -224,10 +224,16 @@ $(document).ready(function (){
 
     	$("#new_image").attr("src",old_image)
   		$(".button_valid").remove()
+  		$("#error_size").remove()
+	});
+	$("body").on("click", "#fileToUpload", function () { 
+  		$("#error_size").remove()
+
 	});
 	$("body").on("click", "#valid_change", function () { 
 
   		$(".button_valid").remove()
+  		$("#error_size").remove()
     	var fd = new FormData();
 		var files = $('#fileToUpload')[0].files[0];
 		fd.append('file',files);
@@ -242,20 +248,29 @@ $(document).ready(function (){
 				contentType: false,
 				processData: false,
 				success: function(response){
+
+						
+						if(response === "too large")
+						{
+							$("#new_image").attr("src", "../img/profil/"+image_delete+"")
+							$(".form_new_image").after("<div id='error_size' class='mt-3 alert alert-danger' role='alert'>Image trop grosse !</div>")
+						}
+						else
+						{
+							if(image_delete != "profil_defaut")
+							{
+								$.ajax({
+									url:'../fonctions/update_image.php',
+									type:'POST',
+									data:{image_delete: image_delete},
+									success:function(response){	
+                    					document.location.reload(true);
+									}
+								});	
+							}
+						}
 				}
 			});
-		}
-
-		if(image_delete != "profil_defaut")
-		{
-			$.ajax({
-				url:'../fonctions/update_image.php',
-				type:'POST',
-				data:{image_delete: image_delete},
-				success:function(response){	
-					console.log(response)
-				}
-			});	
 		}
 	});
     $("#fileToUpload").change(function(){
