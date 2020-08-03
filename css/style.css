@@ -1,11 +1,13 @@
 body{
 
-	padding: 0;
-	margin: 0;
+  padding: 0;
+  margin: 0;
   background-color: #EBEDEF;
 
 }
-
+.taille{
+  font-size: 50px;  
+}
 *{
   outline: none !important;
 }
@@ -33,11 +35,11 @@ button:focus{
 
 .button_design{
 
-	background-color: #17A681;
-	border: none;
-	color: white;
-	border-radius: .25rem;
-	transition: 0.2s;
+  background-color: #17A681;
+  border: none;
+  color: white;
+  border-radius: .25rem;
+  transition: 0.2s;
   padding: 3px 6px;
   height: 30px;
 }
@@ -50,39 +52,47 @@ button:focus{
 
 .button_design:hover{
 
-	background-color: #0D836E;
-	cursor: pointer;
+  background-color: #0D836E;
+  cursor: pointer;
 
 }
 
 
 .header_accueil{
 
-	display: flex;
-	align-items: flex-end;
-	width: 100%;
-	height: 600px;
-	background-image: url(../img/header_accueil.png);
-	background-size: cover;
-	background-position: center center;
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  height: 600px;
+  background-image: url(../img/header_accueil.png);
+  background-size: cover;
+  background-position: center center;
 
+}
+.mes_annonces .liste_annonces_poste{
+ width: 100%; 
+
+}
+
+.nom_prenom_user{
+  font-size :  100%;
 }
 
 .content_header{
 
-	width: 100%;
-	height: 100%;
-	display: flex;
-	justify-content: space-around;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
 }
 
 .option_recherche{
 
   margin-top: 300px;
-	min-width:900px;
-	height: 100px;
-	padding: 10px;
-	background-color: rgba(33, 32, 46, 0.9);
+  min-width:900px;
+  height: 100px;
+  padding: 10px;
+  background-color: rgba(33, 32, 46, 0.9);
   display: flex;
   align-items: center;
   border-radius: 0.25rem;
@@ -96,27 +106,30 @@ button:focus{
 
 .option{
 
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
 }
 
 @media (max-width: 991px) {
- 	.option{
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		height: 100%;
-	}
-	.option_recherche{
+  .option{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+  }
+  .taille{
+  font-size: 30px;  
+  }
+  .option_recherche{
 
     margin-top: 200px;
-		min-width:300px;
-		height: 300px;
-		background-color: rgba(33, 32, 46, 0.9);
+    min-width:300px;
+    height: 300px;
+    background-color: rgba(33, 32, 46, 0.9);
     border-radius: 0.25rem;
-	}
+  }
   .option_recherche form{
 
     height: 100%;
@@ -137,25 +150,25 @@ button:focus{
 
 .option button{
 
-	padding: 6.5px 6.5px 6.5px;
+  padding: 6.5px 6.5px 6.5px;
   outline: 0;
 }
 
 @media (min-width: 1000px) {
 
-	#header_menu{
+  #header_menu{
 
-	display: none;
-	}
+  display: none;
+  }
 }
 
 
 @media (max-width: 1000px) {
 
-	#header{
+  #header{
 
-		display: none;
-	}
+    display: none;
+  }
 }
 
 span.msg,
@@ -388,7 +401,17 @@ footer a:hover{
   width: 100%;
 }
 
+@media (max-width: 500px) {
 
+   .image_user{
+
+    display: none !important;
+  }
+  .incoming_msg_img img{
+
+    height: 20px !important;
+  }
+}
 @media (max-width: 900px) {
   .lieu{
 
@@ -396,6 +419,10 @@ footer a:hover{
     width: 100%;
     display: flex;
     justify-content: center;
+  }
+  .mes_annonces .liste_annonces_poste{
+    width: 100%; 
+   
   }
  .titre_description{
 
@@ -467,7 +494,7 @@ footer a:hover{
 
 #envoyer_message{
 
-  width: 188px;
+  width : 188px;
 }
 
 .prix{
@@ -796,13 +823,14 @@ svg{
   padding: 10px;
 }
 
-.envoie_message .container-fluid article{
+@media (min-width: 900px) {
+  .envoie_message .container-fluid article{
 
-  height: 580px;
-  background-color: white;
-  min-width: 400px;
+    height: 580px;
+    background-color: white;
+    min-width: 400px;
+  }
 }
-
 .envoie_message .prix_annonce{
 
   margin-bottom: 20px;
@@ -814,6 +842,17 @@ svg{
 }
 
 @media (max-width: 900px) {
+  .bi-trash{
+
+    width: 1.7em;
+    height : 1.7em;
+  }
+  .envoie_message .container-fluid article{
+
+    height: 580px;
+    background-color: white;
+    min-width: 350px;
+  }
   .inbox_msg{
 
     display: flex;
@@ -854,11 +893,6 @@ svg{
     padding: 0px;
     margin-top: 10px;
   }
-  .bi-trash{
-
-    width: 1.7em;
-    height : 1.7em;
-  }
   .envoie_message .container-fluid{
     display: flex;
     flex-direction: column;
@@ -873,7 +907,7 @@ svg{
   }
   .profil_message, .lieu_titre{
 
-    width: 400px;
+    width: 95%;
   }
   .info{
     margin-top: 100px;
@@ -883,12 +917,11 @@ svg{
 .nombre{
 
   display: flex;
-  min-width:450px;
+  max-width: 1000px;
 }
 .mes_annonces .nombre_annonce{
-
-  margin-top: 150px;
-  padding: 30px;
+   margin-top: 150px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -922,7 +955,6 @@ svg{
   align-items: center;
   min-width: 450px;
 }
-
 .liste_annonces_poste{
 
   margin-top: 50px;
@@ -931,10 +963,11 @@ svg{
   min-height: 100px;
   display: flex;
   padding: 10px;
-  min-width: 450px;
   transition: 0.2s;
   background-color: white;
   justify-content: space-between;
+  width: 110%;
+  max-width: 1000px;
 }
 
 .detail_annonce{
@@ -1026,10 +1059,34 @@ svg{
   width: 100%;
 }
 
+
+
 @media (max-width: 650px) {
   .detail_profil{
     width: 100%;
   }
+  .info_nom_prenom{
+    font-size: 15px;
+  }
+  .profil #envoyer_message{
+    width: 100px;
+    height: 30px;
+    font-size: 12px;
+  }
+  .liste_annonces_poste{
+    width: 95%;
+  }
+  .orange, .vert{
+   font-size: 10px;
+  text-align: right;
+  }
+    h6{
+   font-size: 15px;
+  }
+ .info1{
+  display: flex;
+  flex-direction: column;
+ }
 }
 
 @media (min-width: 650px) {
@@ -1142,9 +1199,12 @@ svg{
 
 .button_supprm{
 
-  width: 250px;
   display: flex;
   justify-content: flex-end;
+}
+.div_button_suppr{
+
+  max-width: 1000px;
 }
 
 #delete_ok{
@@ -1419,6 +1479,7 @@ html, body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 0px !important;
   }
 
   .pannel_result{

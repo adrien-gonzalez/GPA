@@ -52,7 +52,7 @@
                                     <span class="login100-form-title p-b-70">
                                         Déposer une annonce
                                     </span>
-                                    <div class="flex-row">
+                                    <div class="alignement">
                                         <div class="rs1-wrap-input100 validate-input m-b-20 taille2">      
                                             <select id='attestation' class="input100 wrap-input100">
                                                 <option value="0">Type d'attestation</option>                                         
@@ -130,8 +130,8 @@
                                             <span class="focus-input100"></span>
                                         </div>
                                     </div>
-                                    <div class="flex-row m-b-40">
-                                        <div class="nom wrap-input100 rs1-wrap-input100 validate-input taille2">
+                                    <div class="alignement m-b-40">
+                                        <div class="m-b-20 nom wrap-input100 rs1-wrap-input100 validate-input taille2">
                                             <input id="tel" class="input100" type="tel" name="tel" placeholder="Téléphone (ex : 06 98 ...)">
                                             <span class="focus-input100"></span>
                                         </div>

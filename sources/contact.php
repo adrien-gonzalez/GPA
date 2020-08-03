@@ -3,7 +3,7 @@
 	<head>
 		<title>Global Prestations Annexes</title>
 		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=0.7">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<!-- CSS -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css" rel="stylesheet" />
@@ -20,7 +20,7 @@
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 	</head>
 
-<body id="test" class="accueil">
+<body id="test" class="accueil contact">
 	<main class="ie-stickyFooter">
 	    <div id="page">
 			<div id="header_content">	
@@ -35,7 +35,7 @@
 									<span class="login100-form-title p-b-70">
 										Contactez-nous 
 									</span>
-									<div class="flex-row">
+									<div class="alignement">
 										<div class="nom wrap-input100 rs1-wrap-input100 validate-input m-b-20 taille2" >
 											<input id="nom" class="input100" type="text" name="nom" placeholder="Nom">
 											<span class="focus-input100"></span>

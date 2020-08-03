@@ -7,7 +7,7 @@
 	<head>
 		<title>Global Prestations Annexes</title>
 		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=0.7">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<!-- CSS -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 		<link href="../css/style.css" rel="stylesheet">
@@ -252,14 +252,14 @@
 								                <span class="login100-form-title p-b-70">
 								                    informations
 								                </span>
-								                <div class="flex-row align-items-center m-b-20">
+								                <div class="alignement align-items-center m-b-20">
 									                <div class="login wrap-input100 rs1-wrap-input100 validate-input taille2 admin_login_change">
 									                    <input id="login" disabled class="input100" type="text" name="login" placeholder="Login" value="<?php echo $login_admin?>">
 									                    <span class="focus-input100"></span>
 									                </div>	
 									                <input type="button" id="change_login" class="modif_button w-25 responsive_button login100-form-btn" value="Changer">
 								            	</div>
-								            	<div class="input-pass flex-row align-items-center">
+								            	<div class="input-pass alignement align-items-center">
 									                <div class="password1 wrap-input100 rs1-wrap-input100 validate-input taille2" >
 									                    <input id="password" disabled class="input100" type="password" name="password" placeholder="Mot de passe" value="<?php echo $password_admin ?>">
 									                    <span class="focus-input100"></span>
@@ -336,7 +336,7 @@
 								                <span class="login100-form-title p-b-70">
 								                    Ajout d'un service
 								                </span>
-								                <div class="d-flex flex-row rs1-wrap-input100 validate-input taille1 m-b-20 statut">
+								                <div class="d-flex alignement rs1-wrap-input100 validate-input taille1 m-b-20 statut">
 								                	<div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20 taille2">
 								                    	<input id="nom_produit" class="input100" type="text" placeholder="Nom du service">
 								                    	<span class="focus-input100"></span>
@@ -565,7 +565,7 @@
 		      				<div class="container-login100">
 								<div class="update_form">
 		      	 					<form class="login100-form validate-form">
-		      	 						<div class="d-flex flex-row rs1-wrap-input100 validate-input taille1 m-b-20 statut">
+		      	 						<div class="d-flex alignement rs1-wrap-input100 validate-input taille1 m-b-20 statut">
 											<div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20 taille2">
 												<input id="produit_update" class="input100" type="text" placeholder="Nom produit">
 												<span class="focus-input100"></span>

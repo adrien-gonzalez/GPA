@@ -5,49 +5,49 @@ body{
     background: #f2f2f2;
 }
 
-}
+
 .limiter a {
-	font-size: 14px;
-	line-height: 1.7;
+  font-size: 14px;
+  line-height: 1.7;
   color: #999999;
-	margin: 0px;
-	transition: all 0.4s;
-	-webkit-transition: all 0.4s;
+  margin: 0px;
+  transition: all 0.4s;
+  -webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
   -moz-transition: all 0.4s;
 }
 
 .limiter a:focus {
-	outline: none !important;
+  outline: none !important;
 }
 
 .limiter a:hover {
-	text-decoration: none;
+  text-decoration: none;
   color: #333333;
 }
 
 /*---------------------------------------------*/
 .limiter h1,h2,h3,h4,h5,h6 {
-	margin: 0px;
+  margin: 0px;
 }
 
 .limiter p {
-	font-size: 14px;
-	line-height: 1.7;
-	color: #666666;
-	margin: 0px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #666666;
+  margin: 0px;
 }
 
 .limiter ul, li {
-	margin: 0px;
-	list-style-type: none;
+  margin: 0px;
+  list-style-type: none;
 }
 
 
 /*---------------------------------------------*/
 .limiter input {
-	outline: none;
-	border: none;
+  outline: none;
+  border: none;
 }
 
 .limiter textarea {
@@ -63,18 +63,18 @@ body{
 
 /*---------------------------------------------*/
 .limiter button {
-	outline: none !important;
-	border: none;
+  outline: none !important;
+  border: none;
   height: 40px;
-	
+  
 }
 
 .limiter button:hover {
-	cursor: pointer;
+  cursor: pointer;
 }
 
 .limiter iframe {
-	border: none !important;
+  border: none !important;
 }
 
 /*//////////////////////////////////////////////////////////////////
@@ -88,6 +88,12 @@ body{
   color: #999999;
 }
 
+.alignement{
+
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+}
 .txt2 {
   font-size: 13px;
   line-height: 1.4;
@@ -334,6 +340,10 @@ input.input100 {
     padding-left: 30px;
     padding-right: 30px;
   }
+  .connexion section, .inscription section{
+    width: 80%;
+    max-width: 500px;
+  }
 
   .login100-more {
     width: 40%;
@@ -368,6 +378,24 @@ input.input100 {
   .login100-more {
     width: 100%;
   }
+  .alignement{
+    display: flex;
+    flex-direction: column;
+  }
+  .alignement div{
+    width: 100% 
+  }
+  #change_information{
+    width: 80%;
+  }
+  .parametre .alignement{
+
+    height: 80px;
+  }
+  .contact section, .parametre section{
+
+    width: 80%;
+  }
 }
 
 @media (max-width: 576px) {
@@ -376,10 +404,17 @@ input.input100 {
     padding-right: 15px;
     padding-top: 150px;
   }
+  .container-login100 section{
 
-  .rs1-wrap-input100,
+    width: 100%;
+  }
+  
+ /* .rs1-wrap-input100,
   .rs2-wrap-input100 {
     width: 100%;
+  }*/
+  .ajout_annonce svg{
+    top: 30px !important;
   }
 
   .rs2-wrap-input100 {
@@ -471,12 +506,13 @@ input.input100 {
   width: 60%;
 }
 
+
 .flex-row {
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
   display: -ms-flexbox;
-  width: 450px;
+  /*width: 450px;*/
   justify-content: space-between;
   display: flex;
   -webkit-flex-direction: row;
@@ -488,7 +524,7 @@ input.input100 {
 
 .taille1{
 
-  width: 450px;
+  width: 90%;
 }
 
 .taille2{
@@ -567,6 +603,9 @@ path{
     top : 155px;
     color: #C0392B;
     font-size: 18px;
+  }
+  section{
+    width: 100%;
   }
 
   .connexion .champ_vide{
@@ -679,13 +718,13 @@ img{
 .form_admin{
 
   background-color: white;
+  width: 500px;
+}
+.form_admin form{
+
+  width: 100%;
 }
 
 .erreur_form::-webkit-input-placeholder {
     color: #C0392B;
-}
-
-.error{
-
-  color: #C0392B;
 }

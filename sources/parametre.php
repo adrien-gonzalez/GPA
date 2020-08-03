@@ -5,7 +5,7 @@
 	<head>
 		<title>Global Prestations Annexes</title>
 		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=0.7">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<!-- CSS -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css" rel="stylesheet" />
@@ -77,7 +77,7 @@
 														<span class="focus-input100"></span>
 													</div>
 												</div>
-								                <div class="flex-row align-items-center m-b-20">
+								                <div class="alignement align-items-center m-b-20">
 									                <div class="login wrap-input100 rs1-wrap-input100 validate-input taille2">
 									                    <input id="nom" class="input100" type="text" name="nom" placeholder="Nom" value="<?php echo $resultat_req_user['nom']?>">
 									                    <span class="focus-input100"></span>

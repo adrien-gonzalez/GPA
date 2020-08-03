@@ -32,7 +32,7 @@ else if(isset($_POST['id_annonce_validate']))
 $sujet = "Annonce déposée";
 $email = $_POST['email'];
 $header="MIME-Version: 1.0\r\n";
-$header.='From:"[GPA]"<adrien1361@mail.com>'."\n";
+$header.='From:"[gestionnairetransport]"<adrien1361@mail.com>'."\n";
 $header.='Content-Type:text/html; charset="utf-8"'."\n";
 $header.='Content-Transfer-Encoding: 8bit';
 $message = '
@@ -76,7 +76,7 @@ else if(isset($_POST['id_annonce_delete']) && isset($_POST['note'])){
 $sujet = "Annonce refusée";
 $email = $_POST['email'];
 $header="MIME-Version: 1.0\r\n";
-$header.='From:"[GPA]"<adrien1361@mail.com>'."\n";
+$header.='From:"[gestionnairetransport]"<adrien1361@mail.com>'."\n";
 $header.='Content-Type:text/html; charset="utf-8"'."\n";
 $header.='Content-Transfer-Encoding: 8bit';
 $message = '

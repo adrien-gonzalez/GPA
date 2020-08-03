@@ -2,9 +2,9 @@
 <?php require "../fonctions/config.php"; ?>
 <html>
 	<head>
-		<title>Annonce</title>
+		<title>Profil</title>
 		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=0.7">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<!-- CSS -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 		<link rel="stylesheet" type="text/css" href="../css/formulaire/form.css">
@@ -54,7 +54,7 @@
             			<div class="info_general_user">
 	            			<div>
 		            			<img src="../img/profil/<?php echo $resultat_req_user['profil'];?>">
-		            			<p><?php echo $resultat_req_user['nom']." ".$resultat_req_user['prenom'];?></p>
+		            			<div class="info_nom_prenom"><?php echo $resultat_req_user['nom']." ".$resultat_req_user['prenom'];?></div>
 	            			</div>
 	            			<div>
 				            	<button id="envoyer_message" class="button_gpa" data-toggle="modal" data-target="#exampleModal">
@@ -79,7 +79,7 @@
 		           			while($resultat_req_annonce = mysqli_fetch_array($execute_req_annonce))
 		           			{
             				?>
-            					<div id="<?php echo $resultat_req_annonce['annonce_id']?>" class="w-75 liste_annonces_poste shadow">
+            					<div id="<?php echo $resultat_req_annonce['annonce_id']?>" class="w-100 liste_annonces_poste shadow">
             						<div class="image_user">
             							<img width="100px" height="100px" src="../img/profil/<?php echo $resultat_req_annonce['profil']?>">
             						</div>
@@ -107,7 +107,7 @@
                         </button>
                       </div>
                       <div class="modal-body">
-                        <form class="login100-form validate-form">
+                        <form class="login-form validate-form">
                             <div class="email wrap-input100 rs1-wrap-input100 validate-input m-b-20 taille1" >
                                 <input id="email" class="input100" type="email" placeholder="Email">
                                 <span class="focus-input100"></span>

@@ -88,8 +88,7 @@
                             <input name="refuse" type="button" id="refuse" class="button_design shadow" value="Déposer mon annonce sans avantages">
                         </form>
                 </div>
-            </div>
-                           
+            </div>             
             </div>
             <div id="footer">
                 <?php include('footer.php');?>

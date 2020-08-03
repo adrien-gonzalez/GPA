@@ -4,7 +4,7 @@
 	<head>
 		<title>Global Prestations Annexes</title>
 		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=0.7">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<!-- CSS -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 		<link rel="stylesheet" type="text/css" href="../css/formulaire/form.css">
@@ -55,7 +55,7 @@
 					while($resultat_req_favoris = mysqli_fetch_array($execute_req_favoris))
 					{
 					?>
-				        <div id="<?php echo $resultat_req_favoris['id_annonce'];?>" class="w-75 liste_annonces_poste shadow">
+				        <div id="<?php echo $resultat_req_favoris['id_annonce'];?>" class="liste_annonces_poste shadow">
 				        <div class="image_user">
 				        	<img width="100px" height="100px" src="../img/profil/<?php echo $resultat_req_favoris['profil'];?>">
 				        </div>
@@ -66,7 +66,7 @@
 				        	<div ><?php echo $resultat_req_favoris['region']?></div>
 				        </div>
 						</div>	
-						<div class="w-75 d-flex justify-content-end p-40">
+						<div class="nombre w-100 justify-content-end p-40">
 							<div class="d-flex button_del">
 								<form action="" method="post">
 									<input type="hidden" name="id_annonce" value="<?php echo $resultat_req_favoris['favoris_id'];?>">

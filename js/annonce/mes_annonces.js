@@ -58,7 +58,7 @@ function mes_annonces(){
 						date_diff = timestamp - timestamp2
 						jours_restant = 60-parseInt(date_diff/86400)
 
-						$(".nombre").after('<div id="'+result[id]+'" class="w-75 liste_annonces_poste shadow"></div>')
+						$(".nombre").after('<div id="'+result[id]+'" class="liste_annonces_poste shadow"></div>')
 						$("#"+result[id]).append('<div id="image_user_'+result[id]+'" class="image_user"></div>')
 						$("#image_user_"+result[id]).append('<img width="100px" height="100px" src="../img/profil/'+result[profil]+'">')
 						$("#image_user_"+result[id]).after('<div id="detail_annonce_'+result[id]+'" class="detail_annonce"></div>')
@@ -67,8 +67,8 @@ function mes_annonces(){
 						$(".prix_annonce_"+result[id]).after('<div id="login_'+result[id]+'">'+result[login]+'</div>')
 						$("#login_"+result[id]).after('<div id="region_'+result[id]+'">'+result[region]+'</div>')	
 
-						$("#"+result[id]).after('<div id="div_message_'+result[id]+'" class="w-75 d-flex justify-content-end p-40"></div>')
-						$("#div_message_"+result[id]).append('<div id="button_del_'+result[id]+'" class="d-flex button_supprm">')	
+						$("#"+result[id]).after('<div id="div_message_'+result[id]+'" class="div_button_suppr w-100 d-flex justify-content-end p-40"></div>')
+						$("#div_message_"+result[id]).append('<div id="button_del_'+result[id]+'" class="button_supprm">')	
 						$("#button_del_"+result[id]).append('<form id="form_'+result[id]+'" action="" method="post"></form>')
 						$("#form_"+result[id]).append('<input type="button" id="'+result[id]+'" name="delete" class="button_design w-10" value="Supprimer" data-toggle="modal" data-target="#delete">')
 						

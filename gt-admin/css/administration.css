@@ -48,12 +48,24 @@ section{
 	.admin_form{
 
 		margin-top: 300px;
+		width: 110%;
+	}
+	#change_login, #change_pass {
+    	width: 100px !important;
 	}
 	.table_produits{
 
-		width: 100% !important;
+		width: 110% !important;
+	}
+	.admin .update_form{
+
+		width: 100%;
+	}
+	section{
+		padding: 0px;
 	}
 }
+
 
 .pannel_result{
 

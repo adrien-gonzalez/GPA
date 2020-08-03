@@ -4,7 +4,7 @@
 	<head>
 		<title>Annonce</title>
 		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=0.7">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<!-- CSS -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 		<!-- <link rel="stylesheet" type="text/css" href="../css/formulaire/form.css"> -->
@@ -66,7 +66,7 @@
 		            	?>
 		            	<article class="lieu_titre shadow">
 			            	<div class="attestation_prix">
-			            		<div class="d-flex justify-content-between">
+			            		<div class="info1 d-flex justify-content-between">
 				            		<h4><?php echo $resultat_req_annonce['type_attestation'];?></h4>
 				            		<h6 class="<?php echo str_replace(' ','',$resultat_req_annonce['disponibilite']);?>"><?php echo $resultat_req_annonce['disponibilite'];?></h6>	
 				            		<h4><?php echo $resultat_req_annonce['prix'];?> €</h4>

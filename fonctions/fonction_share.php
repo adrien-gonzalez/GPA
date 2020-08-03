@@ -7,7 +7,7 @@ $sujet = "On vous a partagé un profil !";
 $email = $_POST['email'];
 $url_user = $_POST['url_user'];
 $header="MIME-Version: 1.0\r\n";
-$header.='From:"[GPA]"<adrien1361@mail.com>'."\n";
+$header.='From:"[gestionnairetransport]"<adrien1361@mail.com>'."\n";
 $header.='Content-Type:text/html; charset="utf-8"'."\n";
 $header.='Content-Transfer-Encoding: 8bit';
 $message = '

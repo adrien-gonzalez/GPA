@@ -36,7 +36,7 @@ $charge = \Stripe\Charge::create(array(
   'currency' => 'eur',
   'description' => $description,
   'receipt_email' => $email
-   ));
+));
 ?>
 
 <html>

@@ -97,10 +97,7 @@ $(document).ready(function (){
             {
                  $('#note_annonce').css({"border":"1px solid #C0392B"})  
             }
-
-
         });
-		
 	});
     // AFFICHE INFO UTILISATEUR
     $("body").on("click", ".info_user", function () { 
