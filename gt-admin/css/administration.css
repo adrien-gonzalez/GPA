@@ -259,3 +259,8 @@ section{
 	padding: 5px; 
 	resize: none;
 }
+
+.admin .login100-form{
+
+	width: 100%;
+}

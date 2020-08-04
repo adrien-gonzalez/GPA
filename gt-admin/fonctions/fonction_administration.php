@@ -214,13 +214,13 @@ else if(isset($_POST['nom_produit']) && isset($_POST['description_produit']) && 
 	$prix = $_POST['prix'];
 	$categorie = $_POST['categorie'];
 
-	if($_POST['duree'] != false)
+	if($_POST['duree'] != "false")
 	{
 		$duree = $_POST['duree'];
 	}
 	else
 	{
-		$duree = 0;
+		$duree = "0";
 	}
 
 	$stripe = new \Stripe\StripeClient(
@@ -236,7 +236,7 @@ else if(isset($_POST['nom_produit']) && isset($_POST['description_produit']) && 
 
 	$id_produit = $product['id'];
 
-	// REQUETE INSERT PRODUIT
+	//REQUETE INSERT PRODUIT
 	$insert_produit = "INSERT INTO services VALUES (NULL, '$id_produit', '$nom_produit', '$description_produit', '$prix', '$categorie', '$duree')";
 	mysqli_query($base, $insert_produit);
 

@@ -83,7 +83,7 @@
 					{
 						$offset = 0;
 					}
-					$req_annonce = "SELECT annonce.id as annonce_id, type_attestation, region, descriptif, login, date_annonce, email FROM annonce INNER JOIN utilisateurs on utilisateurs.id = id_utilisateur WHERE verif = '0' LIMIT $limit OFFSET $offset";
+					$req_annonce = "SELECT annonce.id as annonce_id, type_attestation, region, descriptif, login, date_annonce, email FROM annonce INNER JOIN utilisateurs on utilisateurs.id = id_utilisateur WHERE verif = '0' ORDER BY annonce.id ASC LIMIT $limit OFFSET $offset";
 					$execute_req_annonce = mysqli_query($base, $req_annonce);
 					$ifelement = mysqli_num_rows($execute_req_annonce);
 					
@@ -354,7 +354,7 @@
 			                                    	<select id="categorie" class="input100 wrap-input100">
 			                                    		<option value="">Catégorie</option>
 			                                    		<option value="Annonce">Annonce</option>
-			                                    		<option value="Publicité">Publicité</option>
+			                                    		<option value="Contrat">Contrat</option>
 			                                    	</select>
 			                                        <span class="focus-input100"></span>		                                    	
 			                                    </div>

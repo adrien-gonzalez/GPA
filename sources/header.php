@@ -16,13 +16,19 @@ define('ma_courante', preg_replace($reg, '$2', $url)); ?>
 	    	<?php if(ma_courante == "index.php")
  			{
  			?>
+ 			<div>
 				<a style="color:white; text-decoration: none;" href="sources/depot_annonce.php"><button class="button_design">Déposer une annonce</button></a>
+				<a style="color:white; text-decoration: none;" href="sources/contrat.php"><button class="button_design">Faire un contrat</button></a>
+			</div>
 			<?php
 			}
 			else
 			{
 			?>
+			<div>
 				<a style="color:white; text-decoration: none;" href="depot_annonce.php"><button class="button_design">Déposer une annonce</button></a>
+				<a style="color:white; text-decoration: none;" href="contrat.php"><button class="button_design">Faire un contrat</button></a>
+			</div>
 			<?php	
 			}
 			?>	

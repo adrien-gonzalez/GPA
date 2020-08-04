@@ -315,6 +315,7 @@ $(document).ready(function (){
         prix = $("#prix").val()
         categorie = $("#categorie").val()
 
+        console.log(categorie)
        
             if($("#liste_durée").val() == undefined)
             {

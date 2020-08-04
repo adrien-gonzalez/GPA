@@ -27,9 +27,10 @@
 			<?php include('header.php');?>
 		</div>
         <div id="content">
-			<?php 
+			<?php
 				if(isset($_SESSION['login']))
 				{
+
 				if(isset($_POST['delete']))
 				{
 					$id_annonce = $_POST['id_annonce'];
@@ -48,10 +49,10 @@
 				$ifnotnull = mysqli_num_rows($execute_req_favoris);
 				?> 
 			<div class="nombre_favoris w-100">
-				<h5>Retrouvez vos annonces sauvegardées sur tous vos appareils.</h5>
 				<?php
 				if($ifnotnull != 0)
 				{
+					?><h5>Retrouvez vos annonces sauvegardées sur tous vos appareils.</h5><?php
 					while($resultat_req_favoris = mysqli_fetch_array($execute_req_favoris))
 					{
 					?>
@@ -82,7 +83,7 @@
 				{
 				?>
 					<h5>Vous n‘avez pas encore d‘annonce sauvegardée</h5>
-					<a href="../"><button class="button_design">Faire une recherche</button></a>
+					<a href="../"><button class="button_design mt-3">Faire une recherche</button></a>
 					<img width="40%" src="../img/images_site/messagerie_vide.jpg" style="margin-top: 30px; min-width: 300px;">
 				<?php
 				}

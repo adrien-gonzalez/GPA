@@ -39,6 +39,8 @@ $charge = \Stripe\Charge::create(array(
 ));
 ?>
 
+
+
 <html>
 	<head>
 		<title>Global Prestations Annexes</title>
