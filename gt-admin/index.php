@@ -537,7 +537,7 @@
 				    	<p class="h6 text-muted" id="nom_prenom"></p>
 				    	<p class="h6 text-muted" id="age"></p>
 				    	<p class="h6 text-muted" id="inscription_date"><p>
-				    	<img id="profil_user" src="">
+				    	<img id="profil_user" src="" width="50px" height="50px">
 				    </div>		     
 				    <div class="modal-footer">
 				    	<input type="hidden" id="id_user_hidden">

@@ -114,7 +114,6 @@ else if(isset($_POST['id_user'])){
 	$req_user = "SELECT *FROM utilisateurs WHERE id='$id_user'";
 	$execute_req_user = mysqli_query($base, $req_user);
 	$element=mysqli_num_rows($execute_req_user);
-	$email = $_POST['email'];
 
 	if($element > 0)
 	{

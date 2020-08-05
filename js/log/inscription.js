@@ -61,7 +61,7 @@ $(function(){
 			{
 				upload = 1
 			}
-			if(upload  == 1 && image_size < 30000)
+			if(upload  == 1 && image_size < 1000000)
 			{		
 				$("#label_image").css({"display" : "none"})	
 				$("#erreur_format").remove()
@@ -89,7 +89,7 @@ $(function(){
 					$("#label_image").css({"display" : "inherit"})
 					img.addClass('hidden');
 				}
-				else if(image_size > 30000)
+				else if(image_size > 1000000)
 				{
 					$("#label_image").text("Image trop grosse !")
 					$("#image_none").remove()

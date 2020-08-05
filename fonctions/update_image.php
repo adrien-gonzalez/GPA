@@ -26,7 +26,7 @@ else
 		$filename=$name.".jpg";
 		$location = "../img/profil/".$filename;
 
-		if($_FILES["file"]["size"] < 30000) 
+		if($_FILES["file"]["size"] < 1000000) 
 		{
 			move_uploaded_file($_FILES['file']['tmp_name'],$location);
 

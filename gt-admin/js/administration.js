@@ -109,8 +109,7 @@ $(document).ready(function (){
         data: {id_user: id_user},        
                        
             success: function(data){ 
-                // console.log(data)
-            
+
             var result = JSON.parse(data);
             id = result[0].id
             login = result[0].login

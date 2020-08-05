@@ -6,17 +6,17 @@ require "../stripe-php/init.php";
 ?>
 
 <script>
-    if(localStorage.getItem("option") == null)
+	if(localStorage.getItem("option") == null)
     {
-        document.location.href="../"
-    }
-    else
-    {
-    	localStorage.removeItem('option');
-    }
-</script>
-
+	    document.location.href="../"
+	}
+	else
+	{
+	   	localStorage.removeItem('option');
+	}
+	</script>
 <?php
+
 \Stripe\Stripe::setApiKey("sk_test_51H2BsNKouFi2buoUWmyNEiPXAfPA7hNDpZH6vbsPJ8cWRnWESRXEZCR8p1qSUS1RdEKq35YnFy68eZ4fygBYmSUf00kTzuIVfe");
 
 $token  = $_POST['stripeToken'];
@@ -37,7 +37,20 @@ $charge = \Stripe\Charge::create(array(
   'description' => $description,
   'receipt_email' => $email
 ));
-?>
+
+if(isset($_POST['contrat']) && $charge != null)
+{
+	$login = $_SESSION['login'];
+	$req_id_user = "SELECT id FROM utilisateurs WHERE login='$login'";
+	$execute_id_user = mysqli_query($base, $req_id_user);
+	$resultat_id_user = mysqli_fetch_array($execute_id_user);
+	$id = $resultat_id_user['id'];
+
+	$insert_contrat = "INSERT INTO contrat VALUES(NULL,'$id')";
+	mysqli_query($base, $insert_contrat);
+	$_SESSION['contrat'] = true;
+}
+?> 
 
 
 
@@ -67,7 +80,7 @@ $charge = \Stripe\Charge::create(array(
 					<h4 class="alert-heading">Paiement accepté !</h4>
 					<hr>
 					<div class="d-flex justify-content-between">
-						<p>Merci pour votre achat</p>
+						<p>Merci pour votre achat !</p>
 						<a href="../"><button class="button_design">Retourner sur le site</button></a>
 					</div>
 			 	</div>

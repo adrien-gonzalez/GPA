@@ -248,7 +248,6 @@ $(document).ready(function (){
 				contentType: false,
 				processData: false,
 				success: function(response){
-
 						
 						if(response === "too large")
 						{

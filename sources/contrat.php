@@ -17,7 +17,6 @@
 		<!-- JQUERY -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 		<!-- MON SCRIPT -->
-		<script type="text/javascript" src="../js/log/connexion.js"></script>
         <script type="text/javascript" src="../js/script.js"></script>
 		<!-- BOOTSTRAP -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -34,54 +33,98 @@
                <?php include('header.php'); ?> 
             </div>
             <div id="content">
-                <div class="limiter m-t-100">
-                    <div class="container-login100">
-                        <section class="avantage">
-                        <?php
-                        
-                        $select_produit = "SELECT *FROM services WHERE categorie = 'Contrat'";
-                        $execute_select_produit = mysqli_query($base, $select_produit);
-                        $element = mysqli_num_rows($execute_select_produit);
-                        
-                        if($element != 0)
-                        {
-                            while($resultat_select_produit = mysqli_fetch_array($execute_select_produit))
-                            {           
-                            ?>
-                            <div class="card" style="width: 18rem;">
-                                <div class="card-body">
-                                    <h5 class="card-title"><?php echo $resultat_select_produit['nom'] ?></h5>
-                                    <p class="card-text"><?php echo $resultat_select_produit['description'] ?></p>
-                                    <input id="id_product" type="hidden" value="<?php echo  $resultat_select_produit['id_produit'] ?>">
-                                    <form action="" method="post">
-                                        <input name="name" type="hidden" value="<?php echo $resultat_select_produit['nom']?>">
-                                        <input name="description" type="hidden" value="<?php echo $resultat_select_produit['description']?>">
-                                        <input name="prix" type="hidden" value="<?php echo $resultat_select_produit['prix']?>">
-                                    </form>
-                                    <form class="achat" action="paiement.php" method="POST">
-                                        <input type="hidden" name="prix" value="<?php echo $resultat_select_produit['prix'] ?>">
-                                        <input type="hidden" name="description" value="<?php echo $resultat_select_produit['description']?>">
-                                        <input type="hidden" name="id" value="<?php echo $resultat_select_produit['id']?>">
-                                        <script
-                                            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                            data-key="pk_test_51H2BsNKouFi2buoUlba3dKbK4ZTYxcZvTiIRE0C2XAXqoDFM34hElyPjz6rWqZQDhktUATKW7BoQos1UzdMn7pjJ00yd1jcvEM"
-                                            data-amount="<?php echo $resultat_select_produit['prix']*100 ?>"
-                                            data-name="<?php echo $resultat_select_produit['nom']?>"
-                                            data-description="<?php echo $resultat_select_produit['description'] ?>"
-                                            data-locale="auto"
-                                            data-currency="eur"
-                                            data-label="Générer mon contrat <?php echo $resultat_select_produit['prix']." €"?>">
-                                        </script>
-                                    </form>
-                                </div>
-                            </div>
+                <?php if(isset($_SESSION['login']))
+                {
+                
+                    $login = $_SESSION['login'];
+                    $req_user = "SELECT *FROM utilisateurs WHERE login ='$login'";
+                    $execute_req_user = mysqli_query($base, $req_user);
+                    $resultat_req_user = mysqli_fetch_array($execute_req_user);
+
+                               
+                    $id_user = $resultat_req_user['id'];
+                    $access_contrat = "SELECT *FROM contrat WHERE id_user ='$id_user'";
+                    $execute_access_contrat = mysqli_query($base, $access_contrat);
+                    $ifaccess = mysqli_num_rows($execute_access_contrat);
+
+                    if($ifaccess == 0)
+                    {
+                    ?>
+                    <div class="limiter m-t-100">
+                        <div class="container-login100">
+                            <section class="avantage">
                             <?php
+                            
+                            $select_produit = "SELECT *FROM services WHERE categorie = 'Contrat'";
+                            $execute_select_produit = mysqli_query($base, $select_produit);
+                            $element = mysqli_num_rows($execute_select_produit);
+                            
+                            if($element != 0)
+                            {
+                                while($resultat_select_produit = mysqli_fetch_array($execute_select_produit))
+                                {           
+                                ?>
+                                <div class="card" style="width: 18rem;">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><?php echo $resultat_select_produit['nom'] ?></h5>
+                                        <p class="card-text"><?php echo $resultat_select_produit['description'] ?></p>
+                                        <input id="id_product" type="hidden" value="<?php echo  $resultat_select_produit['id_produit'] ?>">
+                                        <input id="contrat" type="hidden" value="contrat">
+                                        <form action="" method="post">
+                                            <input name="name" type="hidden" value="<?php echo $resultat_select_produit['nom']?>">
+                                            <input name="description" type="hidden" value="<?php echo $resultat_select_produit['description']?>">
+                                            <input name="prix" type="hidden" value="<?php echo $resultat_select_produit['prix']?>">
+                                        </form>
+                                        <form class="achat" action="paiement.php" method="POST">
+                                            <input type="hidden" name="prix" value="<?php echo $resultat_select_produit['prix'] ?>">
+                                            <input type="hidden" name="description" value="<?php echo $resultat_select_produit['description']?>">
+                                            <input type="hidden" name="id" value="<?php echo $resultat_select_produit['id']?>">
+                                            <input type="hidden" name="contrat" value="contrat">
+                                            <script
+                                                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                                data-key="pk_test_51H2BsNKouFi2buoUlba3dKbK4ZTYxcZvTiIRE0C2XAXqoDFM34hElyPjz6rWqZQDhktUATKW7BoQos1UzdMn7pjJ00yd1jcvEM"
+                                                data-amount="<?php echo $resultat_select_produit['prix']*100 ?>"
+                                                data-name="<?php echo $resultat_select_produit['nom']?>"
+                                                data-description="<?php echo $resultat_select_produit['description'] ?>"
+                                                data-locale="auto"
+                                                data-currency="eur"
+                                                data-label="Générer mon contrat <?php echo $resultat_select_produit['prix']." €"?>">
+                                            </script>
+                                        </form>
+                                    </div>
+                                </div>
+                                <?php
+                                }
                             }
-                        }
-                        ?>
-                        </section>
-                    </div>
-                </div>    
+                            ?>
+                            </section>
+                        </div>
+                    </div> 
+                    <?php
+                    }
+                    else
+                    {
+                    ?>
+                        <div class="limiter mt-3">
+                            <div class="container-login100">
+                                <section class="avantage">
+                                    <div class="alert alert-success" role="alert">
+                                        Votre contrat est disponible dans votre espace paramètre -> mon contrat
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    <?php
+                    } 
+                }
+                else
+                {
+                    require "../fonctions/form_connexion.php";
+                    ?>
+                    <script type="text/javascript" src="../js/log/connexion.js"></script>
+                    <?php 
+                }
+                ?>  
             </div>
             <div id="footer">
                 <?php include('footer.php');?>

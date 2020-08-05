@@ -71,6 +71,17 @@
         <div id="content">
 			<div class="header_accueil">
 				<div class="content_header">
+					<?php
+					if(isset($_SESSION['contrat']))
+					{
+					?>
+						<div class="alert alert-success contrat" role="alert">
+					  		Votre contrat est disponible dans votre espace paramètre -> mon contrat
+						</div>
+					<?php
+						unset($_SESSION['contrat']);
+					}
+					?>
 					<div class="option_recherche">
 						<form action="" method="get">	
 							<div class="option">

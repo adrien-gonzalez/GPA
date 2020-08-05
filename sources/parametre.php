@@ -37,6 +37,7 @@
         	<section class="w-100">
         		<div class="card list_panel shadow">
 					<ul class="list-group list-group-flush">
+				    	<a href="parametre.php?panel=mon_contrat"><li id="mon_contrat" class="list-group-item">Mon contrat</li></a>
 				    	<a href="parametre.php?panel=mes_informations"><li id="mes_informations" class="list-group-item">Mes informations</li></a>
 				    	<a href="parametre.php?panel=photo_profil"><li id="photo_profil" class="list-group-item">Photo de profil</li></a>
 				    	<a href="parametre.php?panel=email"><li id="email" class="list-group-item">Email</li></a>
@@ -54,7 +55,49 @@
 					 		$execute_req_user = mysqli_query($base, $req_user);
 					 		$resultat_req_user = mysqli_fetch_array($execute_req_user);
 
-					 		if($_GET['panel'] == "mes_informations")
+					 		if($_GET['panel'] == "mon_contrat")
+					 		{
+					 			$id_user = $resultat_req_user['id'];
+					 			$access_contrat = "SELECT *FROM contrat WHERE id_user ='$id_user'";
+					 			$execute_access_contrat = mysqli_query($base, $access_contrat);
+					 			$ifaccess = mysqli_num_rows($execute_access_contrat);
+
+					 			if($ifaccess != 0)
+					 			{
+					 			?>
+						 			<div class="d-flex justify-content-center w-100">
+								    	<div class="card" style="width: 18rem;">
+								  			<img src="../img/images_site/contrat.jpg" class="card-img-top" alt="...">
+								  			<div class="card-body">
+											    <h5 class="card-title">Contrat disponible</h5>
+											    <p class="card-text">Model contrat de prestations de services - Gestionnaire transport - commissionnaire transport</p>
+											    <object type="application/vnd.oasis.opendocument.text" data="data/test.odt">
+													<a href="../contrat/$2y$12$JMV0HTgmddRLvgJRopuAQpfes08GNsvRI6F0R54wC3Ekaguo3egCYa.odt"><button class="button_design">Télécharger le modèle de contrat</button></a>
+												</object>
+								  			</div>
+										</div>
+									</div>
+								<?php
+					 			}
+					 			else
+					 			{
+					 			?>
+					 				<div class="d-flex justify-content-center w-100">
+								    	<div class="card" style="width: 18rem;">
+								  			<img src="../img/images_site/error.jpg" class="card-img-top" alt="...">
+								  			<div class="card-body">
+											    <h5 class="card-title">Contrat non disponible</h5>
+											    <p class="card-text">Afin d'établir un contrat, veuillez acheter son modéle</p>
+											    <object type="application/vnd.oasis.opendocument.text" data="data/test.odt">
+													<a href="contrat.php"><button class="button_design">Acheter le modèle de contrat</button></a>
+												</object>
+								  			</div>
+										</div>
+									</div>
+								<?php
+					 			}
+					 		}
+					 		else if($_GET['panel'] == "mes_informations")
 					 		{	
 					 		?>
 					 			<div class="limiter">
@@ -77,16 +120,14 @@
 														<span class="focus-input100"></span>
 													</div>
 												</div>
-								                <div class="alignement align-items-center m-b-20">
-									                <div class="login wrap-input100 rs1-wrap-input100 validate-input taille2">
-									                    <input id="nom" class="input100" type="text" name="nom" placeholder="Nom" value="<?php echo $resultat_req_user['nom']?>">
-									                    <span class="focus-input100"></span>
-									                </div>
-									                <div class="login wrap-input100 rs1-wrap-input100 validate-input taille2">
-									                    <input id="prenom" class="input100" type="text" name="prenom" placeholder="Prenom" value="<?php echo $resultat_req_user['prenom']?>">
-									                    <span class="focus-input100"></span>
-									                </div>
-								            	</div>
+									            <div class="login wrap-input100 rs1-wrap-input100 validate-input taille1 m-b-20">
+									                <input id="nom" class="input100" type="text" name="nom" placeholder="Nom" value="<?php echo $resultat_req_user['nom']?>">
+									                <span class="focus-input100"></span>
+									            </div>
+									            <div class="login wrap-input100 rs1-wrap-input100 validate-input taille1 m-b-20">
+									                <input id="prenom" class="input100" type="text" name="prenom" placeholder="Prenom" value="<?php echo $resultat_req_user['prenom']?>">
+									                <span class="focus-input100"></span>
+									            </div>
 									            <div class="password1 wrap-input100 rs1-wrap-input100 validate-input taille1 m-b-20">
 									                <input id="adresse" class="input100" type="text" name="adresse" placeholder="Adresse" value="<?php echo $resultat_req_user['adresse']?>">
 									                <span class="focus-input100"></span>
@@ -112,7 +153,7 @@
 								                <span class="login100-form-title p-b-34">
 								                    Email
 								                </span>
-								                <div class="flex-row align-items-center input-email">
+								                <div class="flex-row align-items-center input-email w-100">
 									                <div class="login wrap-input100 rs1-wrap-input100 validate-input w-60 admin_login_change">
 									                    <input id="email" disabled class="input100" type="text" name="email" placeholder="Email" value="<?php echo $resultat_req_user['email'] ?>">
 									                    <span class="focus-input100"></span>
@@ -135,7 +176,7 @@
 								                <span class="login100-form-title p-b-34">
 								                    Mot de passe
 								                </span>
-								                <div class="flex-row align-items-center input-password">
+								                <div class="flex-row align-items-center input-password w-100">
 									                <div class="login wrap-input100 rs1-wrap-input100 validate-input w-60 admin_login_change">
 									                    <input id="email" disabled class="input100" type="password" name="email" placeholder="Email" value="<?php echo substr($resultat_req_user['password'],0,10) ?>">
 									                    <span class="focus-input100"></span>

@@ -1423,15 +1423,18 @@ html, body{
 
 .list_panel {
     width: 18rem;
-    height: 240px;
+    height: 288px;
 }
 
-.parametre section{
+@media (min-width: 550px) {
+  .parametre section{
 
-  padding: 30px;
-  margin-top: 100px;
-  display: flex;
-  justify-content: space-between;
+    padding: 30px;
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-between;
+    min-width: 550px;
+  }
 }
 
 .parametre .card a{
@@ -1611,4 +1614,9 @@ html, body{
 .profil #email{
 
   border: none;
+}
+
+.contrat{
+  position: absolute;
+  margin-top: 100px;
 }
