@@ -38,17 +38,24 @@ $charge = \Stripe\Charge::create(array(
   'receipt_email' => $email
 ));
 
-if(isset($_POST['contrat']) && $charge != null)
+if(isset($_POST['contrat']))
 {
-	$login = $_SESSION['login'];
-	$req_id_user = "SELECT id FROM utilisateurs WHERE login='$login'";
-	$execute_id_user = mysqli_query($base, $req_id_user);
-	$resultat_id_user = mysqli_fetch_array($execute_id_user);
-	$id = $resultat_id_user['id'];
+	if($charge != null)
+	{
+		$login = $_SESSION['login'];
+		$req_id_user = "SELECT id FROM utilisateurs WHERE login='$login'";
+		$execute_id_user = mysqli_query($base, $req_id_user);
+		$resultat_id_user = mysqli_fetch_array($execute_id_user);
+		$id = $resultat_id_user['id'];
 
-	$insert_contrat = "INSERT INTO contrat VALUES(NULL,'$id')";
-	mysqli_query($base, $insert_contrat);
-	$_SESSION['contrat'] = true;
+		$insert_contrat = "INSERT INTO contrat VALUES(NULL,'$id')";
+		mysqli_query($base, $insert_contrat);
+		$_SESSION['contrat'] = true;
+	}
+	else
+	{
+		$_SESSION['contrat'] = false;
+	}
 }
 ?> 
 

@@ -154,7 +154,7 @@
 					       			while($resultat_req_annonce = mysqli_fetch_array($execute_req_annonce))
 					       			{
 					       			?>
-					       			<div class="card" style="width: 18rem;">
+					       			<div class="card shadow" style="width: 18rem;">
 										<div class="card-body">
 									    	<h5 class="card-title"><?php echo $resultat_req_annonce['type_attestation']?></h5>
 									    	<h6 class="card-subtitle mb-2 text-muted"><?php echo "Publié par ".$resultat_req_annonce['login']?></h6>
@@ -219,7 +219,7 @@
 				        		if($number_user != 0)
 				        		{
 				        		?>
-				        			<div class="list-group list_user">
+				        			<div class="list-group list_user shadow">
 				        				<h6  class="list-group-item">
 				        					<?php echo "Nombre d'utilisateurs: ".$number_user;?>
 				        				</h6>

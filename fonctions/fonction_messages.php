@@ -56,7 +56,7 @@ else if(isset($_POST['id_message']))
 }
 else
 {
-	$req_conv="SELECT message.id, id_utilisateur, id_utilisateur_prive, profil FROM message, utilisateurs WHERE id_utilisateur = '$id' and utilisateurs.id = id_utilisateur_prive or id_utilisateur_prive = '$id' and utilisateurs.id = id_utilisateur GROUP BY id_utilisateur_prive, id_utilisateur ORDER by message.id ASC";
+	$req_conv="SELECT message.id, id_utilisateur, id_utilisateur_prive, profil FROM message, utilisateurs WHERE id_utilisateur = '$id' and utilisateurs.id = id_utilisateur_prive or id_utilisateur_prive = '$id' and utilisateurs.id = id_utilisateur GROUP BY id_utilisateur_prive, id_utilisateur, message.id ORDER by date_message DESC";
 	$execute_req_conv=mysqli_query($base, $req_conv);
 	$element=mysqli_num_rows($execute_req_conv);
 

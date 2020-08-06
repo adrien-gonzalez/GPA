@@ -583,7 +583,7 @@ footer a:hover{
   text-align: right;
   width: 60%; padding:
 }
-.headind_srch{ padding:10px 29px 10px 20px; overflow:hidden; border-bottom:1px solid #c4c4c4;}
+.headind_srch{ padding:16px 29px 10px 20px; overflow:hidden; border-bottom:1px solid #c4c4c4;}
 
 .recent_heading h4 {
   color: #504d70;
@@ -625,7 +625,7 @@ footer a:hover{
   width: 88%;
 }
 
-.chat_people{ overflow:hidden; clear:both;}
+.chat_people{ overflow:hidden; clear:both; display: flex; align-items: center;}
 .chat_list {
   border-bottom: 1px solid #c4c4c4;
   margin: 0;
@@ -1426,6 +1426,10 @@ html, body{
     height: 288px;
 }
 
+.parametre section{
+
+  margin-top: 100px;
+}
 @media (min-width: 550px) {
   .parametre section{
 

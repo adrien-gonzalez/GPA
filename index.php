@@ -74,11 +74,22 @@
 					<?php
 					if(isset($_SESSION['contrat']))
 					{
-					?>
-						<div class="alert alert-success contrat" role="alert">
-					  		Votre contrat est disponible dans votre espace paramètre -> mon contrat
-						</div>
-					<?php
+						if($_SESSION['contrat'] == true)
+						{
+						?>
+							<div class="alert alert-success contrat" role="alert">
+						  		Votre contrat est disponible dans votre espace paramètre -> mon contrat
+							</div>
+						<?php
+						}
+						else
+						{
+						?>
+							<div class="alert alert-danger contrat" role="alert">
+						  		Une erreur à eu lieu lors du paiement, veuillez rééssayer plus tard
+							</div>
+						<?php
+						}
 						unset($_SESSION['contrat']);
 					}
 					?>

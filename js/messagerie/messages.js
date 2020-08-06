@@ -55,7 +55,6 @@ function affichages_conversation(){
         type: 'POST',    
                    
         success: function(data){ 
-        console.log(data) 
   			if(data === "0")
   			{
   				$(".aucun_message").removeClass("d-none")

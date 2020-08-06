@@ -66,7 +66,7 @@
 					 			{
 					 			?>
 						 			<div class="d-flex justify-content-center w-100">
-								    	<div class="card" style="width: 18rem;">
+								    	<div class="card shadow" style="width: 18rem;">
 								  			<img src="../img/images_site/contrat.jpg" class="card-img-top" alt="...">
 								  			<div class="card-body">
 											    <h5 class="card-title">Contrat disponible</h5>
